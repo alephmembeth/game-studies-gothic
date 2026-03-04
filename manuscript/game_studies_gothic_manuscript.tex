@@ -1,0 +1,1560 @@
+\documentclass[a5paper,pagesize,numbers=noenddot]{scrbook}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{authblk}
+\usepackage[ngerman]{babel}
+\usepackage[natbib,notes,backend=bibtex]{biblatex-chicago}
+   \bibliography{game_studies_gothic_manuscript_references}
+\usepackage{booktabs}
+\usepackage{CormorantGaramond}
+\usepackage[german=guillemets]{csquotes}
+\usepackage{enumitem}
+   \setlist{noitemsep}
+\usepackage{float}
+\usepackage{graphicx}
+   \graphicspath{{figures/}}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage{siunitx}
+\usepackage{stmaryrd}
+   \let\stmaryrdLightning\lightning
+\usepackage{tabto}
+\usepackage{tikz}
+\usepackage[normalem]{ulem}
+\usepackage{varwidth}
+
+\addtokomafont{disposition}{\rmfamily}
+
+\setlength{\fboxsep}{5pt}
+\setlength{\fboxrule}{1pt}
+
+\deffootnote{2em}{2em}{\makebox[2em][l]{\thefootnotemark}}
+   \setlength{\skip\footins}{1.5em}
+   \setlength{\footnotesep}{1em}
+
+\title{Gothic}
+\subtitle{Eine Spurensuche im Entwicklerarchiv}
+
+\author{Alexander Max Bauer}
+
+\date{}
+
+
+%%%%%%%%%%%
+% TITELEI %
+%%%%%%%%%%%
+\begin{document}
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+% INHALTSVERZEICHNIS %
+%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter
+\tableofcontents
+
+
+%%%%%%%%%%%
+% VORWORT %
+%%%%%%%%%%%
+\mainmatter
+\chapter{Ein Wort vorab}\label{ch:vorwort}
+
+
+%%%%%%%%%%%
+% QUELLEN %
+%%%%%%%%%%%
+\chapter{Ein Wort zu den Quellen}\label{ch:quellen}
+Darüber, ob Videospiele als Kunst gelten und als legitimer Gegenstand wissenschaftlicher Untersuchung oder philosophischer Reflexion betrachtet werden können, scheint glücklicherweise immer weniger Dissens zu herrschen.\footnote{In diesem Sinne ernstgenommen werden sie etwa -- um aus der Vielzahl inzwischen verfügbarer Publikationen nur drei ausgewählte Beispiele zu nennen -- von \autocite{feige_computerspiele_2015}, \autocite{zimmermann_gameskultur_2020} sowie \autocite{beil_game_2018}.
+Eine frühere Fassung dieses Kapitels ist während meiner Arbeit an diesem Buch auch als Blogbeitrag erschienen; \autocite[vgl.][]{bauer_sammeln_2025}.}
+Wie Literatur, Gemälde oder Filme werden sie damit zunehmend auch als etwas betrachtet, das es zu bewahren und zugänglich zu machen gilt.
+In diesem Bewusstsein sind inzwischen sowohl in Deutschland wie auch international zahlreiche Sammlungen -- einige in privater Hand, andere in öffentlicher Trägerschaft -- entstanden, deren Bestand an Videospielen bis in die Zehntausende reicht.
+Sebastian Möring resümiert diesbezüglich:
+
+\begin{quote}
+   Die nach eigener Auskunft größte private Computerspielsammlung ist mit 10.000 Spielen das Haus der Computerspiele.
+   Sie wurde vom Leipziger Journalisten René Meyer initiiert.
+   Die Sammlung des Computerspielemuseums in Berlin mit bis zu 30.000 Exemplaren geht auf die Initiative des Fördervereins für Jugend und Sozialarbeit (fjs e.\,V.) zurück.
+   Sie ist damit die größte institutionalisierte Sammlung in Deutschland.
+   Über die größte Sammlung an einer deutschen Hochschule verfügt das DIGAREC -- Zentrum für Computerspielforschung der Universität Potsdam mit etwa 10.000 Spieletiteln.
+   Auf internationaler Ebene sammeln etablierte Kulturinstitutionen wie das Museum of Modern Art (MoMA) und die Library of Congress in den USA oder die Königliche Bibliothek in Dänemark.
+   Hierzulande erweitert das renommierte Deutsche Literaturarchiv Marbach seinen Sammlungsauftrag und schließt Computerspiele darin ein.\autocite[S.~120]{moering_kulturarchive_2020}
+\end{quote}
+
+Vielleicht lässt sich schon hieran -- mit aller gebotenen Vorsicht -- ein Trend darin erkennen, wie mit Videospielen und dem sie umgebenden Kosmos als bewahrenswerte Kulturgegenstände umgegangen wird.
+\enquote{Am Anfang}, schreibt Möring, \enquote{steht bei den meisten Sammlungen die Frage nach den Objekten, welche gesammelt werden sollen.}\autocite[S.~121]{moering_kulturarchive_2020}
+Das sind in erster Linie die Spiele selbst, also die entsprechende Software, eng damit verbunden aber auch die dazugehörigen Speichermedien und in einigen Fällen die benötigte historische Hardware, um die Spiele spielen zu können, wenn man nicht auf Emulatoren ausweichen möchte.
+Aus dem sie umgebenden Kosmos werden daneben aber auch \enquote{Zeitschriften und Bücher zu Computerspielen gesammelt sowie Actionfiguren, Comics, Filme}\autocite[S.~121]{moering_kulturarchive_2020} und dergleichen mehr.
+Der Fokus scheint damit, wenig verwunderlich, auf offiziell veröffentlichtem Material zu liegen.
+Nur vergleichsweise selten widmet man sich den \textit{Vorstufen} dieses Materials, den groben Ideenskizzen, den frühen Entwürfen und Designdokumenten, den Alpha- und Betaversionen der Spiele, den internen Entwicklungswerkzeugen und so weiter.
+All das ist in der Regel -- anders als das fertige Spiel -- nur selten dafür bestimmt, in die Öffentlichkeit entlassen zu werden, sieht man von dem ein oder anderen Making-of-Buch oder Bildband mit Konzeptzeichnungen einmal ab.
+Entsprechend konstatiert Nico Nolden:
+\enquote{Ungenutzt schlummern Artworks (Konzeptzeichnungen und ähnliches), Prototypen und Designdokumente in Firmenarchiven, die sich auf‌lösen, sobald die Unternehmen eingehen.}\autocite[S.~44]{nolden_geschichte_2020}
+
+Nur sporadisch finden einzelne Dokumente oder Entwicklungsversionen von Spielen ihren Weg in die Öffentlichkeit, wobei oft nur noch mit Mühe nachvollzogen werden kann, wie dieser Weg eigentlich aussah.
+Durch die Weiten des Netzes geistern heute unter anderem -- um ein paar Beispiele zu nennen -- Designdokumente von \textit{Diablo} (1996), \textit{Doom} (1993), dem nie erschienenen \textit{Fallout: Brotherhood of Steel 2}, \textit{Grim Fandango} (1998), \textit{Planescape: Torment} (1999), \textit{Silent Hill} (1999) oder \textit{Tron} (1982).\footnote{Diese Beispiele hat Mikael Segedi gesammelt und zugänglich gemacht; \autocite[vgl.][]{segedi_famous_2015}.}
+
+Manchmal sammeln Liebhaber:innen solche Dokumente online, wie beispielsweise bei \textit{Tomb Raider} (1996) oder \textit{Gothic} (2001).\autocite[Vgl.][]{core_design_tomb_raider,gothic_archive_2024}
+Im Fall von \textit{Shenmue} (1999) haben sich Fans sogar zusammengeschlossen, um Material für mehrere tausend Euro bei Auktionen zu ersteigern.\footnote{\autocite[Vgl.][]{shenmue_original_2025}.
+Für den Hinweis hierauf danke ich Jacob Birken.}
+Manchmal wird eine solche Veröffentlichung aber auch von Entwickler:innen oder Publishern selbst forciert.
+Al Lowe beispielsweise hat auf seiner Homepage unter anderem Dokumente zu \textit{Leisure Suit Larry 5: Passionate Patti Does a Little Undercover Work} (1991), \textit{Leisure Suit Larry 6: Shape Up or Slip Out!} (1993) und \textit{Leisure Suit Larry 7: Love for Sail!} (1996) zugänglich gemacht.\autocite[Vgl.][]{lowe_designs_2025}
+Auch Aric Wilmunder hatte auf seiner -- inzwischen nicht mehr erreichbaren -- Homepage eine ganze Reihe von Designdokumenten veröffentlicht, die sich über lange Jahre in seinem Besitz befanden.
+Unter der Überschrift \enquote{A Peek Into My Games Industry Archive} hatte er die eingescannte Sammlung mit den Worten eingeleitet:
+
+\begin{quote}
+   Monkey Island, Day of the Tentacle, Maniac Mansion, The Dig, Indy Iron Phoenix, the list goes on.
+   I worked on all of these and had a suspicion that someday there would be interest in how these games were made.
+   Years ago I visited the LucasArts facility in the San Francisco Presidio and brought along two grocery bags of design documents.
+   I asked if they had an archivist and I was told that since I had kept these safe for over two decades, it was best if I just kept them together.
+   I have met with the archivist at Stanford and these documents will either end up there or at a museum dedicated to preserving game design.\autocite{wilmunder_peek}
+\end{quote}
+
+Darunter fanden sich Dokumente unter anderem zu \textit{The Secret of Monkey Island} (1990), \textit{The Curse of Monkey Island} (1997), \textit{Indiana Jones and the Last Crusade} (1989), dem nie erschienenen \textit{Indiana Jones and the Iron Phoenix}, \textit{Maniac Mansion} (1987), \textit{Sam \& Max Hit the Road} (1993), \textit{Star Wars: Rebel Assault} (1993) oder \textit{The Dig} (1995).\footnote{Zu \textit{Maniac Mansion} und \textit{The Curse of Monkey Island} lohnt sich auch ein Blick auf Ron Gilberts Website; \autocite[vgl. etwa][]{gilbert_maniac_mansion_2014}.}
+Andere -- inzwischen ebenso nur noch über die \textit{Wayback Machine} des \textit{Internet Archive} erreichbare -- Beispiele sind Richard Hill-Whittall, der eine Reihe von Dokumenten zu Wii- und PSVita-Spielen auf seiner Homepage veröffentlicht hatte,\autocite[Vgl.][]{hill_whittall_gdd_2017} Mike Dailly, der das Designdokument von \textit{Grand Theft Auto} (1997) auf \textit{Flickr} hochgeladen hatte,\footnote{\autocite[Vgl.][]{dailly_race_n_chase_2011}; zum zweiten Teil siehe außerdem \autocite{internet_archive_gta_2}.} Deep Silver Volition, die Dokumente des nie erschienenen \textit{Saints Row: Undercover} veröffentlicht hatten\footnote{\autocite[Vgl.][]{volition_thursday_2016}.
+\enquote{Nie erschienen} trifft es dabei nicht ganz:
+Im gleichen Zuge hat Volition damals auch eine spielbare Entwicklungsversion zugänglich gemacht; \autocite[vgl.][]{frank_canceled_2016}.} oder Giant Sparrow, die einen internen Trailer sowie Dokumente von \textit{What Remains of Edith Finch} (2017) auf ihrem Blog gepostet hatten.\autocite[Vgl.][]{giant_sparrow_edith_2018}
+
+Daneben gibt es auch einige Entwickler, die -- wahrscheinlich nicht ohne ein gewisses videospielhistorisches Selbstverständnis und -bewusstsein -- eigene Editionen ihrer Notizen herausgebracht haben, etwa Jordan Mechner zu seinen Spielen \textit{Karateka} (1984) und \textit{Prince of Persia} (1989) mit \textit{The Making of Karateka} und \textit{The Making of Prince of Persia} oder Zach Barth mit \textit{Zach-Like}.\footnote{\autocite[Vgl.][]{mechner_karateka_2012,mechner_prince_2020,barth_zach_like_2019}.
+Vielleicht wäre auch das 2010 von Rockstar Games angekündigte \textit{Digital \& Analogue -- The Art \& Science of Rockstar Games} in diese Aufzählung aufzunehmen gewesen, wenn es jemals erschienen wäre.
+Das auf immerhin drei Bände angelegte Projekt versprach zumindest, mehr als ein handelsübliches Artbook zu werden.}
+In jüngster Zeit hat außerdem die von Frank Cifaldi gegründete \textit{Video Game History Foundation} die Tore ihrs digitalen Archivs geöffnet.
+Die mehr als 30.000 Archivalien umfassen neben Videospielmagazinen, Artworks, Pressemappen und anderem Werbematerial auch \enquote{[n]ever-before-seen game development materials.}\autocite{salvador_library_2025}
+
+Dass diese Fälle eher Ausnahmen zu bleiben und der Fokus von Sammlungen in erster Linie auf offiziell veröffentlichtem Material zu liegen scheint, ist wenig verwunderlich.
+Wahrscheinlich halten die meisten Kunstschaffenden die Vorstufen ihrer Werke zu Lebzeiten zurück; viele Sammlungen speisen sich vermutlich vorrangig aus dem Nachlass.
+Daneben sind immer -- sowohl zu Lebzeiten von Künstler:innen wie auch danach -- rechtliche Fragen zu klären.
+Außerdem sind viele Spiele nicht das Werk einer einzelnen Person, sondern ganzer Gruppen.
+Hier ist unter Umständen also zusätzlich ein komplexes Netz geistigen Eigentums zu beachten.
+Zudem entstehen Videospiele überwiegend im Kontext von Unternehmen, also von marktwirtschaftlich agierenden Gruppen, die sich wahrscheinlich oft nicht in die eigenen Karten der Spieleproduktion blicken lassen möchten.
+
+Trotz solcher Schwierigkeiten plädiere ich dafür, dass diese oft unveröffentlichten Dokumente als wichtige Quellen für die Videospielforschung angesehen werden.
+Gleiches gilt meiner Meinung nach übrigens auch -- aber das soll an dieser Stelle nur eine Randbemerkung bleiben -- für die Kommunikation der Entwickler:innen.\footnote{An vielen Stellen profitiert die Forschung von dem erhalten gebliebenen Schriftverkehr vergangener Generationen.
+Dass ein Großteil dieses Schriftverkehrs heute elektronisch vonstattengeht und das Risiko birgt, für künftige Generationen unzugänglich zu werden, haben Errol Friedberg und Kollegen bereits Anfang des Jahrtausends in einer Zuschrift an \textit{Nature} angemahnt; \autocite[vgl.][]{friedberg_e_mail_2003}.}
+Für mich stellen solche Dokumente ein Analogon dar zu Vorstufen, Vorskizzen, Notizen, Briefen und all den anderen Hintergrunddokumenten, die wir heranziehen, wenn wir uns Schriften oder Kunstwerken eingehender widmen.
+Denkt man diesen Gedanken weiter, muss man sich fragen, wie solche Dokumente aus dem Kosmos der Videospiele archiviert, zugänglich gemacht und aufbereitet werden können.
+Hier liegt ein Brückenschlag zur Editionswissenschaft nahe.
+Immerhin:
+Wenn Bodo Plachta das Folgende in seiner Einführung in die Editionswissenschaft schreibt, scheint es mir vor diesem Hintergrund nicht so abwegig, das erste Wort -- \enquote{Texte} -- durch \enquote{Videospiele} zu ersetzen:
+
+\begin{quote}
+   Texte sind historische Dokumente.
+   Ihre Entstehung und die aus ihr resultierenden Ergebnisse müssen als ein historischer Prozeß beschrieben und fixiert werden.
+   Diesen Entstehungsprozeß in seiner Komplexität aus historischen, biographischen oder poetologischen Komponenten möglichst umfassend zu dokumentieren und zu erläutern, ist ein wichtiges Ziel der historisch-kritischen Ausgabe.
+   Dazu ist es notwenig, nicht nur sämtliche Materialien eines zu edierenden Werkes oder Textes zu sichten, sondern die Arbeitsstadien aus diesem Material zu ermitteln, diese zur Entstehung in Beziehung zu setzen und den zu rekonstruierenden Entstehungsprozeß in seiner ganzen Komplexität bis zu einer eventuellen Publikation zu verfolgen.\autocite[S.~13\,f.]{plachta_editionswissenschaft_1997}
+\end{quote}
+
+Ich möchte unterstreichen, dass Videospiele es, wenn man sie als Kulturgüter begreift, verdient haben, nicht nur in ihrem Ergebnis, sondern auch in ihrer Entstehung ernst genommen zu werden.
+Und das heißt -- nicht in allen, aber doch in einigen Fällen --, ebenso ernst genommen zu werden wie ein Text von Kafka oder Shelley, ein Gemälde von Dürer, eine Grafik von Kollwitz oder eine Komposition von Pejačević.
+Ob ausgerechnet \textit{Gothic} nun in diese Reihe gehört, mag jeder für sich selbst entscheiden.
+Ich jedenfalls möchte in diesem Band versuchen, \textit{Gothic} in diesem Sinne ernst zu nehmen.
+Dazu werfe ich in erster Linie einen Blick auf Archivdokumente, die aus der Entstehungszeit des Spiels erhalten sind.
+Natürlich kann ich auf diesem knappen Platz keine historisch-kritische oder irgendeine andere Edition des zugrundeliegenden Materials bieten; das wäre Aufgabe eines anderen Unterfangens.
+Stattdessen begnüge ich mich mit einer diskursiven Darstellung des Materials.
+Dabei wird sich zeigen, dass es sich durchaus lohnen kann, einmal probeweise einen genaueren Blick auf solche Hintergrunddokumente zu werfen und sich zu fragen, was sie uns über die Entstehungsgeschichte eines Spiels erzählen können.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% QUELLEN – ARCHIVDOKUMENTE %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Archivdokumente}\label{ch:quellen_archivdokumente}
+Wenn ich im Folgenden Archivdokumente eingehender behandle, stelle ich sie am Anfang des entsprechenden Kapitels mit einer äußerst knappen Handschriften- beziehungsweise Dokumentenbeschreibung vor.
+Bei Zitaten aus solchen Dokumenten strebe ich eine zeichengetreue diplomatische Wiedergabe an.
+Dementsprechend werden beispielsweise Abkürzungen nicht aufgelöst und Fehler in Orthographie oder Interpunktion bleiben erhalten.
+Statt sie zu korrigieren, weise ich an den entsprechenden Stellen in eckigen Klammern mit dem lateinischen \textit{sic} (\enquote{so}, von \textit{sic erat scriptum}, \enquote{so wurde es geschrieben}) darauf hin, dass die jeweilige Stelle in dieser Form aus der Vorlage stammt und keinen Übertragungsfehler darstellt.
+Andere Kommentare, Ergänzungen, Anpassungen und Auslassungen von mir werden ebenfalls durch eckige Klammern kenntlich gemacht.
+Stammen eckige Klammern jedoch aus der Vorlage selbst, weise ich in einer Fußnote darauf hin.
+Finden sich in der Vorlage Hervorhebungen oder Korrekturen (beispielsweise fette oder kursive Schriften, Unterstreichungen, Sperrungen oder Durchstreichungen), werden diese übernommen.
+Damit hoffe ich, eine \enquote{Einebnung typographischer Besonderheiten} zu vermeiden, die sonst \enquote{auch mit einer Sinnverlagerung einhergehen} könnte.\autocite[S.~21]{plachta_editionswissenschaft_1997}
+Zeilen- oder Seitenwechsel werden dagegen nicht ausgewiesen.
+Worttrennungen am Zeilenende werden entsprechend aufgelöst und Trennzeichen getilgt.
+Auch Textfarben werden -- außer bei Erwähnung in der Handschriften- oder Dokumentenbeschreibung -- nicht ausgewiesen.
+Insgesamt versuche ich, das Quellenmaterial möglichst für sich sprechen zu lassen, weswegen ich zahlreich daraus zitiere.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% QUELLEN – INTERVIEWS %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Interviews}\label{ch:quellen_interviews}
+
+
+%%%%%%%%%%%%%%
+% WILLKOMMEN %
+%%%%%%%%%%%%%%
+\chapter{Willkommen im Lager}\label{ch:willkommen}
+Gothic beginnt mit einem kurzen Video, das die Prämisse des Spiels in wenigen Minuten vorstellt.
+Der Bildschirm ist noch schwarz, als die markante Stimme des Sprechers Bodo Henkel anhebt:
+\enquote{Das Königreich Myrtana, wiedervereint durch die Hand König Rhobars II.}
+Eine Aufblende führt uns in einen kargen Thronsaal.
+Die Kamera bewegt sich, einem roten, von Säulen gesäumten Läufer folgend, auf den König zu, der mit geneigtem Haupt, sich auf eine Lanze stützend, an der Stirnwand des Saals auf seinem schmucklosen Thron sitzt, zu dem ein paar flache Stufen hinaufführen.
+Zu seiner Rechten und Linken reichen rote Banner mit goldenen Applikationen von der Decke bis zum Boden.
+Der König trägt eine reich verzierte Brustplatte, um seine Schultern liegt ein Fell, die Hände stecken in schweren Panzerhandschuhen.
+Durch gothische Fenster fällt von rechts Licht in den steinernen Raum.
+\enquote{In den langen Jahren seiner Herrschaft war es ihm gelungen, alle Widersacher des Reiches zu bezwingen}, erfahren wir.
+
+Ein weite Ebene; im Hintergrund ein verfallenes Haus und ein einsamer kahler Baum.
+\enquote{Bis auf einen}, fügt der Sprecher an.
+Der Fuß eines Orks wirbelt Staub vom Boden auf.
+Hinter ihm stürmt eine ganze Armee von seinesgleichen mit gezogenen Waffen vorwärts.
+Eine Handvoll menschlicher Bogenschützen setzt zum Schuss an.
+Von irgendwoher ertönt das Kommando: \enquote{Feuer!}
+Einige Orks fallen den Pfeilen zum Opfer, die meisten aber stürmen unbeirrt weiter.
+Ihre großen, grob gearbeiteten Waffen machen mit den Bogenschützen kurzen Prozess.
+
+Eine unterirdische, von Fackelschein erleuchtete Miene.
+Arbeiter schwingen ihre Spitzhacken, hinter ihnen stehen Wächter, ihre Arme in die Seiten gestemmt, auf dem Boden Haufen blauen Erzes.
+Ein Arbeiter trägt zwei schwere Säcke mit einem Tragejoch auf seine Schultern.
+\enquote{Der Krieg mit den Orks forderte seinen Tribut}, fährt der Sprecher fort, \enquote{und die Gefangenen des Reiches sollten ihn bezahlen.
+Der König brauchte Schwerter für seine Armeen -- und jeder, der sich eines auch noch so geringen Verbrechens schuldig gemacht hatte, wurde zur Arbeit in den Erzminen von Khorinis gezwungen.}
+Im nächtlichen Fackelschein bewegt sich eine Reihe aneinandergeketteter Häftlinge, die Hände auf dem Rücken gefesselt, auf eine Burg zu.
+Wächter in imposanten Rüstungen stehen an der Seite des Trosses.
+Hier scheint ein Entkommen unmöglich.
+
+Dunkle Bäume heben sich vor einem abendlichen Himmel ab.
+\enquote{Um jede Flucht unmöglich zu machen, sandte der König die mächtigsten Magier des Reiches aus, eine magische Barriere um das gesamte Tal zu errichten.}
+Eine Figur materialisiert sich in einer blau leuchtenden Wolke aus dem Nichts.
+Sie trägt eine blaue Robe, das Gesicht unter einer Kapuze verborgen.
+Mit beiden Händen hält sie einen Stab, den sie vor sich in den Boden rammt.
+Blaue Blitze zucken um ihren Körper und springen auf einen blauen Kristall über, der an der Spitze des Stabes in einer Fassung aus vier Sicheln gehalten wird.
+\enquote{Ich war einer der Magier}, erfahren wir.
+Die Sicheln geben den Kristall frei, der sich in einen Ball aus Energie zu verwandeln scheint und in Richtung der Burg fliegt, deren nächtliche Silhouette wir schon gesehen haben.
+Aus anderen Richtungen fliegen zwei weitere blaue Kugeln und alle drei treffen sich hoch oben, über der Burg, in einem gewaltigen Funkenregen.
+Eine blau schimmernde Kuppel beginnt sich vom Ort ihrer Kollision her auszubreiten.
+\enquote{Aber etwas störte das gebrechliche Gefüge der Magie.}
+Die Kuppel wächst im rasanten Tempo immer weiter und umschließt bald auch den Magier in der blauen Robe, der schützend die Arme nach oben reißt, als die Barriere auf ihn zurast.
+\enquote{Wir waren nun selbst Gefangene der Barriere.}
+
+Im Innenhof der Burg stehen zwei Wachen, verwundert in den Himmel, auf die gerade entstandene blau schimmernde Kuppel, blickend.
+Eine der beiden weist erstaunt mit der Hand nach oben, als sich von hinten vorsichtig ein Gefangener nähert und ihr eine Spitzhacke in den Rücken rammt.
+\enquote{Mehr als eine Sekunde der Unachtsamkeit brauchten die Gefangenen nicht.}
+Der Gefangene zieht seine Spitzhacke aus der bäuchlings auf dem Boden liegenden Wache, ein anderer schneidet der zweiten Wache derweil von hinten mit einem Messer die Kehle durch.
+\enquote{Khorinis war nun in den Händen der Gefangenen.}
+
+\enquote{Der König hatte keine Wahl.}
+Rhobar II. erhebt sich von seinem Thron, um einem Boten eine Schriftrolle auszuhändigen.
+Der wirft sie durch die Barrier, wo sie vor den Füßen eines Häftlings landet.
+\enquote{Er musste verhandeln, er brauchte das Erz.}
+Kisten, Fässer, Säcke, eine leicht bekleidete Frau, die Hände auf den Rücken gebunden, werden von einer erhöht liegenden Plattform aus mit einem hölzernen, von einer eisernen Kette gezogenen Aufzug in das Innere der Barriere befördert.
+Der Frau entfährt ein Schmerzenslaut, als sie den Rand der magischen Kuppel passiert.
+\enquote{Monat für Monat lieferte der König den Gefangenen alles, was sie verlangten.
+Monat für Monat brachten sie dafür das Erz an den Rand der Barriere.
+In all den Jahren wurden viele Versuche unternommen, die magische Barriere zu öffnen, aber keiner hatte Erfolg.}
+
+Obwohl im Inneren der Kuppel nun die Häftlinge das Sagen haben, hat das Mienental seine Funktion als Gefängnis nicht verloren.
+Flankiert von zwei Wächtern wird ein neuer Gefangener an den Rand einer Klippe geführt, hinter deren Abgrund die magische Barriere schimmert.
+Seine beiden Bewacher halten ihm die Arme auf dem Rücken, während vor ihm ein Richter in gelber Robe und mit einem hohen, farblich passenden Hut, sein Urteil zu verlesen beginnt:
+\enquote{Im Namen König Rhobars II., Träger des Zepters von Varant, Vereiniger der vier Reiche am Myrth\,$\ldots$}
+Weiter kommt er nicht, denn eine Figur in rot-schwarzer Robe tritt hinzu und unterbricht ihn mit einem gebieterischen \enquote{Halt}, ehe sie sich an den Häftling wendet und fortfährt:
+\enquote{Gefangener, ich habe dir ein Angebot zu machen:
+Dieser Brief \textit{muss} den Führer der Feuermagier erreichen.}
+Der Angesprochene aber gibt sich unbeeindruckt:
+\enquote{Du verschwendest deine Zeit}, gibt er zurück.
+\enquote{Deine Belohnung}, erwidert der Hinzugekommene in verlockendem Ton, \enquote{könntest du selbst wählen.
+Man wird dir alles geben, was du verlangst.}
+Das war hinreichend überzeugend:
+\enquote{Gut}, antwortet der Gefangene mit einem schelmischen Grinsen im Gesicht, {ich werde deinen Brief nehmen.}
+Die beiden Bewacher geben seine Arme frei, damit er das Schriftstück an sich nehmen kann, als er forfährt:
+\enquote{Unter \textit{einer} Bedingung}, er zeigt auf den Richter, \enquote{Erspart mir den Rest von seinem Gefasel!}
+Der Vertreter des Gesetzes möchte sich empören:
+\enquote{Du wag\,$\ldots$}, hebt er an, wird aber erneut von der rot-schwarz gekleideten Gestalt unterbrochen:
+\enquote{Schweig.}
+Es besteht wenig Zweifel daran, wer von beiden in diesem Moment die höhere Autorität genießt.
+Und so ist es der Hinzugekommene, der fortfährt:
+\enquote{Gut, hinein mit ihm.}
+Seine beiden Bewacher stoßen den Häftling über den Rand der Klippe, wo er durch die magische Barriere fällt. 
+Das Wasser stiebt nach allen Seiten davon, als er in dem unter der Klippe gelegenen See landet.
+
+Als er sich an das Ufer des Sees schleppt, wird er von drei rot gewandeten Gestalten empfangen.
+Eine von ihnen zieht ihn zu sich herauf und begrüßt ihn mit den Worten \enquote{Willkommen im Lager} -- ehe sie ihm einen Faustschlag ins Gesicht verpasst.
+Für einen Augenblick ist alles Schwarz.
+Bis man von irgendwoher hört:
+\enquote{Das reicht, lasst ihn in Ruhe.
+Macht, dass ihr wegkommt.}
+Als er die Augen wieder aufschlägt, steht eine andere, im gleichen dunklen Rot gekleidete Person vor dem Häftling.
+\enquote{Steh' auf}, sagt sie.
+
+Damit endet das kurze Video, das den Beginn von Gothic markiert.
+Für einen Augenblick schaut man, nun in der Spielgrafik, von hinten auf den Häftling, der in der Mitte des Bildschirms steht.
+Spätestens jetzt wird klar:
+Dieser Häftling, das ist die Spielfigur.
+Das sind wir.
+Vor uns steht die rotgekleidete Person, die einen Augenblick zuvor die drei anderen vertrieben hat.
+Sie trägt breit auslaufende schwarze Schulterplatten und eine bauschige, aus roten und schwarzen Quadraten zusammengeflickte Hose, die in seinen Stiefeln zu stecken scheint.
+Seine Hände werden von schweren Handschuhen geschützt; darüber sind die Arme nackt.
+An seinem Gürtel baumelt ein Schwert und über die Schulter hat er einen Bogen geworfen, der beinahe so groß ist, wie er selbst.
+\enquote{Ich bin Diego}, stellt er sich vor.
+\enquote{Ich bin\,$\ldots$}, setzen wir an, werden von ihm aber augenblicklich unterbrochen:
+\enquote{Mich interessiert nicht, wer du bist.}
+Das ganz Spiel hindurch werden wir ohne Namen bleiben, weswegen die Spielfigur in der Community den passenden Beinamen des \textit{Namenlosen Helden} erhalten hat.
+Aber noch sind wir kein Held, sondern nur ein weiterer Gefangener.
+\enquote{Du bist neu hier}, fährt Diego fort, \enquote{Ich kümmere mich um die Neuen.
+Belassen wir es vorerst dabei.
+Wenn du vorhast, länger zu leben, solltest du dich ein bisschen mit mir unterhalten.
+Ich werde dich allerdings nicht daran hindern, in dein Verderben zu rennen.
+Also, wie sieht's aus?}
+
+Diego meint, was er sagt.
+Nichts hindert uns daran, direkt weiter unserer Wege zu ziehen.
+In diesem Fall verabschiedet sich Diego mit einem trockenen \enquote{Wie du willst.
+War nett, dich gekannt zu haben.}
+Wenn wir Gothic allerdings zum ersten Mal und ohne Vorwissen spielen, entgeht uns dadurch auch ein guter Teil der Exposition -- und der ein oder andere Tipp, der tatsächlich dafür sorgen könnte, dass wir etwas länger am Leben bleiben.
+Deswegen wählen wir aus den zur Verfügung stehenden Optionen zuallererst die oberste aus, woraufhin unser namenloser Held, markant vertont von Christian Wewerka, entgegnet:
+\enquote{Okay, was muss ich über diesen Ort wissen?}
+
+Wir erfahren von Diego, dass das Kuppelgefängnis als die \enquote{Kolonie} bezeichnet wird und dass sich in ihm drei Lager gebildet haben.
+Das älteste davon, dem auch Diego angehört, wird schlicht das \enquote{Alte Lager} genannt.
+\enquote{Es ist das größte und mächtigste der drei Lager}, erläutert er.
+\enquote{Gomez und seine Jungs kontrollieren das Lager und damit den ganzen Erzaustausch.
+Einmal im Monat schickt der König uns alles, was wir fordern.
+Wir haben den alten Sack in der Hand, verstehst du?
+Er ist auf das Erz angewiesen.
+Er schickt uns Wein, Brot, Fleisch, Waffen, einfach alles.
+Du kannst auch deinen Teil davon bekommen.
+Alles, was du tun musst, ist dich Gomez' Leuten anzuschließen.}
+Dieser Machtstellung halber werden Gomez und seine Jungs auch als \enquote{Erzbarone} bezeichnet.
+\enquote{Die beiden anderen Lager}, erklärt uns Diego, \enquote{haben sich abgespalten, um ihren schwachsinnigen Ausbruchsplänen nachzugehen.
+Es gibt das neue Lager im Westen der Kolonie.
+Die Magier dort meinen, wenn sie genug Erz zusammengekratzt haben, können sie die Barriere einfach sprengen.
+Dann gibt's im Osten die Sektenspinner.
+Sie haben ihr Lager im Sumpf und beten zu ihrem Götzen, er möge ihnen die Freiheit schenken.
+Bis jetzt hat er sich noch nicht gemeldet.}
+
+Wenn wir möchten, können wir Diego von dem Brief erzählen, den uns der der Mann in der roten Robe gegeben hat, ehe wir von der Klippe gestoßen wurden.
+\enquote{Du kannst von Glück sagen, dass ich mich bei den Magiern nicht mehr blicken lassen kann}, erwidert Diego.
+\enquote{Jeder andere wird dir mit Freude für diesen Brief die Kehle durchschneiden.
+Die Magier belohnen ihre Boten immer sehr gut, und die meisten hier haben gar nichts, verstehst du?
+Wenn ich du wäre, würde ich die Schnauze halten, bis ich einen der Magier treffe.
+Obwohl das in deiner Lage nicht allzu wahrscheinlich ist.}
+Die Magier, erfahren wir, residieren in der Burg des Alten Lagers.
+Zutritt zur Burg allerdings haben nur Gomez und seine Leute.
+
+Da trifft es sich gut, dass es nicht nur reine Nächstenliebe war, aus der heraus Diego uns geholfen hat:
+\enquote{Bullit und seine Jungs hätten dich vielleicht kaltgemacht}, sagt er.
+\enquote{Und das konnte ich nicht mit ansehen.
+Schließlich bin ich den ganzen weiten Weg gekommen, um dir einen Vorschlag zu machen.}
+\enquote{Einen Vorschlag?}, haken wir nach.
+\enquote{Ja}, sagt Diego.
+\enquote{Deine Begegnung mit Bullit und seinen Jungs hat dir hoffentlich gezeigt, dass du Schutz brauchst.
+Jeder, der hier ankommt, wird vor eine Wahl gestellt.
+Es gibt drei Lager in der Kolonie, und einem davon wirst du dich anschließen müssen.
+Ich bin hier, um Neuen wie dir klarzumachen, dass sie bei uns im alten Lager [sic] am besten aufgehoben sind.}
+Sollten wir uns dem Alten Lager anschließen wollen, sollen wir am Eingang der Burg nach einem Mann namens Thorus Ausschau halten und ihm sagen, dass Diego uns schickt.
+Auch eine Wegbeschreibung gibt uns Diego an die Hand:
+\enquote{Du musst nur dem Weg hier folgen.
+Das Alte Lager ist der nächste halbwegs sichere Ort von hier aus gesehen.}
+Wir erfahren außerdem, dass Bullit, dem wir das blaue Auge zu verdanken haben, ebenfalls im Alten Lager zu finden ist.
+\enquote{Aber wenn du vorhast, dich mit ihm anzulegen, sei vorsichtig}, warnt uns Diego.
+\enquote{Er ist ein erfahrener Kämpfer.}
+Nicht nur Bullit ist eine warnende Erwähnung wert.
+\enquote{Es treiben sich jede Menge wilder Bestien zwischen den Lagern herum}, erzählt Diego.
+\enquote{Ohne Waffe zu gehen ist Wahnsinn.}
+Auf dem Weg zum Alten Lager sollen wir uns deswegen ein bisschen umschauen, rät er.
+Irgendeine alte, noch brauchbare Waffe werden wir dort schon finden.
+
+Auch auf die Barriere können wir Diego ansprechen.
+\enquote{Was passiert, wenn ich hier einfach wieder rausspaziere?}, fragen wir ihn.
+\enquote{Der Letzte, der das versucht hat}, bekommen wir berichtet, \enquote{ist tot auf der anderen Seite angekommen.
+Diese verdammte Barriere lässt dich zwar rein, aber raus kommst du hier nicht mehr.}
+Wir zeigen uns nichtsdestotrotz entschlossen:
+\enquote{Wenn es einen Weg hier raus gibt, werde ich ihn finden.}
+
+\enquote{Danke für die Hilfe}, verabschieden wir uns schließlich von Diego.
+\enquote{Wir sehen uns im Alten Lager}, erwidert der.
+In der Mitte des Bildschirms erscheint ein kleines Fenster, das den Beginn des ersten Kapitels verkündet:
+\enquote{Kapitel 1 -- Die Welt der Verurteilten}, steht darin.
+
+Die ersten Minuten von Gothic liefern damit eine klassische Exposition.
+Wir erfahren etwas über den Ort, an dem wir uns befinden, lernen erste \textit{dramatis personae} kennen und werden uns unserer Ziele bewusst:
+An erster Stelle steht das Überleben.
+Um unsere diesbezüglichen Chancen zu steigern, gilt es zunächst, eine Waffe sowie den Weg zum Alten Lager zu finden.
+Wenn wir es dahin geschafft haben, können wir uns vielleicht bei Bullit revanchieren.
+Außerdem werden wir uns auf kurz oder lang wohl für eines der drei Lager entscheiden müssen.
+Und schlussendlich:
+Wenn es einen Weg hier raus gibt, müssen wir ihn finden.
+
+
+%%%%%%%%%%%
+% ORPHEUS %
+%%%%%%%%%%%
+\chapter{Orpheus -- Ein Gefängnis in Planung}\label{ch:orpheus}
+Gothic hieß nicht immer Gothic.
+Der erste Name, den das Projekt trug, war \textit{Orpheus}. % Mike Hoge fragen, woher der Name stammt.
+Aus dieser frühen Phase -- wir sprechen grob von den Jahren 1995 und 1996 -- ist eine Handvoll Dokumente erhalten, in denen Mike Hoge erste Ideen festgehalten hat.
+Diese Dokumente hat er den Betreibern des \textit{Gothic Archives} zur Verfügung gestellt, die sie anschließend digitalisiert und online zugänglich gemacht haben.\autocite[Vgl.][]{archive_orpheus_2024}
+Im Folgenden werfen wir zuerst einen allgemeinen Blick auf diesen Fundus (\autoref{sec:orpheus_dokumente}), ehe wir uns anschauen, welche Ideen sich in ihm finden.
+Den Anfang machen hier Überlegungen zur Darstellung (\autoref{sec:orpheus_darstellung}), gefolgt von Ideen zur Spielmechanik und Steuerung (\autoref{sec:orpheus_mechanik}), zur Spielwelt (\autoref{sec:orpheus_welt}) sowie zur Hintergrundgeschichte und Handlung (\autoref{sec:orpheus_geschichte}).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – DOKUMENTE %
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Dokumente}\label{sec:orpheus_dokumente}
+Die zu \textit{Orpheus} vorliegenden Dokumente lassen sich -- etwas abweichend von der Sortierung im \textit{Gothic Archive} -- anhand einiger in ihnen enthaltener Titel grob gliedern.
+In alphabetischer Reihenfolge sind das
+
+\begin{itemize}
+   \item \enquote{\uline{Aufträge}},\autocite[S.~16--17]{orpheus_b_scribbles}
+   \item \enquote{\uline{\textsc{Der rote Faden\,$\ldots$}}},\autocite{orpheus_der_rote}
+   \item \enquote{\uline{Der Werdegang eines SC's}},\autocite{orpheus_der_werdegang}
+   \item \enquote{\uline{\textsc{Orpheus -- Bewegungen}}},\autocite{orpheus_bewegungen}
+   \item \enquote{\textsc{Orpheus -- History}},\autocite[S.~2--3]{orpheus_b_scribbles}
+   \item \enquote{\uline{\textsc{Orpheus} -- Interface}},\autocite{orpheus_interface}
+   \item \enquote{\textsc{Orpheus -- Kreaturen}},\autocite[S.~4]{orpheus_b_scribbles}
+   \item \enquote{\textsc{Orpheus -- Locations}},\autocite[S.~5]{orpheus_b_scribbles}
+   \item \enquote{\textsc{Orpheus} -- Spielwelt/Gildensystem},\autocite{orpheus_gildensystem}
+   \item \enquote{\textsc{Orpheus} -- Spielwelt/Gildensystem V2},\autocite{orpheus_gildensystem_v2}
+   \item \enquote{\textsc{Orpheus} -- \uline{Übersicht}}\autocite[S.~11--14]{orpheus_b_scribbles} sowie
+   \item \enquote{Zusammenfassung zum Orpheus-Konzept. \uline{Graphiken}}.\autocite{orpheus_zusammenfassung_1996}
+\end{itemize}
+
+\noindent Daneben gibt es noch
+
+\begin{itemize}
+   \item ein Dokument zur Kampfsteuerung\autocite{orpheus_kampfsteuerung} sowie
+   \item ein Dokument zu den Nicht-Spieler-Charakteren in den verschiedenen Fraktionen,\autocite{orpheus_nscs} 
+\end{itemize}
+
+\noindent die -- abgesehen von den Überschriften ihrer jeweiligen Abschnitte -- keine eigenen Titel tragen, sowie einige lose Notizen, die sich neben den oben genannten Titeln \enquote{\textsc{History}}, \enquote{\textsc{Kreaturen}}, \enquote{\textsc{Locations}}, \enquote{\uline{Übersicht}} und \enquote{\uline{Aufträge}} in einem Konvolut finden, dem ein Deckblatt mit der Aufschrift \enquote{\textsc{Orpheus. B -- Scribbles}} vorangestellt ist.\footnote{\autocite{orpheus_b_scribbles}.
+Das \enquote{B} mag hier ein Nummerierungselement darstellen. % Mike Hoge fragen, worauf sich »B – Scribbles« bezieht.
+\enquote{Scribbles} sind im Englischen Kritzeleien oder Schmierereien.
+Damit wird aber auch, insbesondere im Medienbereich, die skizzenhafte und grobe Darstellung erster Ideen oder Entwürfe bezeichnet; \autocite[vgl.][S.~128]{seebohn_werbung_2011}.}
+Einen Überblick über die einzelnen Dokumente geben \autoref{fig:orpheus_dokumente_1} und \autoref{fig:orpheus_dokumente_2} in \autoref{ch:anhang_abbildungen}.
+Werfen wir im Folgenden einen kurzen Blick auf die Beschaffenheit der jeweiligen Dokumente, ehe wir uns ihrem Inhalt widmen.
+
+
+% ORPHEUS – DOKUMENTE – SCRIBBLES %
+Den Anfang macht das Konvolut \enquote{\textsc{Orpheus. B -- Scribbles}}.
+Hierbei handelt es sich um eine Sammlung von insgesamt -- das oben erwähnte Deckblatt mitgezählt -- 19 Seiten.
+Besagtes Deckblatt ist eine Blankoseite, in deren oberen Drittel der Titel mit blauem Kugelschreiber geschrieben steht.
+Ihm folgen \enquote{\textsc{Orpheus -- History}} (zwei Seiten), \enquote{\textsc{Orpheus -- Kreaturen}} (eine Seite), \enquote{\textsc{Orpheus -- Locations}} (eine Seite), fünf Seiten loser Notizen, \enquote{\textsc{Orpheus} -- \uline{Übersicht}} (fünf Seiten), \enquote{\uline{Aufträge}} (zwei Seiten) sowie abschließend noch einmal zwei Seiten loser Notizen (siehe \autoref{fig:orpheus_dokumente_1}).
+Auf diejenigen Elemente, die über einen eigenen Titel verfügen, gehen wir im Folgenden gesondert ein.
+Widmen wir uns an dieser Stelle also erst einmal den nicht näher betitelten Notizen:
+Bei sechs dieser sieben Seiten handelt es sich um Blankoseiten (aller Wahrscheinlichkeit nach Druckerpapier im Format DIN A4), eines folgt dementgegen einer karierten Lineatur und weist am linken Rand eine standardisierte Vierfachlochung sowie einen Marginalsteg auf (ganz offensichtlich einem handelsüblichen Notizblock entnommen).
+Beschrieben (und bemalt) sind die sieben Seiten mit Kugelschreiber in Schwarz sowie in verschiedenen Blautönen, außerdem mit blauem Fineliner und -- an einer kleinen Stelle -- mit Bleistift.
+Die Seitenorganisation ist nicht-linear und fragmentarisch; es finden sich zahlreiche Listen mit Aufzählungszeichen (Punkte, Striche, Pfeile, Nummern und Buchstaben) sowie interlineare Ergänzungen.
+Verstreut -- insbesondere auf den ersten Seiten -- fallen kleinere Kritzeleien sowie -- auf den letzten beiden Seiten -- figürliche Skizzen ins Auge.
+
+
+% ORPHEUS – DOKUMENTE – AUFTRAEGE %
+Die \enquote{\uline{Aufträge}} sind im Konvolut \enquote{\textsc{Orpheus. B -- Scribbles}} enthalten.
+Bei ihnen handelt es sich um zwei Blankoseiten, die zunächst mit einem blauen Kugelschreiber beschrieben und später mit einem schwarzen Kugenschreiber ergänzt worden sind.
+Im Wesentlichen finden wir hier eine nummerierte Liste mit Ideen für Missionen sowie einen Versuch, diese Ideen zu kategorisieren (siehe \autoref{sec:orpheus_mechanik_auftraege}).
+
+
+% ORPHEUS – DOKUMENTE – ROTER FADEN %
+Auch die Notizen zum \enquote{\uline{\textsc{rote[n] Faden}}} sind auf Blanko-Bögen festgehalten worden.
+Die erste von insgesamt vier Seiten beinhaltet eine vertikal angelegte und nummerierte Liste, verfasst mit einem ursprünglich wahrscheinlich schwarzem Stift, vermutlich einem Fineliner, wobei die Farbe mittlerweile eher ins Braune tendiert.
+Die übrigen drei Seiten, mit einem schwarzen Kugelschreiber beschrieben, werden von losen Stichpunkten und Pfeildiagrammen dominiert.
+
+
+% ORPHEUS – DOKUMENTE – WERDEGANG %
+Beim \enquote{\uline{Werdegang eines SC's}} handelt es sich um einen beidseitig beschriebenen Blanko-Bogen.
+Die Vorderseite wird fast vollständig von einer nummerierten Liste gefüllt, die in der gleichen -- inzwischen braun erscheinenden -- Farbe geschrieben wurde wie die erste Seite des \enquote{\uline{\textsc{rote[n] Faden[s]}}}.
+Das Schriftbild erscheint hier vergleichsweise geordnet.
+Im oberen Drittel der Rückseite finden wir ein mit blauem Fineliner erstelltes, aus zwei Ebenen bestehendes Pfeildiagramm.
+
+
+% ORPHEUS – DOKUMENTE – BEWEGUNGEN %
+Die \enquote{\uline{\textsc{Bewegungen}}} umfassen einen einseitig mit Bleistift beschrifteten Blank-Bogen, sowie zwei karierte Blätter -- eines davon doppelseitig beschrieben --, auf denen noch schwach ein Marginalsteg an der linken Seite zu erkennen ist.
+Diese drei Seiten wiederum sind einmal mehr von dem uns inzwischen bekannten, mittlerweile ins Braune tendierenden Fineliner geprägt; von späterer Hand stammen Hinzufügungen mit Bleistift sowie in roter und blauer Farbe.
+Während die erste Seite fast vollständig von einer Auflistung mit Spiegelstrichen gefüllt wird -- wobei die Notizen hier in einem großformatigen, raumgreifenden Duktus verfasst sind --, weisen die Folgeseiten eine abweichende formale Organisation auf:
+Sie sind durch horizontale Trennlinien in jeweils vier bis fünf Blöcke partitioniert.
+Innerhalb der jeweiligen Blöcke werden unterschiedlichen Gruppen interner Animationsbezeichnungen (bspw. \enquote{1SA00}) verschiedene Informationen zuordnet.
+
+
+% ORPHEUS – DOKUMENTE – HISTORY %
+
+Die Notizen zu \enquote{\textsc{Orpheus -- History}} sind auf einem zweiseitig beschriebenen Blatt mit karierten Lineatur verfasst (wie im oben genannten Fall mit Vierfachlochung sowie Marginalsteg auf der linken Seite).
+Unter dem Titel finden wir eine fortlaufend nummerierte Liste mit neun Positionen.
+Vereinzelt gibt es Ergänzungen links und rechts des eigentlichen Textes.
+Auffällig ist außerdem die Akzentuierung zentraler Schlagworte durch Versalien und/oder Unterstreichungen.
+
+
+%%% LESEZEICHEN %%%
+
+% ORPHEUS – DOKUMENTE – INTERFACE %
+Das \enquote{\uline{Interface}} besteht aus sieben mit blauem Kugelschreiber und wiederum ursprünglich wohl schwarzem Fineliner beschriebenen Seiten.
+Hinter der Überschrift ist in roter Farbe von späterer Hand der Hinweis \enquote{V1} ergänzt worden.
+Anders als bei \enquote{\textsc{Orpheus} -- Spielwelt/Gildensystem} ist hier aber keine zweite Version erhalten.
+
+% ORPHEUS – DOKUMENTE – ZUSAMMENFASSUNG %
+Bei der \enquote{Zusammenfassung zum Orpheus-Konzept} handelt es sich aller Wahrscheinlichkeit nach um ein ursprünglich umfangreicheres Dokument, von dem nur noch der Abschnitt zu \enquote{\uline{Graphiken}} erhalten ist.\autocite[Vgl.][]{archive_orpheus_2024}
+Es steht vermutlich nicht nur alphabetisch am Ende:
+Die Zusammenfassung -- oder was von ihr übrig ist -- stellt das einzige nicht handschriftlich verfasste Schriftstück in der Sammlung dar und ist auf den 12. Dezember 1996 datiert.\footnote{Die anderen Dokumente könnten dementsprechend etwas älter sein.
+Der in ihnen enthaltene Entwurf einer Karte (siehe \autoref{sec:orpheus_welt_karte}) wird beispielsweise auf das Vorjahr, also 1995, geschätzt; \autocite[vgl.][]{flosha_evolution_2024}}
+Das Dokument ist unterteilt in die Abschnitte
+
+\begin{itemize}
+   \item \enquote{\uline{Spielansicht}},
+   \item \enquote{\uline{Spielfigurenanimation}},
+   \item \enquote{\uline{Getrennt animierte GAMS}},
+   \item \enquote{\uline{Diverse Mashes}},
+   \item \enquote{\uline{Texturen}} sowie
+   \item \enquote{\uline{Evtl. User\-Controlled-Online-Animation}}.
+\end{itemize}
+
+\noindent Die letzte Seite des Dokuments liegt in zwei Ausführungen vor; eine davon ist ergänzt um eine Reihe mit Bleistift gezeichneter Skizzen (siehe \autoref{fig:orpheus_spielfigurenanimation}).
+
+% ORPHEUS – DOKUMENTE – KAMPFSTEUERUNG %
+Bei den Notizen zur Kampfsteuerung handelt es sich um insgesamt fünf Blankoseiten.
+Auf den -- etwas abweichend von der Zählung im \textit{Gothic Archive} -- ersten beiden davon, die nur noch als Schwarzweißkopie vorliegen, finden wir die Überschriften
+
+\begin{itemize}
+   \item \enquote{\uline{\textsc{Nahkampf mit Schwert} (einhändig) \textsc{und Talent} (Schwertk.)}},
+   \item \enquote{\uline{\textsc{Berserkerschlag}}},
+   \item \enquote{\uline{\textsc{Treffer und Auswirkungen}}},
+   \item \enquote{\uline{\textsc{Die Distanzen}}} sowie noch einmal
+   \item \enquote{\uline{\textsc{Der Berserkerschlag}}}.
+\end{itemize}
+
+Einer dritten, mit blauem Kugelschreiber beschriebenen Seite, folgt eine vierte Seite, auf der wir eine mit blauem Kugelschreiber gezeichnete und mit Bleistift ausgefüllte Tabelle finden, in der einige Zellen zusätzlich mit rotem oder grünem Farbe umrandet sind.
+Die fünfte Seite schließlich stellt eine punktuell mit rotem Fineliner überschriebene Kopie dieser Tabelle dar, wobei sie Elemente umfasst, die auf dem Original nicht enthalten sind, weswegen es sich wahrscheinlich -- genauer gesagt -- um eine Kopie einer vormals beschriebenen und nicht länger erhaltenen Kopie handelt.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – DARSTELLUNG %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Darstellung}\label{sec:orpheus_darstellung}
+Drei der oben genannten Schriftstücke befassen sich mit Überlegungen zur Darstellung des Spiels:
+\enquote{\uline{\textsc{Orpheus -- Bewegungen}}}, \enquote{\uline{\textsc{Orpheus} -- Interface}} sowie das Überbleibsel aus der \enquote{Zusammenfassung}.
+In diesen Dokumenten finden wir unter anderem Informationen hinsichtlich geplanter Kameraperspektiven (\autoref{sec:orpheus_darstellung_kamera}), technischer Überlegungen zu Animationen (\autoref{sec:orpheus_darstellung_animation}), des von ihnen abgebildeten Bewegungsumfangs (\autoref{sec:orpheus_darstellung_bewegungsumfang}), der Realisation einer hohen Figurenvielfalt (\autoref{sec:orpheus_darstellung_figurenvielfalt}) sowie der Umsetzung des Inventars (\autoref{sec:orpheus_darstellung_inventar}).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – DARSTELLUNG – KAMERA %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Kamera}\label{sec:orpheus_darstellung_kamera}
+In der \enquote{Zusammenfassung} ist unter der Überschrift \enquote{\uline{Spielansicht}} festgehalten, dass zu dieser Zeit insgesamt drei verschiedene Kameraperspektiven vorgesehen waren.
+Während des Spielens hätten Spieler:innen frei zwischen Ego- und Verfolgerperspektive wählen können sollen, wobei für letztere vorgesehen war, dass sich die Kamera etwa fünf Meter hinter der Spielfigur befindet und mit Wänden kollidiert:
+\enquote{Steht die Figur mit dem Rücken zur Wand, sieht ihr die Kamera über die Schulter. Geht die Figur jetzt los[,] so folgt ihr die Kamera erst wieder, wenn die Figur 5m entfernt ist.}
+Eine dritte Variante war für den \enquote{Kampfmodus} (siehe auch \autoref{sec:orpheus_mechanik}) vorgesehen:
+
+\begin{quote}
+Ist die Figur im Kampfmodus $[\dots]$ und ist sie in Reichweite eines Monsters $[\dots]$, so dreht sich die Kamera 90$^\circ$ gegen den Uhrzeigersinn. Die Kontrahenten werden jetzt von der Seite gezeigt.
+Ist der Kampf vorbei, so sieht man die Figur wieder von hinten.
+\end{quote}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – DARSTELLUNG – ANIMATION %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Animation}\label{sec:orpheus_darstellung_animation}
+Jede (menschliche) Figur, erfahren wir in der \enquote{Zusammenfassung} unter \enquote{\uline{Spiel\-figurenanimation}}, sollte aus 15 sogenannten \enquote{\textbf{Limbs}} bestehen, \enquote{einzelnen starren Körperbestandteilen}, die jeweils \enquote{als ein festes Drahtgittermodell [abgespeichert]} und über \enquote{\textit{Anschlußpunkte}} miteinander verbunden werden sollten.
+Vorgesehen waren dafür \enquote{Kopf, Oberkörper, Unterleib, 2 Oberarme, 2 Unterarme, 2 Hände, 2 Oberschenkel, 2 Unterschenkel, 2 Füße}.
+Visualisiert ist das in \autoref{fig:orpheus_spielfigurenanimation} oben (siehe \autoref{ch:anhang_abbildungen}), wobei die schraffierten Flächen die Anschlusspunkte darstellen.
+Jede Animationsphase einer solchen Figur sollte \enquote{aus einem Gelenk-Animations-Modell (\textbf{GAM})} bestehen, das sich aus \enquote{19 Raumkoordinaten} sowie \enquote{15 Limbvektoren} zusammensetzt, wobei gelten sollte: \enquote{Jede Koordinate legt eine Gelenkverbindung zwischen zwei Limbs fest.}
+Hält die Figur eine Waffe in der Hand, sollte eine zusätzliche Raumkoordinate an deren äußerem Ende (beispielsweise der \enquote{Schwertspitze}) sowie ein zusätzlicher Waffenvektor hinzukommen.
+Dargestellt ist das in \autoref{fig:orpheus_spielfigurenanimation} unten links.
+Die insgesamt 15 Limbs sind hier über 14 Gelenkverbindungen miteinander verknüpft.
+Um auf die 19 -- beziehungsweise mit gezogener Waffe 20 -- Raumkoordinaten zu kommen, braucht es also mehr als nur die Gelenkverbindungen zwischen den Limbs.
+Tatsächlich kommen, wie aus der Abbildung deutlich wird, bei Händen, Füßen und Kopf jeweils zusätzliche Punkte hinzu, nämlich \enquote{Zehen}, \enquote{Handfläche} sowie \enquote{Höchster Kopfpunkt}.
+Im Spiel sollte die Figur dann \enquote{aus GAM und Limbs \textbf{zusammengesetzt}} werden.
+Als \enquote{\uline{Vorteile}} führt Mike Hoge auf:
+
+\begin{quote}
+   Jedes Limb muß nur einmal als Mesh abgespeichert werden und kann innerhalb einer Animation immer wieder benutzt werden.
+   Somit wird eine angestrebte Vielzahl von Bewegungsabläufen und Animationsschritten bei vergleichsweise geringem Speicheraufwand ermöglicht.
+   Es ist möglich, einer Spielfigur den Kopf abzuhacken, so daß er lustig durch die Gegend fliegt.
+\end{quote}
+
+Unter \enquote{\uline{Getrennt animierte GAMS}} ist notiert, dass ein Gelenk-Animations-Modell aus vier einzelnen Segmenten bestehen sollte: (1) \enquote{Beine und Unterleib}, (2) \enquote{Oberkörper und Kopf} sowie (3) \enquote{rechter Arm (Aktionsarm)} und \enquote{linker Arm (passiver Arm)}.
+Auch dieses Vorgehen bringt einige \enquote{\uline{Vorteile}} mit sich:
+
+\begin{quote}
+   Die Figur kann gleichzeitig gehen und schlagen.
+   Sie kann mit dem rechten Arm schlagen, den Kopf in die Richtung drehen \sout{und mit links einen Schlag automatisch verteidigen.}
+   Wenn die Figur ein Schwert trägt und geht, so bewegt sich der Arm anders als wenn sie mit leeren Händen läuft; die Beinanimation bleibt aber gleich.
+   Der linke Arm kann außerdem noch einen Schild tragen und entsprechend animiert sein.
+   Der modulare Zusammenbau dieser Animationssequenzen verhindert einen GAM-Overkill, da angestrebt wird, Waffen in der Hand auch im Outsideview darzustellen.\footnote{Die Durchstreichung ist nachträglich mit Kugelschreiber erfolgt.}
+\end{quote}
+
+Über den letzten animationsbezogenen Punkt, der am Ende der \enquote{Zusammenfassung} steht, die \enquote{\uline{User-Controlled-Online-Animation}}, gibt das Dokument keinen Aufschluss mehr. % Mike Hoge fragen.
+Es endet mit dem in Klammern gesetzten Kommentar: \enquote{hierzu später mehr, ich muß jetzt Tombraider [sic] spielen}.
+Der erste Teil der Tomb-Raider-Serie war keine zwei Monate vorher erschienen, am 25. Oktober 1996.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – DARSTELLUNG – BEWEGUNGSUMFANG %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Bewegungsumfang}\label{sec:orpheus_darstellung_bewegungsumfang}
+Auf der ersten Seite von \enquote{Orpheus -- Bewegungen} finden wir insgesamt 17 Spiegelstriche mit geplanten Animationen und der Information, in wieviele Phasen diese jeweils unterteilt sein sollten.\footnote{Einen Vergleich zu den im fertigen Spiel enthaltenen Animationen ermöglicht die \textit{Marvin-Datenbank}, deren Zweck es ist, den Testmodus von Gothic (den sogenannten \textit{Marvin Mode}) zu dokumentieren (vgl. \autocite{sillus_marvin_2020}).}
+An oberster Stelle steht beispielsweise \enquote{Einhand Angriff × [2] (7 Pha)}.
+Geplant waren also vermutlich zwei Varianten eines Angriffs mit einer einhändig geführten Waffe (vielleicht ein Streich von links nach rechts und ein zweiter von rechts nach links), die jeweils sieben Animationsphasen umfassen sollten.
+Daneben gibt es hier unter anderem \enquote{Zweihand Angriff}, \enquote{Armbrust}, \enquote{Bogen}, \enquote{getroffen werden} und \enquote{umfallen}, \enquote{mag. offensiv} und \enquote{mag. defensiv} sowie \enquote{stehen}, \enquote{gehen}, \enquote{geduckt gehen}, \enquote{rennen}, \enquote{klettern}, \enquote{Schwimmen} und \enquote{Springen (gehend wie stehend)}, aber auch \enquote{rennend}.
+
+Auf den folgenden -- wahrscheinlich später entstandenen -- drei Seiten wird diese Liste dann unter anderem um \enquote{Dialoggesten} ergänzt und wesentlich ausdifferenziert, insbesondere für Kampfanimationen und Bewegungen mit gezogener Waffe.
+Hier tauchen dann neben dem Ziehen der Waffe (\enquote{Draw}, \enquote{Bogen ziehen}, \enquote{Armbrust anlegen}) sowie der \enquote{At[tacke]} und der \enquote{Pa[rade]} unter anderem auch \enquote{Kür}, \enquote{Unterschläge} sowie \enquote{Ruhehaltung} beziehungsweise \enquote{Standpose} auf und das Bewegungsrepertoire wird um das Umdrehen (\enquote{Turn}) sowie um Seitwärtsbewegungen (\enquote{Strafe}) erweitert.
+Ein Stichwort fällt besonders ins Auge:
+An drei Stellen notiert Mike Hoge \enquote{Threaten \& Kill, Xena-Move}.
+Dabei bezieht er sich vermutlich auf die kampferprobte Protagonistin der zwischen 1995 und 2001 gedrehten Fernsehserie \textit{Xena -- Die Kriegerprinzessin}, wobei nicht klar ist, welcher ihrer \enquote{Moves} hier gemeint ist. % Mike Hoge fragen.
+
+Eine ähnliche Auflistung geplanter Animationen finden wir in der \enquote{Zusammenfassung} am Ende des Abschnitts zur \enquote{\uline{Spielfigurenanimation}} (siehe \autoref{sec:orpheus_darstellung_animation}).
+Dort gibt es eine Liste, in der insgesamt 48 \enquote{\textit{Geplante Menschenanimationen}} aufgeführt werden:
+\enquote{stehen}, \enquote{gehen}, \enquote{rennen}, \enquote{strafen}, \enquote{rückwärts gehen}, \enquote{umdrehen}, \enquote{ducken}, \enquote{im Stand springen}, \enquote{nach vorne springen}, \enquote{rennend springen}, \enquote{an Wand klettern}, \enquote{an Seil klettern}, \enquote{seitlich klettern}, \enquote{an Vorsprung hochziehen}, \enquote{an Vorsprung herunterlassen}, \enquote{getroffen werden}, \enquote{getroffen stürzen}, \enquote{wieder aufstehen}, \enquote{Axt vom Rücken nehmen}, \enquote{Schwert ziehen}, \enquote{schwimmen}, \enquote{tauchen}, \enquote{Gegenstand ablegen}, \enquote{Gegenstand aufnehmen}, \enquote{geben und nehmen}, \enquote{Tür öffnen und schließen}, \enquote{umsehen}, \enquote{Faustschlag}, \enquote{Treten}, \enquote{werfen}, \enquote{schleudern}, \enquote{Schwertstreich}, \enquote{zweihändiger Schwertstreich}, \enquote{Schildparade}, \enquote{linker Schwertstreich}, \enquote{Befreiungsschlag}, \enquote{Drehschlag (Kopf ab)}, \enquote{Bogenschießen}, \enquote{Armbrustschießen}, \enquote{tödlicher Pfeil}, \enquote{tödlicher Hieb}, \enquote{offensive Magie}, \enquote{defensive Magie}, \enquote{fliegen}, \enquote{geduckt gehen}, \enquote{kriechen}, \enquote{von Stand in Hocke} und \enquote{von Hocke auf Boden}.\footnote{In \enquote{\textsc{Orpheus. B -- Scribbles}} ist außerdem notiert: \enquote{Auf \uline{Boden} sitzen} und \enquote{Auf \uline{Stuhl} sitzen} (\autocite[S.~8]{orpheus_b_scribbles}).}
+Auch hier finden wir stellenweise -- nachträglich mit einem Bleistift ergänzt -- Informationen zu den geplanten Animationsphasen; neben dem \enquote{Schwertstreich} ist beispielsweise -- konsistent mit dem \enquote{Einhand Angriff} in \enquote{Orpheus -- Bewegungen} -- eine \enquote{7} notiert.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – DARSTELLUNG – FIGURENVIELFALT %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Figurenvielfalt}\label{sec:orpheus_darstellung_figurenvielfalt}
+In der \enquote{Zusammenfassung} werden unter den Überschriften \enquote{\uline{Diverse Meshes}} und \enquote{\uline{Texturen}} Ideen aufgeführt, die die technisch effiziente Ermöglichung einer möglichst große Figurenvielfalt behandeln.
+
+Zunächst sollten, wie wir unter \enquote{\uline{Diverse Meshes}} erfahren, die als Meshes abgespeicherten Limbs (siehe \autoref{sec:orpheus_darstellung_animation}) in verschiedenen Formen verfügbar sein und sich beliebig am Gelenk-Animations-Modell kombinieren lassen:
+\enquote{Jedes Limb-Mesh kommt in mehreren Ausführungen vor.
+Somit kann man verschiedene Köpfe, Oberkörper, etc. in dasselbe GAM einhängen.}
+In einer Tabelle sind verschiedene mögliche Formen für die jeweiligen Limbs (\enquote{Kopf}, \enquote{Oberkörper}, \enquote{Unterleib}, \enquote{Oberarm}, \enquote{Unterarm}, \enquote{Hand}, \enquote{Oberschenkel}, \enquote{Unterschenkel} und \enquote{Fuß}) gesammelt.
+Für den \enquote{Kopf} sind das beispielsweise \enquote{Visierhelm, Kettenkappe, Kapuze, Hut, lange Haare, kurze Haare, Glatze} und für den \enquote{Unterleib} sind es \enquote{Hose, Röckchen}.\footnote{Neben den verschiedenen Kopfbedeckungen ist an anderer Stelle auch die Idee \enquote{Ohrringe??} vermerkt (\autocite[S.~8]{orpheus_b_scribbles}).}
+In einer Anmerkung notiert Mike Hoge: \enquote{\textit{Die Hand bildet eine Ausnahme, da ihr Mesh nicht vom Zustand, sondern von den Aktionen der Figur beeinflußt wird}}.
+Dementsprechend finden wir hier die Varianten \enquote{offen, geschlossen, hält sich fest}.
+Die \enquote{\uline{Vorteile}} liegen auf der Hand:
+
+\begin{quote}
+   Durch das Baukastensystem wird durch Kombinationen große Figurenvielfalt erreicht.
+   Würden alle Figuren als Ganzkörpermesh abgelegt, würden z.\,B. in einer Stadt nur wenige Menschen mit verschiedenen Meshes herumlaufen.
+   Vor allen Dingen beim Kopf wäre dies tragisch.
+   Mit dem Baukastensystem kann man Köpfe mit verschiedenen Frisuren oder Helmen mit gleichen Körpern kombinieren, und erhält so (in Verbindung mit unterschiedlichen Texturen) verschiedene Figuren.
+\end{quote}
+
+Für jede Ausführung der Limb-Meshes sollte es dann \enquote{individuell auf das entsprechende Limb zugeschneidert[e]} Texturen geben, wodurch sich \enquote{auch hier (durch unterschiedliche Texturierung gleicher Meshes) durch das Baukastensystem Vielfalt erzeugen} lässt, wobei zusätzlich alle \enquote{Körpertexturen mit Ausnahme von Händen und Füßen} in drei unterschiedlichen Varianten vorkommen sollten: \enquote{normal}, \enquote{verletzt} und \enquote{schwer verletzt}.
+Aus Effizienzgründen sollten Texturen außerdem kombinierbar sein:
+
+\begin{quote}
+   Ein Limb kan [sic] mit zwei verschiedenen Texturen belegt werden.
+   Bevor die Kopftextur auf das Kopf-Limb gemappt wird, wird diese aus Gesichtstextur und Kopftextur zusammengesetzt, um nicht für jedes Gesicht in Verbindung mit allen Frisuren und Helmen je eine komplette Kopftextur im Speicher ablegen zu müssen.
+\end{quote}
+
+Damit \enquote{bei Kamerafahrten nahe an die Figur keine Pixelhaufen als Gesicht entstehen}, sollten zumindest die Kopftexturen außerdem \enquote{als größere Grafiken abgelegt} werden.
+Bei den Texturen für andere Limbs wäre das vernachlässigbar: \enquote{Beim Oberkörper ist dieser Effekt nicht so schlimm.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – DARSTELLUNG – INVENTAR %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Inventar und Journal}\label{sec:orpheus_darstellung_inventar}
+Während sich der Großteil von \enquote{\uline{\textsc{Orpheus} -- Interface}} mit Fragen der spielerischen Möglichkeiten sowie der Steuerung befasst (siehe \autoref{sec:orpheus_mechanik_möglichkeiten}), gewährt die letzte der sieben Seiten Einblick in eine frühe Vision des Inventars.\footnote{Bereits auf der vorherigen Seite wird eine Reihe kleinerer Raster dargestellt, bei denen es sich um verschiedene Ideen für ein Inventar handeln könnte.}
+Drei kleine, untereinander gezeichnete und von \enquote{1} bis \enquote{3} nummerierte Skizzen (siehe \autoref{fig:orpheus_inventar} oben in \autoref{ch:anhang_abbildungen}) illustrieren hier den Übergang von der Spiel- zur Inventar\-ansicht.
+Den Ausgangspunkt bildet die erste Skizze, in der wir die Spielfigur aus der Verfolgerperspektive (siehe \autoref{sec:orpheus_darstellung_kamera}) im Zentrum des Bildschirms sehen.
+In der zweiten Skizze wird dann die \enquote{Inventory-Anim[ation]} dargestellt; beim Öffnen des Inventars hätte sich die Kamera in einem Halbkreis um die Spielfigur herum bewegen sollen, so dass man sie am Ende von vorne sieht.
+Die Figur \enquote{Steckt [ihre] Waffen weg} und wäre am Ende der Kamerafahrt, wie die dritte Skizze zeigt, nicht mehr zentriert dargestellt, sondern an den linken Bildschirmrand verschoben, so dass rechts von ihr ausreichend Platz für die Darstellung des Inventars bleibt.
+Im nun offenen Inventarbildschirm hätte wir also ein aktuelles \enquote{ingame \uline{pic}} unserer Figur sehen sollen, wobei offen bleibt, ob sich das Inventar -- wie im finalen Gothic -- über die weiterhin in Bewegung befindliche Spielwelt hätte legen oder -- wie das Wort \enquote{\uline{pic}} implizieren könnte -- ein statische Abbildung hätte zeigen sollen.
+
+In einer separaten Skizze ist die Struktur des Inventars selbst dargestellt (siehe \autoref{fig:orpheus_inventar} unten in \autoref{ch:anhang_abbildungen}).
+Am linken Bildschirmrand befindet sich die Spielfigur, rechts neben ihr auf dem Boden steht etwas, das einen Rucksack darstellen könnte (und das auch schon in der oben erwähnten dritten Skizze erkennbar zu sein scheint).\footnote{Tatsächlich wurde während der Entwicklung ein Rucksack -- beziehungsweise, der Optik nach, eine Art Kiepe -- implementiert, der von Figuren getragen werden konnte, wie in Version 0.94k zu sehen ist; vgl. bspw. \autocite{alpha_backpack_2023}.}
+Rechts davon werden vier vertikale Balken angedeutet, die den Bildschirm in voller Höhe ausfüllen.
+Im -- von links gezählt -- zweiten Balken deutet jeweils ein Pfeil an den oberen und ein Pfeil an den unteren Bildschirmrand; im vierten Balken wiederum ist ein Pfeil am unteren Bildschirmrand mit \enquote{\textsc{Cont[inue]}} beschriftet.
+Die Balken hätten sich also wahrscheinlich nach oben und unten durchblättern lassen sollen -- und zwar mit den entsprechenden Pfeiltasten.
+Darauf deutet eine Notiz an anderer Stelle auf dieser Seite hin:
+In einer von späterer Hand wieder durchgestrichenen Sammlung an Stichpunkten zur Waffenauswahl ist \enquote{$_{\downarrow}^{\uparrow}$ Inventory Scroll} vermerkt. % Verweis Steuerung
+
+In den ersten drei Balken findet sich oberhalb der Bildschirmmitte jeweils ein Symbol, das stellvertretend für die in diesem Balken gesammelte Art von Gegenständen stehen könnte:
+Ein Schlüssel, ein Schwert und ein Kleidungs- oder Rüstungsteil für den Oberkörper, wobei das Schwert und das Kleidungs- oder Rüstungsteil jeweils in einen eigenen Kasten eingefasst ist.
+Der vierte Balken scheint zweigeteilt zu sein:
+In seiner oberen Hälfte werden vier Kleidung- oder Rüstungsteile dargestellt und von einer Wellenlinie umschlossen:
+Ein Teil für den Kopf, eines für den Oberkörper, eines für die Beine sowie eines für die Füße.
+Zwischen den Teilen für Kopf und Oberkörper ist etwas nach rechts versetzt ein kleiner, teilweise schraffierter \enquote{\textsc{Balken}} platziert, dessen Funktion nicht ersichtlich ist; vielleicht hätte er den Zustand eines Ausrüstungsteils indizieren sollen. % Mike Hoge fragen.
+In der unteren Hälfte sind die gleichen vier Teile in unterschiedlicher Reihenfolge (Oberkörper, Beine, Kopf, Füße) noch einmal abgebildet, auf der rechten Seite eingefasst von einer geschweiften Klammer, neben der \enquote{\uline{Scroll}} notiert ist.
+Am unteren Ende dieses Balkens befindet sich der oben bereits erwähnte abwärtsdeutende Pfeil, unter dem \enquote{\textsc{Cont}} geschrieben steht.
+In der unteren rechten Ecke der Skizze steht in einem kleinen Kasten \enquote{\textsc{Shortsword}}; vielleicht hätte hier die Bezeichnung des jeweils im Fokus befindlichen Gegenstands erscheinen sollen. % Mike Hoge fragen.
+In einem etwas oberhalb der Bildschirmmitte befindlichen kleinen Kasten, ebenfalls am rechten Rand der Skizze, steht diagonal \enquote{\textsc{Trap}}; eventuell hätte hier eine aktuell ausgerüstete Falle angezeigt werden sollen. % Verweis Fallensteller
+Auf gleicher Höhe ist rechts außerhalb der Umrandung ein weiterer Kasten eingezeichnet, in dem -- ebenfalls diagonal -- \enquote{\textsc{Log}} geschrieben steht; rechts neben dem Kasten prangt ein dünnes Ausrufezeichen.
+Beides -- Kasten und Ausrufezeichen -- wird von einer Umrahmung an den Rest der Skizze angeschlossen, so dass es wie ein seitlicher Register-Reiter wirkt; eventuell hätte man von hieraus auf das Tagebuch wechseln können sollen.
+Ein weiterer Hinweis auf die geplante Verwendung solcher Reiter findet sich in einer kleinen Skizze in \enquote{\textsc{Der rote Faden $\ldots$}}, wo der obere Rand eines Fensters skizziert ist, an dem sich insgesamt vier Reiter finden, die ersten beiden davon beschriftet mit \enquote{\textsc{Ort[e]}} und \enquote{\textsc{Pers[onen]}}.
+Der erste Reiter ist hier als ausgewählt dargestellt, bei den übrigen wird durch Schraffur angedeutet, dass sie ausgegraut sind.
+Er enthält zwei Orte, \enquote{\textsc{Alte Mine}} und \enquote{Altes Lager}.
+Ein Pfeil deutet darauf hin, dass wir unter den \enquote{\textsc{Pers[onen]}} wiederum einen \enquote{Glücksritter} finden sollten.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – SPIELMECHANIK %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Spielmechanik}\label{sec:orpheus_mechanik}
+Spreche ich im Folgenden von \enquote{Spielmechanik}, verstehe ich darunter -- relativ weit gefasst -- die Menge an Möglichkeiten, die Spieler:innen zur Verfügung gestellt wird, um mit Spielelementen interagieren zu können.\autocite[Vgl.][255]{jaervinen_games_2008}
+Diese Möglichkeiten lassen sich in der Regel, wie wir unten sehen werden, durch Verben beschreiben.\autocite[Vgl.][263]{jaervinen_games_2008}
+Von den oben genannten Dokumenten befassen sich weite Teile von \enquote{Orpheus -- Interface} (siehe hierzu auch \autoref{sec:orpheus_darstellung_inventar}) sowie die Notizen zur Kampfsteuerung mit solchen spielmechanischen sowie steuerungsbezogenen Fragen.
+Daneben finden sich auch im Konvolut \enquote{Orpheus. B -- Scribbles} relevante Stichpunkte.
+
+Wir werfen im Folgenden zuerst einen Blick darauf, welche Möglichkeiten Spieler:innen eröffnet werden sollten (\autoref{sec:orpheus_mechanik_möglichkeiten}) und schauen uns anschließend an, wie sich das Ganze hätte steuern lassen sollen (\autoref{sec:orpheus_mechanik_steuerung}).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – SPIELMECHANIK – MÖGLICHKEITEN %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Spielerische Möglichkeiten}\label{sec:orpheus_mechanik_möglichkeiten}
+Auf der ersten Seite von \enquote{\uline{\textsc{Orpheus} -- Interface}} begegnen uns an oberster Stelle drei nummerierte Stichpunkte mit grundlegende Designentscheidungen:
+\enquote{\uline{Outside View Only}},\footnote{Das steht in Konflikt mit den Ausführungen unter \enquote{\uline{Spielansicht}} in der \enquote{Zusammenfassung}, wonach auch eine Egoperspektive vorgesehen war; siehe \autoref{sec:orpheus_darstellung_kamera}.} \enquote{\uline{Tastatur Only} (evtl Maus Inventory \& \enquote{\uline{Fernklick}} Unterstützung)} sowie \enquote{Items = VOBs}.\footnote{\enquote{VOB} steht hier für \enquote{Virtuelles Objekt}; zur Rolle von VOBs bei Gothic \autocite[vgl.][]{wiki_vob}.}
+Alle drei Punkte haben sich als für die Entwicklung von Gothic maßgeblich herausgestellt:
+Den Namenlosen Helden sehen wir immer aus der Verfolgerperspektive, die Steuerung unterstützt zwar Mauseingabe, bleibt in der Hauptsache aber auf die Tastatur fokussiert, und alle Gegenstände, die wir in der Spielwelt finden können, sind in der Engine als virtuelle Objekte angelegt.
+
+Unter diesen drei wegweisenden Stichpunkten folgt eine von \enquote{a} bis \enquote{p} reichende Liste mit Möglichkeiten, die Spieler:innen haben sollten:
+\enquote{div[erse] Schläge}, \enquote{Zielen \& Schießen}, \enquote{Spell Selection}, \enquote{klettern}, \enquote{Springen}, \enquote{Türen öffnen/Truhe öffnen}, \enquote{Schloß knacken}, \enquote{ansehen}, \enquote{VOB verschieben}, \enquote{in VOB verstecken}, \enquote{Party NSC lenken}, \enquote{Battle Mode}, \enquote{reden}, \enquote{aufheben}, \enquote{Inventory} und \enquote{weglegen}.
+Das meiste davon ist am Ende auch umgesetzt worden; nur bei vier Punkten -- \enquote{VOB verschieben}, \enquote{in VOB verstecken}, \enquote{Party NSC lenken} und \enquote{Battle Mode} -- gibt es nennenswerte Abweichungen.
+Schauen wir uns das einmal der Reihe nach an.
+
+Nachdem Mike Hoge sich zu dieser Zeit noch die Frage \enquote{sollen \uline{alle} mögl. \uline{verschiebbar} sein?}\autocite[S.~3]{orpheus_interface} notiert hatte, ist \enquote{VOB verschieben} im fertigen Spiel -- wenn überhaupt -- nur noch als einzelnes, für Spieler:innen irrelevantes Artefakt vorhanden:
+In der Klosterruine gibt es eine freistehende Säule, die sich zwar nicht wirklich verschieben, aber zumindest umwerfen lässt.
+Es scheint offensichtlich, das sie als improvisierte Brücke zur Überwindung eines Abgrunds hätte dienen sollen.
+Statt über den Abgrund fällt sie, wenn man sie umstößt, aber leider vom Abgrund fort.
+Ob das schon als \enquote{verschieben} zählen darf, ist freilich diskutabel.
+An die Idee, zum Beispiel einen \enquote{Schrank [$\ldots$] verschieben}\autocite[S.~3]{orpheus_interface} zu können, reicht es jedenfalls nicht mehr heran.\footnote{An anderer Stelle finden wir einen Hinweis darauf, dass -- zumindest ausgewählte -- Objekte scheinbar auch zerstörbar sein sollten.
+\enquote{Container zerstören, \uline{sonst nichts}} deutet vermutlich darauf hin, dass der Inhalt von Behältern bei ihrer Zerstörung erhalten bleiben sollte (\autocite[S.~9]{orpheus_b_scribbles}).}
+
+Ähnlich sieht es für den Stichpunkt \enquote{in VOB verstecken} aus:
+Vereinzelt finden wir in der Spielwelt noch Fässer\footnote{Ein Objekt, das uns an verschiedenen Stellen in den Notizen zu \textit{Orpheus} begegnet; vgl. \autocite[S.~19]{orpheus_b_scribbles}, \autocite[S.~6]{orpheus_interface}.} -- eines im Alten Lager und zwei in der Alten Miene --, in denen sich unser Namenloser Held verstecken kann.
+Eine darüberhinausgehende spielrelevante Funktion erfüllen sie aber nicht.
+
+Bei \textit{Gothic} steht außerdem nur \textit{eine} Spielfigur im Fokus und damit keine klassische, aus verschiedenen Charakteren zusammengesetzte Gruppe.
+Zwar gibt es vereinzelt Begleiter, mit denen man kurzfristig gemeinsam durch die Spielwelt streifen kann, steuern lassen sich diese allerdings -- wenn man von dem Zauber \enquote{Kontrolle} einmal absieht -- nicht. % Prüfen, ob das geht
+\enquote{Party NSC lenken} ist im Laufe der Entwicklung also auch unter den Tisch gefallen.
+Darauf, dass die Möglichkeit einer Party aber ernsthaft in Erwägung gezogen wurde, deuten einige weitere Notizen in \enquote{Orpheus -- Interface} hin.
+\enquote{Bis zu 4 Party NSCs}\footnote{\autocite[S.~5]{orpheus_interface}. An anderer Stelle ist von \enquote{2 Slots (1 + 1)} die Rede (\autocite[S.~7]{orpheus_b_scribbles}).} sollte es geben.
+Diese \enquote{Kontrollierte[n] NSCs [sollten] \uline{farblich} gekennzeichnet}\autocite[S.~5]{orpheus_interface} sein und sich über eine Reihe an Befehlen steuern lassen.
+In einer kleinen Skizze sind dafür vier nebeneinanderliegende Tasten eines \enquote{Pop Up Menu[s]} mit \enquote{follow}, \enquote{wait}, \enquote{action} und \enquote{attack} beschriftet.\autocite[S.~3]{orpheus_interface}
+An anderer Stelle finden wir eine abweichende Variante mit vier verschiedenen Knöpfen:
+Über den \enquote{\uline{1. Button}} sollte ein kontrollierter Charakter dazu aufgefordert werden können, zu \enquote{Warte[n]} oder zu \enquote{Folge[n]}.
+Eine dritte Option, nämlich ihn \enquote{\sout{Fliehe}[n]} zu lassen, ist hier durchgestrichen.
+Über einen \enquote{\uline{2. Button}} sollte er dazu aufgefordert werden können, eine \enquote{Aktion} auszuführen, beispielsweise -- bezogen auf eine Tür -- \enquote{Lockpick} oder \enquote{Einrennen}.
+Über einen \enquote{\uline{3. Button}} hätte man über \enquote{Kampf/Sparflamme} entscheiden können sollen, also wahrscheinlich darüber, ob der kontrollierte Charakter mit gezogener Waffe kampfbereit sein soll oder nicht.
+Die Partymitglieder \enquote{kämpfen bis 15\%} ihrer Lebensenergie, hätten aber \enquote{\uline{Keine} selbstständige Aggression gegen andere NSCs}.
+Über einen \enquote{General Button} schließlich hätte sich ein \enquote{Kriegsrat} der Party einberufen lassen sollen.
+Diese Befehle hätten sich wahrscheinlich jeweils auf ein einziges Mitglied der Gruppe beziehen sollen.
+Darauf könnte zum einen hindeuten, dass die Notiz so aussieht, als sollten die drei Buttons unter dem Balken für Lebensenergie erscheinen, der üblicherweise erscheint, wenn man sich einem NSC (oder einem Monster) zuwendet.
+Außerdem sind zwei weitere -- danach wieder durchgestrichene -- Ideen für einen \enquote{\sout{General Button 2}} sowie einen \enquote{\sout{General Button 3}} notiert.
+Mit ersterem hätte man zwischen \enquote{\sout{Alle Warten/Alle Folgen/Alle Kampf}} und mit zweiterem zwischen \enquote{\sout{Kampf/Alle Still}} umschalten können sollen;\autocite[S.~5]{orpheus_interface} \enquote{General} scheint sich also immer auf die ganze Gruppe zu beziehen.
+
+Eine solche Party bringt andere spielmechanische Herausforderungen mit sich als ein einzelner Charakter:
+Wenn unser Namenloser Held in Gothic stirbt, ist das Spiel zu Ende und wir müssen neu laden.
+Aber wie geht man damit um, wenn nur ein Mitglied der Party stirbt?
+\enquote{\textsc{Wie Wiederbelebung?}} fragt Mike Hoge an einer Stelle und notiert daneben, dass das über einen \enquote{\uline{Schrein}} geregelt werden könnte, der dem \enquote{Mafiabos} gehört.\autocite[S.~7]{orpheus_b_scribbles}
+Die auf einer anderen Seite befindliche Notiz \enquote{\uline{1} XP Pool}\autocite[S.~8]{orpheus_b_scribbles} könnte sich wiederum darauf beziehen, dass Erfahrungspunkte nicht für jedes Partymitglied einzeln, sondern für die Gruppe als ganzes gezählt werden sollen.
+Ein ähnliches Problem gibt es für die Objekte, die sich in der Spielwelt sammeln lassen:
+\enquote{Individuell \textsc{oder} Gruppe} schreibt Mike Hoge unter der Überschrift \enquote{\uline{Besitzflag}}.
+Es lässt sich vermuten, dass jedes Objekt entweder als Besitz eines Charakters oder als das der Party ausgewiesen werden sollte, wobei gilt:
+\enquote{08/15 Items haben Gruppenflag.}\autocite[S.~9]{orpheus_b_scribbles}\footnote{Ein generelles -- nicht auf den Multiplayer beschränktes -- Problem stellt das potentielle verschwinden von Gegenständen dar, die zur Lösung des Spiels notwendig sind.
+An anderer Stelle notiert Mike Hoge entsprechend:
+\enquote{Spiellösungsrelevante Items müssen neu rein bei Verschwinden} (\autocite[S.~7]{orpheus_b_scribbles}).}
+Außerdem stellt sich -- darauf deutet der Stichpunkt \enquote{Partymitglied\_Bewegungs\_Spielraum}\autocite[S.~8]{orpheus_b_scribbles} hin -- die Frage, wie mit räumlicher Entfernung zwischen den einzelnen Partymitgliedern umgegangen werden soll.
+Es gibt beispielsweise Überlegungen, dass die oben erwähnte Aufforderung \enquote{Folge} nicht funktionieren sollte, wenn sich ein Gruppenmitglied \enquote{außer Hörreichweite} befindet.
+Weil das unter Umständen aber zu unpraktisch sein könnte, ist dazu in Klammern eine Alternative notiert:
+\enquote{evtl Telepath. Kommunikation}.\autocite[S.~5]{orpheus_interface}
+Und was macht man, wenn sich ein Gruppenmitglied -- aber nicht der Spieler selbst -- an einem Ort aufhält, an dem etwas Wichtiges ausgelöst werden soll?
+Der etwas kryptische Vermerk \enquote{Kritische Dialoge \textsc{nicht} Triggern wenn \uline{Party} $-$ NSC $=$ \uline{Mensch}!}\autocite[S.~9]{orpheus_b_scribbles} könnte unter Umständen so gelesen werden, dass ein wichtiger Dialog nicht ausgelöst werden soll, wenn Teile der Gruppe zwar am entsprechenden Ort sind, der menschliche Spieler (\enquote{NSC $=$ Mensch}) aber fehlt (\enquote{$-$}); wobei man freilich darüber hinwegsehen müsste, dass \enquote{NSC} eigentlich einen Charakter beschreibt, der nicht der Spieler ist. % Mike Hoge fragen
+Daneben ist zu beachten, dass eine \enquote{\uline{Veränderung}} der \enquote{\uline{Oberwelt}}, die durch ein gewisses \enquote{\uline{Event}} ausgelöst werden könnte, nur stattfinden sollte, wenn sich \enquote{A $+$ B [gemeinsam] in eine[r] Dungeon Session} befinden.\autocite[S.~8]{orpheus_b_scribbles}
+
+Neben \enquote{VOB verschieben}, \enquote{in VOB verstecken} und \enquote{Party NSC lenken} bleibt dann noch der \enquote{Battle Mode}, wobei nicht unmittelbar klar ist, was sich die Entwickler zu diesem Zeitpunkt darunter vorgestellt haben.
+Bei der Erwähnung eines solchen Kampfmodus mag einem zum Beispiel der unter anderem in JPRGs bis heute tradierte Kampfbildschirm in den Sinn kommen, in dem das (in der Regel rundenbasierte) Geschehen oft abstrahiert aus einem Blick von der Seite dargestellt wird, wobei sich die Kontrahenten beispielsweise am linken und rechten Rand des Bildschirms oder diagonal gegenüberstehen.\footnote{Ein frühes -- vielleicht sogar das erste -- Beispiel für eine Kampfansicht, in der sich die Parteien links und rechts gegenüberstehen, stellt das 1987 in Japan und 1990 in den Vereinigten Staaten erschienene \textit{Final Fantasy} dar. Eine diagonale Gegenüberstellung findet sich etwa in dem 1993 erschienenen \textit{Ogre Battle -- The March of the Black Queen}. Daneben gibt es noch die frontale Darstellung der Gegner, entweder aus der Egoperspektive des Spielers, wie etwa im 1986 veröffentlichten \textit{Dragon Quest}, oder über die Schulter der Spielfiguren, wie beispielsweise im 1993 erschienenen \textit{Lufia \& the Fortress of Doom}. Diese Formen eines separaten Kampfbildschirms haben sich bis heute erhalten, etwa im 2016 erschienenen \textit{Persona 5} oder im 2018 erschienenen \textit{Octopath Traveler}.}
+Und tatsächlich sehen wir in einer frühen Entwicklungsversion von Gothic, dass sich die Kamera im Falle eines Kampfes zur Seite bewegt und das Geschehen aus einer statischeren Perspektive zeigt, die nicht mehr strikt dem Charakter folgt, sondern sich nur verschiebt, wenn dieser sich hinreichend weit von seiner ursprünglichen Position entfernt.\footnote{Das ist der Fall in Version 0.56c; vgl. bspw. \autocite[Min.~5:11]{alpha_features_2023}.}
+Generell haben die frühen Überlegungen zum Kampf einen etwas taktisch anmutenden Charakter.
+In \enquote{Orpheus -- Interface} ist die Idee festgehalten, dass man nach dem \enquote{Ausholen} (über \enquote{Fire}) mit \enquote{$\leftarrow$} und \enquote{$\rightarrow$} ein Ziel auswählen (\enquote{Select Target}), sich diesem dann mit \enquote{$\uparrow$} und \enquote{$\downarrow$} \enquote{nähern/entfernen} und schließlich über eine Auswahl zwischen \enquote{1} und \enquote{9} auf dem Ziffernblock eine Angriffsform auswählen kann (\enquote{Select Blow}).\autocite[S.~2]{orpheus_interface}
+Die Notizen zur Kampfsteuerung lesen sich ähnlich taktisch.
+Zentral ist bei den dort festgehaltenen Überlegungen die Distanz zum Gegner und wie sich diese durch die eigene Bewegung (etwa durch einen Angriff mit Ausfallschritt nach vorne oder durch eine Parade mit Schritt nach hinten) und die Bewegung des Gegners (etwa durch ein Zurückweichen beim Getroffenwerden) verändert.\autocite[Vgl.][S.~1--3]{orpheus_kampfsteuerung}
+In einer Tabelle ist minutiös festgehalten, welche Art von Angriff welche Auswirkungen auf einen Gegner in welcher Distanz haben soll.\footnote{Vgl. \autocite[S.~4--5]{orpheus_kampfsteuerung}.}
+Dabei wird unterschieden zwischen vier für den Nahkampf relevanten Distanzen, vier möglichen Tastatureingaben (\enquote{\textsc{Ctrl}} in Kombination mit \enquote{$\uparrow$}, \enquote{$\rightarrow$}, \enquote{$\leftarrow$} oder \enquote{$\downarrow$}) sowie einem Angriff mit der \enquote{Faust} oder mit einer von drei Waffen (\enquote{Dolch}, \enquote{Schwert} und \enquote{Zweihänder}), mit denen man entweder geübt oder ungeübt sein kann, was in einer Tabelle mit immerhin 112 Zellen resultiert.\autocite[S.~4]{orpheus_kampfsteuerung}
+In anderer Hinsicht ist man dafür pragmatisch:
+Bei der \enquote{Körperunterteil[un]g}, erfahren wir an anderer Stelle, gibt es nicht etwa verschiedene Zonen, sondern scheinbar \enquote{nur \uline{\textsc{eine}} (komplette Rüstung)}.\autocite[S.~8]{orpheus_b_scribbles}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – SPIELMECHANIK – ATTRIBUTE %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Attribute}\label{sec:orpheus_mechanik_attribute}
+An zwei Stellen im Fundus der Dokumente finden wir Sammlungen möglicher Attribute.
+In \enquote{\textsc{Orpheus. B -- Scribbles}} sind neben \enquote{Mut}, \enquote{\textsc{Ausdauer}} und \enquote{\textsc{Mana}} die Abkürzungen \enquote{STR}, \enquote{Ka GE}, \enquote{Di GE}, \enquote{A Ga}, \enquote{WIL}, \enquote{CON}, \enquote{AT}, \enquote{GE}, \enquote{TP}, \enquote{WK}, \enquote{DK}, \enquote{LP} und \enquote{WS} notiert.
+Flosha hat sich ausführlich damit beschäftigt und schlüsselt sie wie folgt auf:
+\enquote{STR} steht für \enquote{Strength}, \enquote{Ka GE} für \enquote{Kampfgeschick}, \enquote{Di GE} für \enquote{Diebesgeschick}, \enquote{A Ga} für \enquote{Arkane Gabe}, \enquote{WIL} für \enquote{Wille}, \enquote{CON} für \enquote{Constitution}, \enquote{AT} für \enquote{Attack}, \enquote{GE} für \enquote{Geschicklichkeit}, \enquote{TP} für \enquote{Trefferpunkte}, \enquote{WK} für \enquote{Waffenkunst}, \enquote{DK} für \enquote{Diebeskunst}, \enquote{LP} für \enquote{Lebenspunkte} und \enquote{WS} für \enquote{Willensstärke} oder \enquote{Wahnsinn}.
+Außerdem weist er darauf hin, dass die Anordnung der Abkürzungen auf eine Zuordnung hindeuten könnte.\autocite[Vgl.][]{flosha_attributes_2022}
+In einem Kasten finden wir beispielsweise folgende beiden Spalten:
+
+\vspace{1em}
+\fbox{
+   \begin{varwidth}{\textwidth}
+   \begin{tabular}{lcl}
+      STR     & --   & CON             \\
+      Ka GE   &      & AT              \\
+      Di GE   &      & GE              \\
+      A Ga    &      & \textsc{Mana}   \\
+      WIL     &      & WIL             \\
+   \end{tabular}
+   \end{varwidth}
+}
+
+\vspace{1em}
+\noindent Rechts daneben wiederum ist notiert:
+
+\vspace{1em}
+\begin{tabular}{ll}
+   STR          & TP              \\\hline
+   WK           &                 \\
+   DK           &                 \\
+   \sout{WIL}   &                 \\\cline{1-1}
+   CON          & LP              \\
+   A Ga         & \textsc{Mana}   \\
+   WIL          & WS              \\
+\end{tabular}
+
+\vspace{1em}
+\noindent Es sieht ganz danach aus, als wären hier verschiedene Ideen für mögliche Abhängigkeiten durchgespielt worden.
+In obigem Kasten sind es:
+
+\begin{itemize}
+   \item Stärke und Konstitution
+   \item Kampfgeschick und Attacke
+   \item Diebesgeschick und Geschick
+   \item Arkane Gabe und Mana
+\end{itemize}
+
+\noindent In der nachstehenden Notiz wiederum:
+
+\begin{itemize}
+   \item Stärke und Trefferpunkte
+   \item Konstitution und Lebenspunkte
+   \item Arkane Gabe und Mana
+   \item Wille und Willensstärke oder Wahnsinn % Hier ist sich Florian unsicher. Mike fragen.
+\end{itemize}
+
+Eine andere Liste ist am Rand einer Seite in den Notizen zu Zaubersprüchen festgehalten worden:
+
+\vspace{1em}
+\begin{tabular}{l}
+   ST    \\
+   KON   \\
+   We    \\
+   DK    \\
+   WK    \\
+   SK    \\
+   AG    \\
+   WIL   \\
+   CH    \\
+   Wa    \\\hline
+\end{tabular}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – SPIELMECHANIK – FAEHIGKEITEN %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fähigkeiten}\label{sec:orpheus_mechanik_faehigkeiten}
+In den \enquote{\textsc{Scribbles}} ist die Idee festgehalten, dass es sowohl \enquote{\uline{Gilden\-Lehrer}} als auch \enquote{\uline{Freie Lehrer}} geben sollte, die \enquote{\uline{Programmtechnisch identisch}} gewesen wären.
+Die Gilden-Lehrer, so scheint ist, hätten eigentlich nur Mitglieder ihrer jeweiligen Gilde oder Fraktion ausbilden sollen, hätten aber -- das ist an dieser Stelle nachträglich mit Bleistift notiert -- auf niedriger Stufe (\enquote{kl. Lev.}) \enquote{entgegen dem Willen ihrer Gilde} auch Ausnahmen gemacht.\autocite[S.~15]{orpheus_b_scribbles}
+
+Einen Einblick in die geplanten Fähigkeiten, die diese Lehrer hätten vermitteln sollen, gewinnen wir unter anderem durch die Eintragungen in den beiden Versionen von \enquote{\textsc{Orpheus} -- Spielwelt/Gildensystem}, in denen für viele \enquote{\textsc{\uline{Gilde[n]}}} ein \enquote{\textsc{\uline{Lernprogramm}}} vermerkt ist.
+Im Folgenden ordne ich die über verschiedene Gilden sowie die beiden Fassungen des Dokuments verstreuten Fähigkeiten der Übersichtlichkeit halber grob in Gruppen ein, von Magiefähigkeiten über Schurkenfähigkeiten und Bewegungsfähigkeiten bis hin zu Kampffähigkeiten.
+
+Im Bereich der Magie finden wir die rollenspielklassische Fähigkeit \enquote{Magie erkennen}\autocite[S.~2, 7]{orpheus_gildensystem} sowie die Zaubersprüche \enquote{Featherfall}\autocite[S.~9]{orpheus_gildensystem}, \enquote{Magic Missile} (nicht unter dem \enquote{\textsc{\uline{Lernprogramm}}}, sondern unter den \enquote{\textsc{\uline{Eintrittsvoraussetzun\-gen}}} für die \enquote{\uline{Kampfmagier}})\autocite[S.~2]{orpheus_gildensystem} und \enquote{\textsc{Cure}} (unter den \enquote{\textsc{\uline{Eintrittsvoraus\-setzungen}}} für die \enquote{\uline{Heilmagier}}).\autocite[S.~7]{orpheus_gildensystem}
+Sowohl Fähigkeit als auch Sprüche kennen wir beispielsweise aus der -- zur Zeit von \textit{Orpheus} gängigen -- zweiten Edition von \textit{Advanced Dungeons \& Dragons}.\footnote{Vgl. \autocite[S.~133, 134, 136]{cook_adnd_1989}, sowie \autocite[S.~171, 173]{cook_adnd_1996}. Unter den Priestersprüchen finden wir hier \enquote{Cure Light Wounds}, \enquote{Cure Blindness or Deafness}, \enquote{Cure Disease}, \enquote{Cure Serious Wounds} und \enquote{Cure Critical Wounds} (\autocite[S.~199, 209\,f., 217, 222]{cook_adnd_1989}, sowie \autocite[S.~249, 261\,f., 264\,f., 272\,f., 278]{cook_adnd_1996}). Gemeint ist wahrscheinlich ein Analogon zu erstgenanntem.} % Mike fragen, was sie damals so gespielt haben
+Davon abgesehen notiert Mike Hoge nur pauschal \enquote{Kampfmagier Sprüche \textsc{Lev} 1--7},\autocite[S.~2]{orpheus_gildensystem} \enquote{Heilmagiersprüche Lev 1--7}\autocite[S.~7]{orpheus_gildensystem} sowie \enquote{\textsc{Psi}-Spells bis Telekinetic Storm [Le\uline{v 3}]}\autocite[S.~10]{orpheus_gildensystem} und \enquote{\textsc{Psi}-Sprüche ab Levitation}.\autocite[S.~11]{orpheus_gildensystem}
+Während \enquote{Telekinetic Storm} erst mit dem 2015 für \textit{Pathfinder} erschienenen Quellenbuch \textit{Occult Adventures} als populärer Zauberspruch in Erscheinung zu treten scheint,\autocite[Vgl.][S.~188]{bulmahn_pathfinder_2015} kennen wir \enquote{Levitation} ebenfalls aus \textit{Advanced Dungeons \& Dragons} (dort als \enquote{Levitate} beziehungsweise \enquote{Schweben}).\footnote{Vgl. \autocite[S.~143]{cook_adnd_1989}, sowie \autocite[S.~186]{cook_adnd_1996}.} % Mike fragen, woher Telekinetic Storm stammt
+An einer Stelle wird auf eine \enquote{$\rightarrow$ Spruchtabelle!}\autocite[S.~10]{orpheus_gildensystem} verweisen, in der einzelne Zaubersprüche gesammelt sind oder gesammelt werden sollen (siehe auch \autoref{sec:phoenix_zauber}).
+
+Daneben sind Schurken mit einer ganzen Reihe an Fähigkeiten bedacht.
+Wir finden Klassiker wie \enquote{Verkleiden},\footnote{\autocite[S.~5]{orpheus_gildensystem}. An anderer Stelle ist die Idee notiert: \enquote{Waffen heben \uline{Tarnung auf!}} (\autocite[S.~18]{orpheus_b_scribbles}).} \enquote{Stealth},\autocite[S.~5]{orpheus_gildensystem} \enquote{Hide in Shadows},\footnote{\autocite[S.~5]{orpheus_gildensystem}. Eventuell identisch damit ist \enquote{Verstecken}, das wir in der zweiten Fassung des Dokuments finden (\autocite[S.~3]{orpheus_gildensystem_v2}).} \enquote{Pickpocket},\autocite[S.~9]{orpheus_gildensystem} \enquote{Schlösser öffnen},\autocite[S.~9]{orpheus_gildensystem} \enquote{Backstab}\footnote{\autocite[S.~5]{orpheus_gildensystem}. Als Steigerungsform finden wir auch einen \enquote{Major Backstab} (\autocite[S.~1]{orpheus_gildensystem}). Eventuell identisch mit einem davon ist \enquote{Meucheln}, das wir in der zweiten Fassung des Dokuments finden (\autocite[S.~1, 3]{orpheus_gildensystem_v2}).} oder \enquote{Fallen erkennen}, \enquote{Fallen entschärfen}\autocite[S.~9]{orpheus_gildensystem} und \enquote{\sout{alle Fallen} manche Fallen [stellen]},\footnote{\autocite[S.~13]{orpheus_gildensystem}; siehe auch \autocite[S.~15]{orpheus_gildensystem}.} die uns ebenfalls aus \textit{Advanced Dungeons \& Dragons} bekannt sind (\enquote{Stealth} dort als \enquote{Move Silently} beziehungsweise \enquote{Leise bewegen}).\footnote{Vgl. \autocite[S.~39\,f., 58, 63]{cook_adnd_1989}, sowie \autocite[S.~56\,ff., 80, 86]{cook_adnd_1996}.}
+Hinzu kommen \enquote{Lügen}\autocite[S.~5]{orpheus_gildensystem} sowie die an anderer Stelle -- mit zwei nachgestellten Fragezeichen -- notierte Idee \enquote{Waffe vergiften}.\autocite[S.~8]{orpheus_b_scribbles}
+
+Wir finden ferner einige körperliche beziehungsweise auf Bewegung bezogene Fähigkeiten wie \enquote{Akrobatischer Sprung},\footnote{Vgl. \autocite[S.~9]{orpheus_gildensystem}; vermutlich identisch mit \enquote{Akrobatik} (\autocite[S.~14]{orpheus_b_scribbles}).} \enquote{klettern}\autocite[S.~9]{orpheus_gildensystem} oder \enquote{Schwimmen}, \autocite[S.~14]{orpheus_b_scribbles} die uns auch in \textit{Advanced Dungeons \& Dragons} begegnen (\enquote{klettern} dort als \enquote{Mountaineering} beziehungsweise \enquote{Bergsteigen}).\footnote{Vgl. \autocite[S.~61, 64]{cook_adnd_1989}, sowie \autocite[S.~79, 83\,f.]{cook_adnd_1996}.}
+Außerdem gibt es \enquote{Gänge freilegen} sowie \enquote{\uline{eingestürzte} Gänge freilegen}.\autocite[S.~5]{orpheus_gildensystem}
+Da Zweiteres direkt unter Ersterem notiert ist, soll es sich hier vermutlich um zwei unterschiedliche Fähigkeiten handeln.
+
+Kampffähigkeiten schließlich werden an dieser Stelle -- sieht man von \enquote{Ausweichen}\autocite[S.~5]{orpheus_gildensystem} und \enquote{Critical Hit}\autocite[S.~1]{orpheus_gildensystem} einmal ab -- nicht weiter ausdifferenziert.
+Es ist nur pauschal die Rede von \enquote{\uline{alle[n]} Kampftechniken}\autocite[S.~8]{orpheus_gildensystem} sowie vom \enquote{Fernkampf}.\autocite[S.~13, 15]{orpheus_gildensystem}
+Allerdings finden wir in den losen Notizen der \enquote{\textsc{Scribbles}} einen Hinweis darauf, dass sich verschiedene Fähigkeiten auch in den Kampfanimationen widerspiegeln sollten:
+\enquote{Waffentalente $\rightarrow$ Anims}.\autocite[S.~7]{orpheus_b_scribbles}
+In den Notizen zur Kampfsteuerung (siehe auch \autoref{sec:orpheus_mechanik_steuerung}) erfahren wir außerdem, dass es sowohl für \enquote{Dolch}, \enquote{Schwert} als auch \enquote{Zweihänder} jeweils ein \enquote{\textsc{Talent}} geben sollte.\footnote{\autocite{orpheus_kampfsteuerung}, S.~4\,f.; siehe auch \enquote{\uline{\textsc{Talent} (Schwertk.)}} (\autocite[S.~1]{orpheus_kampfsteuerung}).}
+Außerdem ist hier die Rede von einem \enquote{\textsc{\uline{Berserkerschlag}}}, bei dem die Spielfigur einen \enquote{360$^{\circ}$ Drehschlag} ausführt,\autocite[S.~1]{orpheus_kampfsteuerung} der eine besonders große Reichweite hat, nämlich analog zu der \enquote{Reichweite einer zweihändigen Waffe \textsc{mit Ausfallschritt}}, und der nur erfolgreich ausführbar ist, wenn keine \enquote{zu kurze Distanz} zum Gegner vorliegt.
+Andernfalls \enquote{rennt [der Spieler] in [den] Feind rein}.
+Gelingt die Attacke, schlägt er ihm aber immerhin den \enquote{Kopf ab (bei Humanoiden)}.
+Die Möglichkeit zur Ausführung eines Berserkerschlags hat der Spieler \enquote{nur mit Schwertern/Äxten \textsc{und} entspr. \textsc{Talen[t]}}.\autocite[S.~3]{orpheus_kampfsteuerung}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – SPIELMECHANIK – STEUERUNG %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Steuerung}\label{sec:orpheus_mechanik_steuerung}
+Gothic war schon immer für seine etwas eigenwillige Steuerung bekannt.
+Petra Schmitz, die das Spiel vor seiner Veröffentlichung für die \textit{GameStar} bei einem Preview-Termin anspielen konnte, erinnert sich daran, wie schockiert sie davon war, dass das Spiel zu diesem Zeitpunkt keine Maussteuerung unterstütze.\autocite{schmitz_maussteuerung_2021}
+Die oben erwähnte Notiz \enquote{\uline{Tastatur Only}}\autocite[S.~1]{orpheus_interface} (siehe \autoref{sec:orpheus_mechanik_möglichkeiten}) sollte bei der Entwicklung bis zum Schluss richtungsweisend bleiben.
+
+Ein zentrales Element der Steuerung im finalen Gothic ist die Steuerungstaste (kurz Strg).
+Während die Bewegung klassisch über die Tasten W, A, S und D funktioniert, gesellt sich Strg hinzu, wenn wir mit Elementen in der Spielwelt interagieren möchten.
+Drücken wir beispielsweise -- während wir mit unserem namenlosen Helden einen Gegenstand oder eine Person anvisieren -- Strg und W, können wir etwa ein Objekt benutzen, einen Gegenstand aufsammeln, eine Truhe öffnen oder eine Person ansprechen.
+In der Zeit von Orpheus sind solche Dinge noch auf verschiedene Tastenkombinationen verteilt.
+\enquote{Fire + $\uparrow$} war für das \enquote{\uline{Manipulieren}} von Objekten in der Spielwelt (\enquote{Tür/Schrank/Truhe/Hebel/Knopf/Fackel}), \enquote{Fire + $\downarrow$} für das \enquote{\uline{Aufheben}} von Gegenständen (wobei man anschließend mit \enquote{up} oder \enquote{down} hätte entscheiden können sollen, ob man den Gegenstand ins Inventar aufnehmen oder \enquote{wieder weglegen} möchte), \enquote{Fire + $\leftarrow$} für das \enquote{\uline{Betrachten}} und \enquote{Fire + $\rightarrow$} für das \enquote{\uline{Reden}} gedacht.\autocite[S.~2]{orpheus_interface}
+Daneben war \enquote{Alt} für \enquote{Springen/Klettern/in VOB verstecken} vorgesehen.\autocite[S.~3]{orpheus_interface}
+
+Im fertigen Spiel machen wir uns durch Drücken der Leertaste Kampfbereit.
+Diese Idee ist schon in \enquote{Orpheus -- Interface} angelegt, wo notiert ist, dass durch einmaliges Drücken das Schwert gezogen und durch zweimaliges Drücken der Bogen bereit gemacht werden sollte.\autocite[S.~2]{orpheus_interface}
+Mit gezogener Waffe (oder gehobenen Fäusten, wenn wir keine Waffe ausgerüstet haben) können wir dann durch die Strg im Kombination mit W, A oder D angreifen, während uns Strg und S blocken lässt.
+Diese Kombination von Steuerungs- und Richtungstasten geht -- wie wir oben im Zusammenhang mit der Tabelle gesehen haben -- ebenso auf diese frühe Phase zurück.
+Den Notizen zur Kampfsteuerung zufolge sollte durch die Kombination von Strg und Pfeiltasten entweder unterschiedliche Gegner angegriffen oder verschieden Schwertstreiche auf den gleichen Gegner ausgeführt werden können.\footnote{Vgl. \autocite[S.~1--3]{orpheus_kampfsteuerung}; siehe auch \autocite[S.~4]{orpheus_interface}, wo wir ein Raster aus 3 × 3 Tasten finden, die in Kombination mit \enquote{Fire} jeweils unterschiedliche Aktionen im Kampf bewirken sollten. Von link nach Rechts sind das in der obersten Reihe \enquote{Tritt}, \enquote{Stechen} und Schlag von \enquote{Oben}, in der mittleren Reihe \enquote{L[inks] Seitlich [schlagen]}, \enquote{Barbarenschlag} und \enquote{R[echts] Seitlich [schlagen]} sowie in der unteren Reihe \enquote{L[inks] Rumgehen}, \enquote{Hinter Schlag} und \enquote{R[echts] Rumgehen}. Dieses Raster ist schon auf S.~1 hinter Punkt (a) \enquote{div[erse] Schläge} angedeutet.}
+
+Die Notizen zur Auswahl von Zaubern wiederum sind etwas kryptisch.
+Es scheint, als sei die erste Idee gewesen, dass man über eine Funktion zum Schnellzugriff mittels der Tabulatortaste auf verschiedene Gegenstände hätte zugreifen können sollen, wobei eines davon das Zauberbuch gewesen wäre (\enquote{QuickSlot2 $=$ SpellBook; $\rightleftarrows$<\textsc{tab}> $=$ Get\uline{QS2}items}).
+Über \enquote{Fire} hätte sich dann ein Spruch aus dem Buch vorbereiten lassen sollen (\enquote{<Fire> $=$ \uline{Activate} [Bookmark] Spell}).
+Darunter ist notiert, dass sich das Buch auch über die Eingabetaste hätte öffnen lassen (\enquote{<Return> $=$ Book $\Rightarrow$ Spell Select (Bookmark)}) und sich eine Auswahl an Zaubern unter Umständen auf den Nummernblock hätte legen lassen (\enquote{evtl. QuickChoiceSpells on Keypad 1--0}) sollen.
+Es scheint damit so, dass man sich zuerst einen Zauber aus seinem Buch hätte zurechtlegen müssen, ehe man ihn dann -- in einem nächsten Schritt -- hätte wirken können.
+Von späterer Hand sind allerdings zwei Notizen hinzugefügt worden, die darauf hinzudeuten scheinen, dass sich -- entweder auch oder stattdessen -- ohne den Umweg über das Zurechtlegen \enquote{\textsc{direkt aus} [dem] \textsc{Buch zaubern}} lassen sollte, indem man zunächst die Eingabetaste drückt, dann denn Zauber auswählt und ihn dann mit \enquote{Fire} wirkt (\enquote{<Return>$_{\downarrow}^{\uparrow}$<Fire>}).
+Neben diesen Überlegungen zur Steuerung finden wir an dieser Stelle zwei generelle Gedanken zu Zaubern:
+Sie sollten, erstens, einer \enquote{\textsc{\uline{logische}}[n] \textsc{\uline{Sortierung}}} folgen und, zweitens, sollte es \enquote{\textsc{wenig Sprüche auf einmal}} geben, die dafür aber über eine \enquote{\textsc{individuelle $[\dots]$ Steigerung}} verfügen sollten, indem man die entsprechende Taste länger gedrückt hält (darauf deuten die beiden Vermerke \enquote{long press mighty spell} und \enquote{<Fire\_pressed> $=$ Inc[line] Spell Strength} hin).\autocite[S.~3]{orpheus_interface}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – SPIELMECHANIK – AUFTRÄGE %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Aufträge}\label{sec:orpheus_mechanik_auftraege}
+Welchen Herausforderungen man sich mit diesem Repertoire an spielerischen Möglichkeiten hätte stellen können sollen, verraten zwei mit \enquote{\uline{Aufträ\-ge}} überschriebene Seiten (siehe \autoref{fig:orpheus_auftraege}; zu weiteren Ideen für Aufträge siehe auch \autoref{sec:orpheus_geschichte_abschnitte}).\autocite[Vgl.][S.~16--17]{orpheus_b_scribbles}
+Neben der Überschrift ist die Devise \enquote{\uline{Jagen \& sammeln} (\uline{Wenig} Detektivaufträge)} vermerkt.
+Es folgt eine Liste mit 22 -- oder, zählt man Punkt~b unter 13 separat, 23 -- Ideen für Aufgaben:
+
+\begin{quote}
+   \begin{itemize}
+      \item[1)] Sack mit Erz beschaffen -- egal woher
+      \item[2)] Töte NSC X -- Abtrünnig von Sekte
+      \item[3)] Beschütze Miner bei der Arbeit
+      \item[4)] NSC X ist im Dungeon verloren gegangen -- Finde ihn
+      \item[5)] Miner hat in alter Mine Item verloren -- bring' es ihm
+      \item[6)] In Höhle \uline{unter} Äckern sind Minecrawlers $\rightarrow$ schlecht f. Ernte
+      \item[7)] Vision: Artefakt der Erweckung aus altem Tempel holen
+      \item[8)] * Schmiere stehen. Alarm (HIT Pfahl mit Schwert)
+      \item[9)] \sout{Auftrag ausführen} Finde heraus, was unter dem PSI-Tempel für GH-Gänge sind
+      \item[10)] Im Sumpf ist ein Monster: \uline{Töte} es
+      \item[] \phantom{Im Sumpf ist} (Abends)
+      \item[11)] NSC X hat Item Y $\rightarrow$ Beschaffen\footnote{Am Ende dieser Zeile ist in Klammern ein kleiner Schlüssel skizziert, vgl. \autoref{fig:orpheus_auftraege}.}
+      \item[12)] beschworener Dämon in Höhlensystem X
+      \item[13)] Buddlerfort wird von \uline{Söldnern} belagert.
+      \item[] \phantom{B}b) Erzkonvoi ausrauben
+      \item[14)] Mafiafürst ist scharf auf Item X -- besorgen
+      \item[15)] Typ will seine Tussy wieder haben (sie ist im PSI-Lager)
+      \item[16)] Du sollst Kämpfer X in der Arena töten (hat gegen Junta aufgelehnt)
+      \item[17)] Er hat es mir gestohlen, bring es mir wieder
+      \item[18)] Eskortiere X nach Y (\uline{er ist in Z})
+      \item[19)] \sout{Hole} \sout{Fin} Finde X (Detektiv) und bring ihn nach Y
+      \item[20)] Ich will überlaufen! (2 Slots besezt / 1 immer besetzt)
+      \item[21)] Muß was klauen, aber es ist schon ein Dieb da... [neuer Auftrag]
+      \item[22)] Belausche Gespräch, \uline{mich} kennen die beiden
+   \end{itemize}
+\end{quote}
+
+Am Ende der zweiten Seite wird eine Klassifizierung der Aufträge in sechs \enquote{\uline{Typ[en]}} versucht:
+\enquote{Item finden}, \enquote{Item von Person bringen}, \enquote{Schutzpatroullie [sic]}, \enquote{Töte X}, \enquote{Massenangriff} (oder -- hier ist die Handschrift etwas uneindeutig -- \enquote{Messerangriff}) sowie \enquote{Schmiere stehen}.
+Etwas gröber lassen sich die Ideen gut in drei Kategorien einteilen:
+In der Hauptsache geht es entweder darum, etwas (beziehungsweise jemanden) zu finden (das ist der Fall bei 1, 4, 5, 7, 11, 14, 15, 17, 19 und 21) oder gegen etwas (beziehungsweise jemanden) zu kämpfen (bei 2, 3, 6, 10, 12, 13 und 16).
+Daneben gibt es noch eine Handvoll Aufträge, bei denen es darum geht, Schmiere zu stehen, etwas auszukundschaften, jemanden zu eskortieren (wobei auch das, je nach Verlauf der Eskorte, zum Kampf gezählt werden könnte) oder jemanden zu belauschen (bei 8, 9, 18, 20 und 22).
+
+Teilweise verfügen die Ideen dabei schon über einen motivationalen Hintergrund.
+Wir finden beispielsweise sektiererischen Fanatismus (bei 2, wo ein Abtrünniger getötet werden soll), die Sicherung einer guten Ernte (bei 6, wo Monster unter den Feldern getötet werden sollen), machtpolitische Ränkespiele (bei 16, wo jemand getötet werden soll, der sich gegen eine herrschende Fraktion aufgelehnt hat) oder das Streben nach besseren Lebensumständen (bei 20, wo jemand von einer Fraktion zu einer anderen überlaufen möchte). An anderer Stelle, unter der Überschrift \enquote{\textsc{Orpheus} -- \uline{Übersicht}}, werden drei weitere \enquote{\uline{Motivation[en]} für Aufträge} genannt, nämlich \enquote{Machtkämpfe}, \enquote{Vergünstigungskämpfe} und \enquote{Person entführt}.
+
+Auch eine Einbindung in die Spielwelt (siehe \autoref{sec:orpheus_welt}) findet sich schon stellenweise.
+Es wird direkt Bezug genommen auf den Sumpf, das Lager der Psioniker sowie deren Tempel (bei 10, 15 und 9), auf die Arena (bei 16), das Buddlerfort (bei 13), auf die Mienen und spezifisch auf die alte Miene (bei 3 und 5), auf Höhlen unter den Äckern (bei 6) sowie einen alten Tempel (bei 7).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – SPIELWELT %
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Spielwelt}\label{sec:orpheus_welt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – SPIELWELT – KARTE %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Karte}\label{sec:orpheus_welt_karte}
+Unter der Überschrift \enquote{\textsc{Orpheus} -- \uline{Übersicht}} finden wir den vielleicht ersten Entwurf einer Karte der Kolonie überhaupt (siehe \autoref{fig:orpheus_karte_1}), der auf 1995 geschätzt wird.\autocite[Vgl.][]{flosha_evolution_2024} % Bei Mike Hoge nachfragen.
+Rechts neben sowie unter der Karte finden wir drei unterstrichene Stichpunkte: \enquote{\uline{1 Palette}} (gemein ist vielleicht eine Farbpalette), \enquote{\uline{1 Texturenpool}} und \enquote{\uline{nicht zu groß}}.
+Hier ist die Kolonie noch rechteckig angelegt und die oben links angebrachte Beschriftung \enquote{Barriere} scheint sich auf das Quadrat zu beziehen, das die Karte begrenzt.
+Auffällig ist außerdem, dass die Barriere in dieser frühen Form als eine Art magische Wand gedacht gewesen zu sein scheint, wie beispielsweise in John Carpenters \textit{Escape from New York}, in dem ganz Manhatten in eine Gefängniskolonie umgewandelt wurde, die vollständig von einer 50 Fuß hohen Mauer umgeben ist.
+Darauf deutet nicht nur eine kleine Skizze rechts unterhalb der Karte hin, auf der die Barriere vertikal und nach oben wie nach unten begrenzt ist, sondern auch zwei Hinweise, die wir in \enquote{\textsc{Orpheus} -- Spielwelt/Gildensystem} (siehe \autoref{sec:orpheus_welt_fraktionen}) finden.
+Dort ist als \enquote{\textsc{Ausbruchsplan}} für die \enquote{Mafiaschläger} notiert:
+\enquote{Träumen davon[,] eines Nachts die Klippe im Sturm zu nehmen}.
+Und bei den \enquote{Freie[n] Buddler[n]} heißt es:
+\enquote{Versuchen sich unter der Barriere durchzubuddeln}.
+Eine weitere Möglichkeit, die Barriere zu überwinden, wird unter \enquote{\textsc{Orpheus -- Kreaturen}} angesprochen.
+Hier steht, \enquote{\uline{Greife} landen $1\times$ im Jahr $\rightarrow$ \uline{Escape}} und \enquote{Leute stehen auf Wiese und warten} auf die Ankunft der Greife.
+Es klingt also ganz so, als sei die Barriere in ihrer vertikalen Ausdehnung zu diesem Zeitpunkt als begrenzt und damit -- wenn man nur tief- oder hochgenug kommt -- als überwindbar konzipiert gewesen.
+Außerdem war sie vielleicht weniger durchlässig als in ihrer finalen Form.
+Darauf deutet eine kleine Skizze am unteren Rand der Seite hin, auf der wir ein \enquote{Orkskelett} sehen, das \enquote{in [der] \uline{Barriere}} zu stecken scheint.
+Ganz so, als würde es die Überreste eines Orks darstellen, der bei dem Versuch, die Barriere zu passieren, verendet ist.
+
+Ein Blick auf das Innere des Rechtecks zeigt uns, dass sich der Austauschplatz -- hier als \enquote{Marktplatz} -- bereits im Norden befindet, zusammen mit der \enquote{Klippe}, von der unser Namenloser Held gestoßen wurde, und dem \enquote{See}, in dem er gelandet ist.
+Auch das Alte Lager, für viele Spieler der erste Anlaufpunkt nach ihrem Sturz in den See, befindet sich schon im Zentrum der Karte, hier als \enquote{\enquote{Liberales} Lager}.
+Es ist bereits erkennbar, dass es über einen inneren und einen äußeren Teil verfügen sollte, wie wir auch \enquote{\textsc{Orpheus -- Locations}} entnehmen können, wo festgehalten ist, dass den \enquote{\uline{Kern}} des Lagers ein \enquote{altes Aufseherhaus (\uline{relativ} protzig)} bilden sollte, um das herum wir die \enquote{Outskirts (Fort)} -- an anderer Stelle unter der Bezeichnung \enquote{äußerer Ring}\autocite[S.~19]{orpheus_b_scribbles} -- finden.
+Besser erkennbar ist das auf der Rückseite des Blattes.
+Hier finden wir eine detailliertere Darstellung des Lagers (siehe \autoref{fig:orpheus_karte_2}).
+In dessen Mitte befinden sich \enquote{alte Aufseherhäuser \& Baracken}, in denen -- wie auch im fertigen Spiel -- die \enquote{\uline{Magier}}, die \enquote{\uline{Mafia}} sowie ein \enquote{Schmied} untergebracht sind.
+Um dieses Zentrum herum finden wir, geschützt durch eine \enquote{äußere Befestigung}, ein Viertel für die \enquote{Diebe}, eines für die \enquote{Söldner}, mit einer \enquote{Arena} in seiner Mitte, sowie ein \enquote{08/15}-Viertel, das an anderer Stelle als \enquote{größtes Viertel}\autocite[S.~14]{orpheus_b_scribbles} bezeichnet wird.
+Eine kleine vertikale Querschnittsskizze unterhalb der Karte des Lagers verrät uns außerdem, dass dort, wo sich im fertigen Spiel die Kerker der Burg befinden, ursprünglich eine \enquote{Kanal[isation]} sein sollte.
+
+Im Nordwesten ragt ein kleines Stückchen Wald in die Kolonie hinein.
+Auch im Osten endet sie in einem -- hier deutlich größeren -- \enquote{Wald} und reicht dort noch nicht, wie im fertigen Spiel, darüber hinaus bis zu einer Küstenlinie.
+Nicht nur fehlt hier noch das Meer, es gibt -- abgesehen von dem kleinen See im Norden -- auch keine Gewässer innerhalb der Barriere.
+Entsprechend ist über der Karte mit einem Fragezeichen noch das Problem notiert:
+\enquote{Wasserversorgung?}
+
+Statt in den südwestlichen Bergen finden wir die Orks -- hier als \enquote{\uline{Halborks}} -- mitten in diesem Wald.
+Aus einer kleinen vertikalen Querschnittsskizze rechts unterhalb der Karte ist aber ersichtlich, dass sie, was im fertigen Spiel nur teilweise zutrifft, unterirdisch hausen sollten.
+Entsprechend finden wir in \enquote{\textsc{Orpheus -- Locations}} auch den Stichpunkt \enquote{\uline{Orkhöhle} (Dorf)}.
+Und tatsächlich gibt es eine im Spiel nicht verwendete -- aber in den Dateien zurückgelassene -- unterirdische Orkstadt.\autocite[Vgl.][]{wog_level_2023}
+Von späterer Hand ist am unteren Rand der Karte außerdem vermerkt: Das \enquote{\textsc{Erz} interessiert [die] Orks \uline{nicht}}.
+
+Insgesamt finden wir um das Alte Lager herum drei Minen eingezeichnet.
+Westlich und relativ nah am Alten Lager liegt die \enquote{alte Mine}, nordwestlich, kurz vor dem Waldstückchen, befindet sich die Mine der \enquote{Freie[n] Buddler} und südsüdöstlich liegt die Mine der \enquote{\uline{Sklavengräber}}.
+Der Südwesten der Karte wird vom \enquote{Söldnerlager} dominiert, unter dessen Name \enquote{\uline{Gladiatoren}} notiert ist und um das herum Felder angedeutet sind; eine Idee, die es später in Form der Reisfelder des Neuen Lagers in das Spiel schaffen wird.
+Daneben gibt es noch das Sektenlager, vermerkt als \enquote{\textsc{Psi} (Tempel)}, im Nordosten, sowie \enquote{\uline{Magier}} im Südosten, jeweils nah am Rand des großen Waldes gelegen, der zwischen den Beiden Orten noch weiter in die Kolonie hereinreicht, so dass man ihn auf dem Weg vom Tempel im Norden zu den Magiern im Süden umgehen müsste, wenn man sich nicht in ihn hineinwagen möchte.
+Damit spiegeln sich in diesem Entwurf einer Karte die Orte wieder, die in \enquote{\textsc{Orpheus -- Locations}} aufgezählt werden:
+
+\begin{quote}
+   \begin{itemize}
+      \item[1)] Außenwelt
+      \item[2)] Bonzo's Gladiatorenlager
+      \item[3)] Budd[l]erfort
+      \item[3b)] unterirdisches Buddler HQ
+      \item[4)] Psitempel (Fort)
+      \item[5)] alte Minen (* 3)
+      \item[6)] Midstadt \uline{Kern} (ursprüngliche Aufseher-
+      \item[] befestigung) altes Aufseherhaus (\uline{relativ} protzig)
+      \item[7)] Midstadt Outskirts (Fort)
+      \item[8)] unter den Minen \uline{Höhlensystem}
+      \item[9)] \uline{Orkhöhle} (Dorf)
+   \end{itemize}
+\end{quote}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – SPIELWELT – FRAKTIONEN %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fraktionen}\label{sec:orpheus_welt_fraktionen}
+Die Idee der verschiedenen Lager und der unterschiedlichen Gruppierungen, denen man sich als Spieler anschließen kann, entstand schon früh in der Konzeptionsphase.
+Sie zieht sich durch einen Großteil der Notizen zu \textit{Orpheus} und kulminiert mit \enquote{\textsc{Orpheus} -- Spielwelt/Gildensystem} sowie \enquote{\textsc{Orpheus} -- Spielwelt/Gildensystem V2} in zwei Versionen eines handschriftlich verfassten und dann kopierten Formulars, in dem Mike Hoge verschiedene Eckpunkte zu den unterschiedlichen Fraktionen festgehalten hat.
+
+Die erste Version von \enquote{\textsc{Orpheus} -- Spielwelt/Gildensystem} (siehe \autoref{fig:orpheus_gilden_1}) enthält Felder für die Orte, an denen eine Gruppe zu finden ist (\enquote{Hauptsïtz [sic]} sowie \enquote{anderweitiges Vorkommen}), für ihre \enquote{\enquote{\textsc{Soziale}} \textsc{Funktion}}, ihren \enquote{\textsc{Ausbruchsplan}} (wenn sie denn einen hat), zu welchen anderen Gruppen sie \enquote{\textsc{Gute}}, \enquote{\textsc{Neu[t]rale}} oder \enquote{\textsc{schlechte}} Beziehungen pflegt, welche Voraussetzungen man erfüllen muss, um sich der Gruppe anschließen zu können (\enquote{\textsc{Eintrittsvoraussetzungen}}), ab wann man sich der Gruppe nicht mehr anschließen kann (\enquote{\textsc{Exclusiv} [sic] \textsc{ab Level}}) und welche Fähigkeiten man dort als Mitglied erlernen kann (\enquote{\textsc{Lernprogramm}}). Diese Version kennt insgesamt 15 verschiedene Gruppierungen, die auf vier Lager aufgeteilt sind.
+
+% ORPHEUS – SPIELWELT – FRAKTIONEN – ALTES LAGER %
+Im Alten Lager, das schon hier diesen Namen trägt, sind es die \enquote{Kampfmagier},\autocite[S.~2]{orpheus_gildensystem} die \enquote{Junta},\autocite[S.~1]{orpheus_gildensystem} die \enquote{Mafiaschläger (Kämpfer)},\autocite[S.~4]{orpheus_gildensystem} die \enquote{Mafiaspitzel (Diebe)}\autocite[S.~5]{orpheus_gildensystem} sowie die \enquote{Alte[n] Buddler},\autocite[S.~3]{orpheus_gildensystem} was im fertigen Spiel den Feuermagiern, den Erzbaronen, den Gardisten, den Schatten sowie den Buddlern entspricht.
+Junta und Kampfmagier sollten im \enquote{Zentrum}\autocite[S.~1, 2]{orpheus_gildensystem} des Alten Lagers residieren, die Mafiaschläger hätte man vorrangig in einem \enquote{Kämpferviertel} und bei der \enquote{Arena}\autocite[S.~4]{orpheus_gildensystem} finden sollen, die Mafiaspitzel in einem \enquote{Diebesviertel}\autocite[S.~5]{orpheus_gildensystem} und die Alten Buddler in einem \enquote{Buddlerviertel}.\autocite[S.~3]{orpheus_gildensystem}
+Daneben gibt es noch ein \enquote{08/15}-Viertel,\footnote{\autocite[S.~4]{orpheus_gildensystem}, \autocite[S.~12, 14\,f.]{orpheus_b_scribbles}.} das -- wie wir anhand anderer Notizen sehen -- für \enquote{Gildenlose}\autocite[S.~15]{orpheus_b_scribbles} vorgesehen war.
+
+Bei den Kampfmagiern handelt es sich um eine \enquote{\uline{Kleine} Gruppierung unangefochtener Meister und deren Lehrlinge.}
+Sie sind die \enquote{Made im Speck in [dem] Zentrum des alten Lagers} und \enquote{nehmen nur SCs mit ungewöhnlichem magischen Talent} bei sich auf. \enquote{Dies \enquote{\uline{erkauft}} sich der SC bei \uline{Lehrern}}\autocite[S.~2]{orpheus_gildensystem}
+Bei der Junta wiederum handelt es sich um die \enquote{Augenscheinlich mächtigste Gruppierung}.
+Sie \enquote{erpreßt Schutzgeld von [den] Freien Buddlern vor [der] Erzabgabe auf [dem] \textsc{Marktplatz}.}
+Außerdem \enquote{Tauscht [sie] alles Erz von [den] Alten Buddlern} und \enquote{verteilt Vergünstigungen in Altem Lager \& behält [den] Löwenanteil} dabei für sich.
+\enquote{Der Mafia beizutreten}, hält Mike Hoge fest, \enquote{ist eine Einbahnstraßenentscheidung}.
+Und:
+\enquote{\uline{Sollte} ein Austritt trotzdem möglich sein, so ist die Mafia und alle loyalen [$\ldots$] \uline{irreversibel} \textsc{Todfeind}}.\autocite[S.~1]{orpheus_gildensystem}
+Die Mafiaschläger ihrerseits \enquote{\uline{Verteidigen} Altes Lager, Altes Buddlerfort und Buddler bei der Arbeit}.
+Sie sind außerdem die \enquote{Arenavorsitzende[n]} und \enquote{bedrohen [das] 08/15-Viertel $\rightarrow$ \enquote{Schutzgeld} für die Mafia}.
+
+Im Neuen Lager, das ebenfalls schon hier diesen Namen trägt, finden wir die \enquote{Heilmagier},\autocite[S.~7]{orpheus_gildensystem} die \enquote{noble[n] Söldner}\autocite[S.~8]{orpheus_gildensystem} sowie die \enquote{Erzdiebe},\autocite[S.~9]{orpheus_gildensystem} was im fertigen Spiel den Wassermagiern, den Söldnern und den Banditen entspricht.
+Wie bei den Kampfmagiern handelt es sich auch bei den Heilmagiern um eine \enquote{kl. Gruppe}.
+Während sie die \enquote{Heiler des Neuen Lagers} sind, ist das Alte Lager auf \enquote{Medizin von [der] A[ußen-]W[elt]} angewiesen.
+Die Heilmagier können nicht nur heilen, sondern \enquote{erwecken Tote gegen [Geld] oder Auftrag}.\footnote{Das in eckige Klammern eingefasste \enquote{Geld} ist Teil des Originalzitats.}
+Außerdem entsenden sie \enquote{Erzdiebe in Altes Buddlerfort}.
+Die Heilmagier \enquote{horten Erz}.
+Ein \enquote{Kleiner Bestandteil des Erzes wird verwendet zur Gewinnung von Astralenergieboostertränken (Mana Potions)}.
+Davon abgesehen planen sie, die \enquote{magische Barriere mit [einem] Spruch [zu] bezwingen}.
+Dazu \enquote{\uline{Forschen} [sie] nach [einem] optimalen Spruch}.\autocite[S.~7]{orpheus_gildensystem}
+Bei den Noblen Söldnern wiederum handelt es sich um eine \enquote{Mittlere Gruppierung}.
+\enquote{Die Söldner hassen die Aussenwelt} und \enquote{glauben an den Plan der Heilmagier}.
+Sie \enquote{Beschützen die Heilmagier \& die freien Buddler im Auftrag der Heil Magier [sic]}. Außerdem \enquote{Beschützen [sie] die \uline{Bauern}} und \enquote{tolerieren die Erzdiebe}.
+Der Spieler, notiert Mike Hoge, \enquote{\uline{muß} darauf hingewiesen werden, daß die Söldner die \uline{besten} Kämpfer sind (mit Ausnahme der von einer Mitgliedschaft weit entfernten Mafia)}.\autocite[S.~8]{orpheus_gildensystem}
+
+Im \enquote{\textsc{Psi}-Tempel}, der später einmal das Sumpflager werden wird, begegnen wir den \enquote{Sekten Gurus},\footnote{\autocite[S.~11]{orpheus_gildensystem}. An anderer Stelle ist als optische Besonderheit notiert: \enquote{\textsc{Psi} Magier \uline{kein} Helm} (\autocite[S.~7]{orpheus_b_scribbles}).} den \enquote{Sekten Novizen}\autocite[S.~10]{orpheus_gildensystem} und der \enquote{Tempelwache}.\autocite[S.~12]{orpheus_gildensystem}
+Die Gurus sind die \enquote{Führer der Sekte, [sie] wissen um [die] Gefährlichkeit des Schläfers}.
+Unter \enquote{\textsc{Ausbruchsplan}} notiert Mike Hoge für sie: \enquote{Der Schläfer erwache$\ldots$}
+Die Tempelwache wiederum \enquote{bewacht den Tempel (logisch)}.
+Sie \enquote{glaubt an die Hilfe des Schläfers}, fungiert als \enquote{eine Art Polizei und sorgt für Ruhe und Ordnung im \textsc{Psi}-Tempelbereich}.
+Außerdem \enquote{Eskortiert [sie die] \textsc{Psi}-Drogenkuriere} auf ihren Wegen durch die Kolonie.
+Manchmal agiert sie aber \enquote{\uline{Auch} [als] Brutaler \textsc{PSI} Guru-Stoßtrupp (selten)}.
+Möchte man sich ihnen anschließen, werden von ihnen die \enquote{Kampf XP ermittelt durch Gedankenlesen}.
+Für das Fußvolk der Sekte, die \enquote{Novizen}, notiert Mike Hoge unter \enquote{\enquote{\textsc{Soziale}} \textsc{Funktion}}:
+
+\begin{quote}
+   Die Novizen huldigen dem \enquote{Schläfer}.
+   Dies geschieht des Nachts mit allerlei Singsang u. dgl.
+   Sie werben neue Jünger an
+   Für sie ist die Sekte Selbstzweck.
+   Erfüllen Aufträge von Gurus oder deren Beauftragten, nicht immer Sinn zu ersehen.
+   vor allen Dingen Infobeschaffung.
+   Holen Drogen von Freien Buddlern $\rightarrow$ Gegenleistung Schutz?
+\end{quote}
+
+Man trifft sie als \enquote{Einzelpersonen} oder \enquote{max. kl. Gruppen} in \enquote{alle[n] Lager[n]}, wo sie neue Mitglieder anwerben.
+Unter \enquote{\textsc{Ausbruchsplan}} ist für sie vermerkt:
+\enquote{Warten auf die Hilfe, die ihnen zuteil wird wenn der Schläfer erwacht$\ldots$}
+
+Daneben gibt es ein \enquote{Freies Lager}, das es in dieser Form nicht ins Spiel geschafft hat.
+Zu ihm gehören die \enquote{Freie[n] Buddler}, die \enquote{Bodyguards}, die \enquote{Freie[n] Diebe} sowie eine \enquote{Geheime Diebesgilde!}
+Bei den Freien Buddlern handelt es sich um eine \enquote{mittelgroße Gruppe}.
+Sie \enquote{haben sich von [den] Alten Buddlern abgespalten[,] um nicht den halben Ertrag an die Mafia zu verlieren}, und verfolgen einen eigenwilligen Ausbruchsplan:
+Die Freien Buddler \enquote{Versuchen sich unter der Barriere durchzubuddeln}.
+Allerdings \enquote{Stoßen [sie] dabei auf Tempel -- Hindernis! und anderorts auf Minecrawlers -- auch Hindernis!}
+Bei den Bodyguards handelt es sich um eine \enquote{\uline{kleine} Gruppe}.
+Sie \enquote{warten darauf, daß die Buddler sich freibuddeln} und \enquote{Beschützen die Freien Buddler [$\ldots$] vor allen Dingen nach außen (Mafia) und bei [der] Erzabgabe auf [dem] Marktplatz}.
+Außerdem \enquote{Erkunden [sie] \uline{neue} tiefere Höhlensysteme}, die durch die Freien Buddler erschlossen werden.
+Möchte man sich ihnen anschließen, gilt es einen \enquote{Minecrawler [zu] töten}.
+Für die Freien Diebe wiederum notiert Mike Hoge:
+
+\begin{quote}
+   Die Freien Diebe \enquote{beschaffen} Material für das schwächste Lager.
+   Sie lehren die Buddlern [sic] des Freien Lagers Fallen aufzustellen, um sich vor Monstern in den Minen zu verteidigen.
+\end{quote}
+
+Daneben ist das Freie Lager auch Hauptsitz der Geheimen Diebesgilde, die sich allerdings auch in einem \enquote{Geheimgang in [der] Kanalisation} under dem Zentrum des Alten Lagers tummelt.\autocite[S.~6]{orpheus_gildensystem}
+Diese \enquote{\enquote{Bruderschaft des Schweigens} weiß um alle Ausbruchspläne der anderen Gruppen und hält sich bereit, den 1. Erfolgversprechenden Versuch zu unterstützen.}
+Mitglieder der Gilde verfügen außerdem über \enquote{Anti \textsc{Psi}-Amulette um nicht erfasst zu werden}.
+Darüber verweist ein Pfeil auf den Umstand, dass \enquote{ein hoher \textsc{Psi} NSC} wohl ein \enquote{\uline{Sy[m]path[isant]}} der Gilde ist.
+
+In der zweiten Version des Formulars (siehe \autoref{fig:orpheus_gilden_2}) wird \enquote{\textsc{Exklusiv ab Level}} durch \enquote{Maximal erlaubter Beitrittslevel anderer Gilden} ersetzt, was mit Bleistift auch schon in der ersten Fassung als \enquote{\textsc{Max erl Beitr Lev and Gil}} beziehungsweise \enquote{MEBLAG} notiert worden war.\autocite[S.~1\,f.]{orpheus_gildensystem}
+Außerdem wird eine Angabe für die \enquote{Größe} der Gruppe ergänzt und es werden nun die Beziehungen zu jeder anderen existierenden Gruppe einzeln spezifiziert, wobei sich ein paar Bezeichnungen ändern.
+Aus den noblen Söldnern werden die \enquote{Paladine} und statt der freien Diebe finden wir nun die \enquote{Fallensteller}.\footnote{Später wird diese Idee wieder gestrichen.
+In \enquote{\textsc{Orpheus. B -- Scribbles}} ist notiert:
+\enquote{\uline{Fallensteller raus}}.}
+Von den Bodyguards ist nicht mehr die Rede, dafür tauchen nun \enquote{Beschwörer} und \enquote{Halborks} auf, wobei die Halborks stellenweise auch schon -- immer in eckige Klammern gesetzt -- in der ersten Version auftauchen und der Beschwörer mit dem ebenfalls dort vorkommenden bösen Hexer in Verbindung stehen könnte.
+Der Gedanke drängt sich auf, dass mit dem bösen Hexer beziehungsweise dem Beschwörer hier bereits Xardas angelegt war.
+
+Den beiden Formularen gehen Notizen voran, die wir in \enquote{\textsc{Orpheus. B -- Scribbles}} finden.\autocite[Vgl.][S.~13--15]{orpheus_b_scribbles}
+Hier sind -- in der unteren rechten Ecke eines Blattes -- auch die Felder notiert, aus denen die Formulare später einmal bestehen sollten:
+
+\begin{quote}
+   \uline{Gilde}
+   \begin{itemize}
+      \item[--] Eintrittsvorauss.
+      \item[--] exclusiv ab \textsc{\uline{Level}}
+      \item[] \phantom{exclusiv ab} (andere Gild[e)]
+      \item[--] gute Bez zu $\ldots$ <Gilde>
+      \item[] [neutrale zu $\ldots$]
+      \item[--] schlechte Bez zu $\ldots$
+      \item[--] \sout{soz. Funktion}
+      \item[--] Lernprogramm!
+      \item[--] \sout{Ausbruchsplan}\footnote{Die eckigen Klammern zwischen dem dritten und vierten Spiegelstrich sind Bestandteil des Zitats; vermutlich wurde dieser Punkt im Nachhinein ergänzt.}
+   \end{itemize}
+\end{quote}
+
+Außerdem ist hier bereits festgehalten, dass es \enquote{\uline{4 Lager}} geben soll -- nämlich \enquote{Das alte Lager}, \enquote{Das neue Lager}, die \enquote{\textsc{Psi}-Sekte} sowie das \enquote{Buddlerfort} (auf der nachfolgenden Seite als \enquote{Freies Lager}) -- und welche Gruppierungen in ihnen jeweils vorgesehen sind.
+Wir erfahren, dass die \enquote{Buddler des alten Lagers} sich in eine \enquote{Freizeitschicht} und eine \enquote{Arbeitsschicht} aufteilen, dass neben den vier Lagern noch ein \enquote{Böser Beschwörer} beziehungsweise \enquote{Dämonenbeschwörer} eine Rolle spielt, dass es im Neuen Lager \enquote{Bauern} und im Sektenlager \enquote{Sekten-Jünger (08/15)} und \enquote{Sekten Groupies (\textsc{keine Gilde})} geben sollte.
+In dieser Auflistung sind die \enquote{Sekten-Jünger} sowie die \enquote{Halborks} außerdem von späterer Hand in eckige Klammern gesetzt worden.
+Im gleichen Zuge wurden letztere dem \enquote{Buddlerfort} zugerechnet -- indem die vorangestellte \enquote{5} in eine \enquote{4} korrigiert wurde -- und es wurden \enquote{Tempelwache}, \enquote{Sekten Groupies} sowie \enquote{Freie Diebe} ergänzt.
+
+Ebenso von späterer Hand stammt die Zuordnung einiger Gilden zu klassischen Archetypen.
+Im Alten Lager ist neben der \enquote{Mafia} in Klammern \enquote{Söldner} und \enquote{Ritter} notiert, neben den \enquote{Kampfmagier[n]} steht, relativ trivial, \enquote{Magier}, neben den \enquote{Schläger[n]} ist es \enquote{Barbar} und neben den \enquote{Spitzel[n]} wiederum \enquote{Assassin}.
+Im Neuen Lager wiederum ist neben den \enquote{Heilmagier[n]} sowohl \enquote{Magier} als auch \enquote{Priester} vermerkt, neben den \enquote{\enquote{noble[n]} Söldner[n]} ist es \enquote{Paladin} und neben den \enquote{Erzdiebe[n]}, wiederum relativ trivial, \enquote{Dieb}.
+Im Freien Lager finden wir wiederum neben der \enquote{Bruderschaft} den Vermerk \enquote{Dieb}, während neben den \enquote{Freie[n] Diebe[n]} stattdessen \enquote{Ranger} notiert ist.
+
+Hier wird außerdem eine Klassifizierung der Gilden vorgenommen:
+Neben den \enquote{\uline{Hohe[n] Gilden}}, die von \enquote{Lev[el] 1 -- \textsc{End}} reichen (\enquote{Mafia, Bruderschaft des Schweigens, Sektengurus[,] Dämonenbeschwörer}), gibt es die \enquote{\uline{Niedere[n] Gilden}}, die von \enquote{Lev[el] 1 -- 7} reichen (\enquote{Mafiaschläger, \enquote{noble} Söldner, Buddler Bodyguards, Mafiaspitzel, Erzdiebe, Freie Diebe[,] Sekten Novizen, Kampfmagier, Heilmagier}).
+Eine dritte Klasse, die \enquote{\uline{\sout{Mini Gilden}}}, die von \enquote{\sout{Lev[el] 1 -- 3}} hätten reichen sollen (\enquote{\sout{Alte Buddler}, \sout{Freie Buddler}}), ist von späterer Hand wieder durchgestrichen worden.\footnote{An anderer Stelle ist notiert worden, dass Level \enquote{1--3} als \enquote{\uline{Orientierungsphase}} für den Spieler dienen sollten (\autocite[S.~10]{orpheus_b_scribbles}).}
+Daneben gibt es \enquote{\uline{Interne Gilden}}, bei denen \enquote{kein Beitritt mögl[ich]} ist.
+Den \enquote{Halborks} und \enquote{Orks} sind hier von späterer Hand die oben gestrichenen \enquote{Buddler} und \enquote{Freie[n] Buddler} angegliedert worden.
+Daneben gibt es eine Kategorie für all jene, die keiner Gilde angehören; \enquote{alle \textsc{gildenlosen} (Psi Jünger\,/\,08/15-Viertel) sind zu schwach[,] um \uline{feindlich} zu \uline{sein auf}grund der SC-Gildenzugehörigkeit}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – SPIELWELT – GÜTER %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Güter}\label{sec:orpheus_welt_gueter}
+An einer Stelle in den losen Notizen von \enquote{\textsc{Orpheus. B -- Scribbles}} hat Mike Hoge das Stichwort \enquote{\uline{Währung}} notiert.\autocite[S.~6]{orpheus_b_scribbles}
+In \enquote{\textsc{Orpheus} -- Spielwelt/Gildensys\-tem} wiederum ist als Platzhalter in eckigen Klammern \enquote{[Geld]} vermerkt, wenn es für die Heilmagier aus dem Neuen Lager heißt:
+\enquote{erwecken Tote gegen [Geld] oder Auftrag}.\autocite[S.~7]{orpheus_gildensystem}
+Der grundlegenden Prämisse des Spiels folgend wird schon zu diesem Zeitpunkt in der Konzeptionsphase klar gewesen sein, das Nominalgeld in einer von der Außenwelt größtenteils isolierten Gefangenenkolonie kaum das wichtigste Zahlungsmittel darstellen wird.
+Ob das magische Erz zu diesem Zeitpunkt schon als ein allgemein anerkanntes Tauschmittel unter den Gefangenen konzipiert war, geht aus den Notizen nicht hervor. % Mike fragen, wann diese Idee aufkam.
+Was wir an dieser Stelle aber schon finden, sind Ideen dafür, was im Austausch für das Erz aus der Außenwelt importiert werden kann.
+An einer Stelle ist beispielsweise aufgelistet:
+
+\begin{quote}
+   \begin{itemize}
+      \item[--] Drogen
+      \item[--] Werkzeuge (\uline{Dietrich})
+      \item[--] \uline{Tiere}
+      \item[--] \uline{Infos}\autocite[S.~6]{orpheus_b_scribbles}
+   \end{itemize}
+\end{quote}
+
+\noindent Auf einer weiteren Seite ist außerdem notiert:
+
+\begin{quote}
+   \begin{itemize}
+      \item[--] Drogen
+      \item[--] Tand
+      \item[--] \uline{Medizin}!
+      \item[--] leckeres Essen
+      \item[--] Alkohol\footnote{\autocite[S.~13]{orpheus_b_scribbles}. Sowohl \enquote{leckeres Essen} als auch \enquote{\textsc{Drogen}} aus der Außenwelt werden außerdem erwähnt in \enquote{\textsc{Orpheus -- History}} (\autocite[S.~2]{orpheus_b_scribbles}).
+      Auf Medizin aus der Außenwelt ist das Alte Lager angewiesen, da die Heilmagier nur im Freien Lager wirken (\autocite[vgl.][S.~7]{orpheus_gildensystem}).}
+   \end{itemize}
+\end{quote}
+
+\noindent Zum \enquote{\uline{Alkohol}} (\enquote{Bier \& Wein}) ist wiederum die Entsprechung \enquote{3 Bier $=$ 1 Faß $=$ 1 Fl[asche] Wein $\rightarrow$ \uline{viel Wert}} vermerkt.\autocite[S.~6]{orpheus_b_scribbles}
+Die (anderen) Drogen wiederum sollten scheinbar nicht nur aus der Außenwelt kommen.
+Durch \enquote{Pilze} könnten \enquote{Hallus} ausgelöst werden, und auch aus dem Sekret der Minecrawler könnten sich Drogen herstellen lassen, wie folgende Notiz nahelegt:
+
+\begin{quote}
+   Minecrawlersecret (Benutze Behälter auf Minecrawler)\\
+   $\rightarrow$ Psi-Droge (Menschen)\\
+   $\rightarrow$ Psi-Droge (Orks)\autocite[S.~6]{orpheus_b_scribbles}
+\end{quote}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – SPIELWELT – ATMOSPHÄRE %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Atmosphäre}\label{sec:orpheus_welt_atmosphaere}
+Auf der letzten Seite des Konvoluts \enquote{\textsc{Orpheus. B -- Scribbles}} finden wir einige Stichpunkte zur Atmosphäre im Außenring des Alten Lagers, die den Spieler in \enquote{Kapitel 1} erwarten könnte:
+
+\begin{quote}
+   \begin{itemize}
+      \item[--] Leute hängen rum [sitzen]
+      \item[--] unterhalten sich -- streiten sich? [Prügelei]
+      \item[--] Spielen [Würfel]
+      \item[--] Fleischwanzenrennen + Wetten?
+      \item[--] Arenakämpfe + Wetten
+      \item[--] Haus reparieren (Hämmern)\footnote{Die eckigen Klammern sind Bestandteil des Zitats.}
+   \end{itemize}
+\end{quote}
+
+Darunter ist -- neben den beiden Beschimpfungen \enquote{Dreckfresser $\rightarrow$ Kohlefresser} als möglicher \enquote{neuer Dialogmodus} das \enquote{\textsc{Anpöbeln}} notiert.
+Die Seite endet mit einigen Sätzen, die dem Spieler auf seinem Weg durch den äußeren Ring entgegengebracht werden könnten:
+
+\begin{quote}
+   $\Rightarrow$ \enquote{Bist schon sauber, Junge$\ldots$} \enquote{Hähähäh!!}\\
+   \phantom{$\Rightarrow$} $\Rightarrow$ \enquote{Haste mal n bißchen Stoff?}\\
+   \phantom{$\Rightarrow$ $\Rightarrow$} \enquote{Na, was is jetz? Haste was?}\\
+   \phantom{$\Rightarrow$ $\Rightarrow$} \enquote{Stoff, alter! Kennse Stoff?}\\
+   \phantom{$\Rightarrow$} \enquote{Hey Kleiner! Setz dich zu uns \& zock mit uns ne\\
+   \phantom{$\Rightarrow$ \guillemotleft Hey Kleiner} Runde. (Isn ehrliches Spiel) Bescheißen gibt's\\
+   \phantom{$\Rightarrow$ \guillemotleft Hey Kleiner Runde. (Isn ehrliches Spiel)} nicht, klar?}
+\end{quote}
+
+Weitere Beispiele finden wir in \enquote{\uline{\textsc{Der rote Faden...}}}, wo die beiden Aussprüche \enquote{laber nich soviel} und \enquote{frag nich soviel} notiert sind.\autocite[S.~3]{orpheus_der_rote}
+Geht man einem Charakter zu sehr auf die Nerven, sollte es sogar zu einem \enquote{Dialogstop durch [den] genervten NSC} kommen können (siehe \autoref{sec:orpheus_geschichte_abschnitte_minuten}).\autocite[S.~2]{orpheus_der_rote}
+
+Auch in den losen Notizen von \enquote{\textsc{Orpheus. B -- Scribbles}} finden wir einen Hinweis auf diesen rauen \enquote{Tonfall}.\autocite[S.~8]{orpheus_b_scribbles}
+Macht der Spieler sich an den Habseligkeiten einer anderen Figur zu schaffen (\enquote{\uline{Grober Unfug}}), sollte ihm ein \enquote{\uline{Lass meine Sachen in Ruhe!}} entgegenschallen.\autocite[S.~9]{orpheus_b_scribbles}
+
+Greift der Spieler einen (bis dahin nichtfeindlichen) Charakter an, sollte dessen Reaktion -- darauf deuten Notizen an gleicher Stelle hin -- vermutlich davon abhängen, wie mächtig dieser im Vergleich zum Spieler ist.
+Eine \enquote{Att[acke]} erfolgt anfangs \enquote{nur bei Buddlern und so}, während sich Meister des Kampfes damit begnügen, den Spieler zurückzuwerfen (\enquote{Knockback nur von Mastern}); ihnen ist die \enquote{Att[acke] egal} denn der Spieler ist in ihren Augen nur ein \enquote{Wurm}.
+Erholt sich ein besiegter Charakter aus seiner \enquote{Ohnmacht} (\enquote{\textsc{Dauert} 5 Min[uten,] Wecken durch \textsc{Anspr[echen]}}) oder wurde der Spieler von einem stärkeren Charakter zurückgeworfen, folgt ein \enquote{\uline{Friedensangebot!}}
+
+Sollte ein Kampf für einen Charakter stattdessen tödlich ausgehen, bleibt seine \enquote{Leiche} auch von anderen nicht unbeachtet.
+Kommt der Spieler ihnen nicht zuvor, können sie ihren \enquote{Tagesablauf ändern} und den am Boden Liegenden \enquote{\sout{plündern}}, wobei in der Programmierung darauf zu achten ist, dass sie \enquote{\uline{nicht 100 mal dieselbe Leiche fleddern}}.
+
+In \enquote{\textsc{Orpheus -- Kreaturen}} sind neben \enquote{\uline{Orks}}, \enquote{\uline{Monster[n]}}, \enquote{\uline{Greife[n]}} und \enquote{\uline{Dämonen}} unter dem Stichwort \enquote{Atmo-Creaturen} auch \enquote{Vögel} aufgeführt.
+Diese \enquote{Zwitschern} und \enquote{\textsc{Warnen} vor hidden Orks}.
+An anderer Stelle ist -- hinter dem Stichpunkt \enquote{Monster \&  Taktiken} -- ein Begriff vermerkt, der darauf hindeutet, dass nichtmenschliche Gegner nicht bloß stumpf angreifen, sondern sich verschieden verhalten sollten: \enquote{Verhaltensmuster!}\autocite[S.~8]{orpheus_b_scribbles}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – GESCHICHTE %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\section{Geschichte}\label{sec:orpheus_geschichte}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – GESCHICHTE – VORGESCHICHTE %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Vorgeschichte}\label{sec:orpheus_geschichte_vorgeschichte}
+Neben der Überschrift von \enquote{\textsc{Orpheus -- History}} hat Mike Hoge in einem kleinen Kasten, der von einem Ausrufezeichen begleitet wird, festgehalten:
+\enquote{erzählt durch Renderszenen}.
+Darunter folgen acht nummerierte Abschnitte mit Stichpunkten, die chronologisch eine Vorgeschichte des Spiels umreißen.
+
+Die \enquote{Gefängniswelt}, erfahren wir hier, wurde von der \enquote{Außenwelt} als ein \enquote{\textsc{Arbeitslager}} eingerichtet, in dem es \enquote{Aufseher, Aufseherhäuser, Sträflingsbaracken} gibt.
+In diesem Lager wird \enquote{unterirdisch nach \textsc{Erz}} gegraben, wobei man auf ein altes \enquote{Höhlensystem} gestoßen ist, in dem sich \enquote{Monster} herumtreiben, die von einer nicht näher benannten \enquote{\uline{Entity}} herbeigerufen worden sind und nun die Minenarbeiter angreifen.
+Eventuell handelt es sich dabei um \enquote{\textsc{\uline{Orks}}}; zumindest ist dieses Stichwort prominent neben dem entsprechenden Abschnitt notiert.
+Die Aufseher jedenfalls bleiben in sicherem Abstand und lassen die Häftlinge trotz der Gefahr weiter schuften.
+
+Die \enquote{Mittelstadt} wird, vielleicht der Monster wegen, befestigt und es kommt, ebenfalls \enquote{motiviert durch [die] Monsterbedrohung}, zu einer \enquote{\uline{Revolte}} der Häftlinge, bei der die \enquote{Wachen getötet} werden.
+Ein darauf folgender \enquote{Ausbruchsversuch scheitert an [der] Klippe}.
+Eventuell -- das ist in eckige Klammern gesetzt und mit einem Fragezeichen versehen -- gibt es daraufhin einen \enquote{Gegenschlag} der Außenwelt.
+Gegenschlag hin oder her, die \enquote{\uline{Außenwelt} bietet an, die Minen gegen \uline{Vergünstigungen} weiter zu betreiben}, beispielsweise \enquote{leckeres Essen} oder \enquote{\textsc{Drogen}}.
+Einige \enquote{wenige \textsc{Buddler}} nehmen daraufhin ihre Arbeit in der Miene wieder auf. Da sie \enquote{\uline{keine} Kämpfer} sind, \enquote{versuchen [sie,] mit Fernkampfwaffen \& Fallen den Monstern beizukommen}.
+
+Einen gewissen \enquote{\textsc{\uline{Bonzo}} kotzt das an}.
+Er stört sich an dem Arrangement mit der Außenwelt und möchte stattdessen \enquote{geeinigt der Außenwelt entgegentreten[,] aber die \enquote{weichen} Buddler und die Egal-Typen aus Mittelstadt sind eine zu große Fraktion}.
+Da ihm der Kontakt zur Außenwelt zuwider ist und er in \enquote{Midstadt zu wenig zu sagen hat}, gründet er zusammen mit \enquote{seinen Jungs}, den \enquote{Außenwelthasser[n]}, sein eigenes Lager
+
+Derweil entstehen in der Mittelstadt außerdem \enquote{erste \uline{Sekten}}.
+Ihre Anhänger \enquote{singen Nachts}, \enquote{spinnen rum von irgendeinem Befreier} oder \enquote{Erlöser} und \enquote{rekrutieren \uline{Jünger}}.
+Damit gehen sie den anderen Menschen in der Stadt gehörig auf die Nerven, die \enquote{können nicht mehr vernünftig schlafen}.
+Um Abhilfe zu schaffen, bauen die \enquote{\textsc{Midstädter} und \textsc{Sekten}anhänger} gemeinsam ein \enquote{Fort für [die] Sekte}.
+Die Sekte errichtet schließlich auch einen \enquote{Tempel}.
+
+Damit enden die Notizen zur Geschichte.
+Vieles von dem, was wir aus \textit{Gothic} kennen, ist hier schon angelegt, etwa die grundlegende Prämisse einer Gefängniskolonie, in der die Häftlinge -- hier schon unter der Bezeichnung \enquote{\textsc{Buddler}} -- unterirdisch Erz schürfen, irgendwann ihre Bewacher überwältigen und die Macht ergreifen, einen Handel mit der Außenwelt eingehen und sich in verschiedene Lager aufspalten.
+Auch die drei Lager des fertigen Spiels lassen sich hier mit Mittel- beziehungsweise Midstadt, Bonzo und seinen Jungs sowie dem Fort der Sekte schon erkennen, wobei sich die \enquote{\textsc{\uline{Befestigung}} der Mittelstadt} im Äußeren Ring des Alten Lagers widerspiegelt.
+Außerdem zeichnet sich mit der nicht näher benannten \enquote{\uline{Entity}} sowie dem \enquote{Befreier} beziehungsweise \enquote{Erlöser} der Sekte schon eine andere zentrale Figur ab: der Schläfer.
+
+Es gibt aber auch einige auffällige Unterschiede.
+Beispielsweise ist noch kein Wort von einer magischen Barriere (siehe auch \autoref{sec:orpheus_welt}) zu lesen.
+Der \enquote{Ausbruchsversuch} scheitert lediglich -- wie auch immer man sich das vorzustellen hat -- \enquote{an [der] Klippe}; vermutlich jener Klippe, von der unser Namenloser Held zu Beginn des Spiels gestoßen wird.
+Generell scheint Magie -- und damit die Magier -- in dieser Skizze der Hintergrundgeschichte noch keine Rolle zu spielen.
+Auch die \enquote{\textsc{\uline{Orks}}} finden nur als Randnotiz Erwähnung und \enquote{\textsc{Drogen}} sind noch etwas, das von der Außenwelt geliefert statt selbst hergestellt wird (siehe auch \autoref{sec:orpheus_welt_fraktionen}).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – GESCHICHTE – SPIELABLAUF %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Spielablauf}\label{sec:orpheus_geschichte_spielablauf}
+Ein wesentliches Element bei \textit{Gothic} sind die verschiedenen Gruppierungen, denen man sich im Laufe des Spiels anschließen kann.
+Diese Idee ist, wie \enquote{\uline{Der Werdegang eines SC's $\ldots$}} zeigt, schon während der frühen Planung zentral.
+In zehn nummerierten Schritten wird in diesem Dokument ein möglicher Spiel\-ablauf skizziert.
+Der Spieler \enquote{wird}, erstens, \enquote{ins Gefängnis geworfen}.
+Dort begibt er sich, zweitens, \enquote{in eines der Lager und findet [einen] Schlafplatz in Gildenloser [sic] Zone}, der allerdings \enquote{\uline{kein} sicherer Platz für Items} ist.
+Er erhält, drittens, von \enquote{\uline{Gilden-Außendienstmitarbeitern}} bald \enquote{\uline{Einfache} Aufträge}.
+Gelegentlich bekommt er auch von \enquote{Gildenlose[n]} Aufgaben, \enquote{aber selten!}
+Der Spieler \enquote{führt} nun, viertens, \enquote{Aufträge aus und sammelt XP}.
+Gleichzeitig erhält er zu dieser Zeit zusätzliches Wissen über die Spielwelt: \enquote{er erfährt wärenddessen von \textsc{Gilden}}.
+Diese \enquote{Phase [soll] \textsc{nicht} zu \textsc{kurz}} ausfallen, ist in einem Kasten am Rand der Seite vermerkt.
+Vor dem Hintergrund des gewonnenen Wissens \enquote{sucht sich} der Spieler, fünftens, \enquote{eine Gilde \& bewirbt sich}.
+Ist die \enquote{Aufnahmebedingung erfüllt}, wird er \enquote{\textsc{\uline{Mitglied}}}.
+Der Spieler \enquote{steigert sich}, sechstens, möglicherweise \enquote{bis Level [2] und stellt dann fest, daß er vi[e]ll[eicht] lieber einer anderen Gilde angehören möchte}.\footnote{Die in eckige Klammern eingefasste \enquote{2} ist Teil des Originalzitats.}
+In diesem Fall kann es zu einem \enquote{\textsc{Gildenwechsel}} kommen.
+Dann \enquote{fängt} der Spieler, siebtens, \enquote{bei \textsc{Gilde} II wieder ganz von vorne an} und, achtens, \enquote{absolviert \textsc{Gilde} II} bis \enquote{\textsc{Level} 7}.
+Der Spieler \enquote{kann sich jetzt}, neuntens, \enquote{bei \uline{Höherer} \uline{Gilde} bewerben (es steht an dieser Stelle nur \uline{eine} zur Auswahl)}.
+Um welche höhere Gilde es sich dabei handelt, ist \enquote{abhängig von der \uline{niederen} \textsc{\uline{Gilde}}, in der er \textsc{Lev[el]} 7 erreicht hat}.
+Der Spieler \enquote{steigt}, zehntens, \enquote{in \textsc{Höherer Gilde immer weiter auf \& löst schliesslich das Spiel}.}
+
+Die möglichen Gildenzugehörigkeiten und ihre Pfadabhängigkeiten sind in einem Diagramm auf der Rückseite des Blatts vermerkt (siehe \autoref{fig:orpheus_werdegang}). % Verweis zu Gilden
+Auf der ersten Stufe stehen hier \enquote{Paladin}, \enquote{Schläger}, \enquote{Tempel Wache}, \enquote{Erzdieb}, \enquote{Spitzel}, \enquote{Ranger}, \enquote{K[ampf-]M[agier]}, \enquote{H[eil-]M[agier]} und \enquote{\textsc{Psi} Novize}.
+Auf zweiter Stufe stehen \enquote{Junta}, \enquote{Geheime Dieb[es]-G[ilde]}, \enquote{Beschw[örer]} und \enquote{Guru}.
+Dabei führen, visualisiert durch Pfeile, \enquote{Paladin}, \enquote{Schläger} und \enquote{Tempel Wache} zur \enquote{Junta}, \enquote{Erzdieb}, \enquote{Spitzel} und \enquote{Ranger} zur \enquote{Geheime[n] Dieb[es]-G[ilde]}, der \enquote{Spitzel} alternativ aber auch zur \enquote{Junta}, \enquote{K[ampf-]M[agier]} und \enquote{H[eil-]M[agier]} zum \enquote{Beschw[örer]} und \enquote{\textsc{Psi} Novize} zum \enquote{Guru}.
+
+Im fertigen Spiel ist hier insbesondere die erste Stufe deutlich ausgedünnt.
+Als Neuling in der Kolonie ist man vor die Wahl gestellt, entweder ein Schatten, ein Bandit oder ein Novize zu werden.
+Als Schatten kann man dann, auf der zweiten Stufe, entweder Gardist oder Feuermagier werden, als Bandit zunächst Söldner und anschließend ein Wassermagier, als Novize schließlich Templer.
+Hinzu kommen unter Umständen durch die Handlung bedingte Wechsel.
+Als Gardist kann man ab einem gewissen Spielfortschritt zum Söldner oder Templer werden, als Feuermagier fortan Wassermagier.
+
+\enquote{\textsc{Der rote Faden $\ldots$}} schließlich scheint jünger zu sein als \enquote{\textsc{Orpheus -- History}} oder \enquote{\uline{Der Werdegang eines SC's $\ldots$}} -- in diesem Dokument ist bereits von der \enquote{Barriere} und dem \enquote{Schläfer} die Rede.
+Auf der ersten Seite sind hier für eine mögliche Handlung relevante Ideen festgehalten.
+Der \enquote{\uline{Schläfer schläft}}, erfahren wir beispielsweise, \enquote{\uline{auf [einer] Steinplatte}} am \enquote{Fuß der Barriere}, deren unteren Teil wir als Halbkreis in einer kleines Skizze erkennen.
+Einige für die Lösung des Spiels wichtige Objekte sind hier ebenfalls angeführt.
+Die Rede ist von einem magischen \enquote{Amulett [$\ldots$] um näher als 10~m an die Barriere heranzukommen, ohne Wahnsinnig [sic] zu werden}, einer \enquote{Kappe des Hohepriesters, die den Träger vorm Zorn des Schläfers schützt}, einer \enquote{Waffe, mit der man Untote \uline{zerstören} kann} oder einer \enquote{Waffe gegen [den] Schläfer}.
+Damit ist ein Spielziel sowie eine Reihe von Bedingungen zur Erfüllung desselben skizziert:
+Nachdem der \enquote{Schläfer erwacht} ist, wird es unsere Aufgabe, ihn zu besiegen.
+Auf diesem Weg, wird hier angedeutet, führt uns eine \enquote{Vision im Traum} ebenso wie eine \enquote{Vision im Feuer bei [einer] \textsc{Psi}-Tempelbeschwörung} und das \enquote{Tagebuch eines Hohepriesters}.\
+Bevor wir uns, vermutlich ausgerüstet mit \enquote{Amulett} und \enquote{Kappe}, dem Schläfer selbst stellen können, gilt es, die \enquote{Waffe, mit der man Untote \uline{zerstören} kann}, zu finden.
+Sie, so scheint es, ist aus zwei Gründen bedeutsam.
+Zum einen liegt ein \enquote{Toter Paladin in Uraltem [sic] Tempel hinter [einer] Tür, belagert von Untoten}.
+Er \enquote{hat [die] Waffe gegen [den] Schläfer dabei}, die wir natürlich benötigen.
+Und dann ist da noch ein \enquote{Untoter Drachen in [einem] \sout{Engpass} Nadelöhr auf dem Weg zum Schläfer}, an dem wir vorbeimüssen.
+
+Zusätzlich finden sich in \enquote{\textsc{Orpheus. B -- Scribbles}} einige lose Notizen, in denen eine Eskalationsspirale beschreiben wird.\autocite[Vgl.][S.~10]{orpheus_b_scribbles}
+Ordnet man sie anhand der vorangestellten Ziffern, ergibt sich folgender Ablauf:
+Am Anfang (\enquote{1}) steht ein \enquote{Massenritual} der \enquote{Psi-Magier}, das sich an den \enquote{Schläfer} richtet und eine Welle des Wahnsinns (\enquote{\uline{WS-Welle}}) nach sich zieht.
+Im gleichen Zuge scheint es zu einem \enquote{Erdbeben} zu kommen (siehe auch \autoref{sec:orpheus_geschichte_abschnitte_minuten}).
+Anschließend und vielleicht in der Folge des Erdbebens finden (\enquote{2}) die Orks den Weg aus ihren Höhlen an das Tageslicht (\enquote{Orks kommen raus}) und \enquote{besetzen [den] Marktplatz}.
+An der Oberwelt stellen sie ab nun eine zusätzliche Bedrohung dar (\enquote{OW unsicher}) und das Neue Lager ist ist -- vermutlich, weil sie sich nun mit den Orks herumschlagen müssen -- \enquote{angeschlagen}.
+Als wäre das noch nicht schlimm genug, wird nun (\enquote{3}) auch noch die Mine des Alten Lagers ungangbar (\enquote{Mine läuft voll}) und das Alte Lager beschließt, die Freie Mine zu überfallen (\enquote{AL überfällt FM}).
+In der Folge versiegt der Nachschub an Erz für die Heilmagier (\enquote{HM kein Erz}) und an Drogen für das Sektenlager (\enquote{\textsc{Psi} keine Drogen}).
+Letzteres ist -- folgt man einem Diagramm an anderer Stelle im Konvolut -- der Fall, da das Sektenlager die Drogen von den Freien Buddlern erhält, die sie wiederum von der Außenwelt im Tausch für Erz beziehen.\footnote{\autocite[Vgl.][S.~13]{orpheus_b_scribbles}. An anderer Stelle finden wir ein rudimentäreres Austauschdiagramm, das auf die Beziehungen zwischen Außenwelt, Altem Lager und Alter Miene beschränkt ist (\autocite[vgl.][S.~6]{orpheus_b_scribbles}).}
+Die zugespitzte Feindschaft zwischen Altem und Neuem Lager führt außerdem dazu, dass man sich als Spieler beim jeweils anderen \enquote{nur reinschleichen} kann, sollte man der gegnerischen Fraktion angehören.
+Es folgen schließlich (\enquote{4}) \enquote{Offene Kämpfe} und \enquote{Chaos} an der Oberwelt, wobei nicht klar ist, ob diese Kämpfe in erster Linie zwischen Menschen und Orks, zwischen den Lagern oder schlicht zwischen allen stattfinden.
+Für Zweiters mag sprechen, dass den Worten \enquote{Offene Kämpfe} ein eingekreistes \enquote{$\stmaryrdLightning$ Lager} folgt.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – GESCHICHTE – ABSCHNITTE %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Spielabschnitte}\label{sec:orpheus_geschichte_abschnitte}
+Die übrigen drei Seiten in \enquote{\textsc{Der rote Faden $\ldots$}} sind spezifischen Spielabschnitten gewidmet.
+Den Anfang machen die \enquote{\uline{Magische[n] 15 Minuten}}, gefolgt von den \enquote{ersten Aufträge[n]} und \enquote{Gilden komplettieren}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – GESCHICHTE – ABSCHNITTE – MAGISCHE 15 MINUTEN %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Magische 15 Minuten}\label{sec:orpheus_geschichte_abschnitte_minuten}
+Die \enquote{\uline{Magische[n] 15 Minuten}} beziehen sich aller Wahrscheinlichkeit nach auf den Beginn des Spiels, auf jene kritischen Minuten also, die darüber entscheiden können, ob Spieler:innen am Ball bleiben oder ihre Aufmerksamkeit lieber wieder anderen Dingen zuwenden.
+In einem Gespräch mit Mia Consalvo erinnert sich Jesper Juul beispielsweise:
+\enquote{Twenty years ago, we would say that the player should have fun within the first 15 minutes.}\autocite{juul_speedrunning_2020}
+Ganz in diesem Sinne schrieb Bruce Shelley vor mittlerweile mehr als 20 Jahren in seinen \textit{Guidelines for Developing Successful Games}:
+
+\begin{quote}
+   A player must be actively engaged by a new game within 15 minutes of starting or we risk losing the player forever.
+   There are three keys to getting a new player into a game:
+   (1) an interesting starting situation; (2) minimal barriers to entry (interface, back-story); and (3) giving the player a few decisions to make initially, and increasing that number as the game progresses (this is the inverted pyramid of decision making).
+   Get the player into the game quickly and easily so that they are absorbed and having fun without any frustration.
+   When done properly, the player gets into the game successfully and significant time may pass before they are aware of it.\autocite{shelley_guidelines_2001}
+\end{quote}
+
+Unter der Überschrift \enquote{\uline{Magische 15 Minuten}} hat Mike Hoge einige Punkte notiert, die für den Anfang des Spiels grundlegend sein sollten.
+\enquote{\textsc{Kein[en]} Ausbruchsplan erwähnen in Bezug auf Spieler\textsc{\uline{ziel}}}, steht hier beispielsweise geschrieben.
+Stattdessen sollte der Spieler erst im Laufe des Spiels \enquote{durch [die] Gildenpläne} mit den verschiedenen Ausbruchsvorhaben in Berührung kommen.
+\enquote{Für \uline{alle} Orte} sollte es außerdem ein \enquote{\textsc{\uline{Köder}}[-]\textsc{system}} geben, beispielsweise durch einen \enquote{\textsc{Psi}[-]Missionar}, der den Spieler \enquote{ins Lager} der Sekte \enquote{ködert}.
+Auch einige Notizen zum Erzeugen der grundlegenden Stimmung finden sich hier.
+Die Rede ist von einem \enquote{Erdbeben (Schläfer)}, davon, dass mit der \enquote{mag[ischen] Barriere [etwas] im Argen} ist, von einer \enquote{Gefahr (Dämonenbeschwörer)}.
+Der Spieler sieht die \enquote{Schläferfratze im Intro} als \enquote{Wasser\uline{schemen} (durch Aufprall?)} und später als \enquote {schemen[hafte] Fratze} im \enquote{Rauch}, nachdem er in das Sektenlager gelockt wurde.
+Ihm wird in Gesprächen von vornherein vor Augen geführt, dass er hier unter rauen Gesellen weilt, die es nicht mögen, ausgefragt oder vollgequatscht zu werden.
+Er soll \enquote{Wenig quatschen/rumfragen} und es gilt: \enquote{\uline{Auftraggeber} sprechen Dich \sout{an} (\uline{keine} Frageorgie!)}.\footnote{Über dem durchgestrichenen \enquote{\sout{an}} ist notiert:
+\enquote{1 * an} und \enquote{danach selber}.
+Vermutlich also:
+Der Spieler hat zu warten, bis er das erste Mal von einem potentiellen Auftraggeber angesprochen wird.
+Erst danach ist er in der Position, seinerseits den Auftraggeber anzusprechen.}
+Andernfalls könnte es zu einem \enquote{Dialogstop durch genervten NSC} kommen, der dann \enquote{3 Stunden Ruhe} möchte (\enquote{$\hat{=}$ 10 Min[uten]}).
+Oder der Spieler hat weitere Konsequenzen zu tragen:
+\enquote{Att (minus) bei Frage\uline{orgie}} ist hier vermerkt, wobei nicht ganz klar ist, wofür \enquote{Att} steht; eventuell ist damit Attitüde gemeint, vielleicht aber auch Attribut. % Bei Mike Hoge nachfragen.
+Auch eine ganz grundlegende Spielmechanik wird hier erwähnt:
+Mit seiner \enquote{1. Waffe} kann der Spieler losziehen und \enquote{\uline{Monster} \uline{abmetzeln}}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – GESCHICHTE – ABSCHNITTE – ERSTE AUFTRÄGE %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Die ersten Aufträge}\label{sec:orpheus_geschichte_abschnitte_auftraege}
+Neben der Überschrift \enquote{Die ersten Aufträge} ist noch einmal vermerkt, worum es in dieser Phase des Spiels gehen soll:
+\enquote{\uline{Info[rmationen]} über \textsc{Lager}} sowie \enquote{Gilden} zu erlangen.
+Einen zentralen Dreh- und Angelpunkt sollte dabei, einer Skizze zufolge, der \enquote{Marktplatz} als \enquote{Platz des Vertrauens} spielen, zu dem wir wohl von einem grimmigen (\enquote{laber nich soviel}, \enquote{frag nich so viel}) \enquote{\uline{Söldner am Tor}} des Alten Lagers geschickt werden sollten.
+Hier findet der Spieler verschiedene \enquote{Shop[s]}, hat aber zunächst \enquote{\textsc{Keine Kohle}}.
+Dafür treffen sich an diesem Ort Vertreter aus allen Lagern, wodurch sich für den Spieler Aufträge ergeben können (siehe zu Aufträgen auch \autoref{sec:orpheus_mechanik_auftraege}).
+Vier Fraktionen werden auf der Skizze voneinander unterschieden, das Neue Lager, das Sektenlager, das Alte Lager sowie das Freie Lager.
+
+Ein \enquote{Paladin} aus dem Neuen Lager beispielsweise \enquote{schickt dich in [eine] Festung}, womit vielleicht das Zentrum des Alten Lagers gemeint ist.
+Hierbei erfahren wir:
+\enquote{nicht alle klassen [sic] können überall hin}.
+Dort angekommen, soll der Spieler die \enquote{K[ampf-]M[agier] in [der] kapelle [sic] zählen.}
+Ein \enquote{\textsc{Psi}-\sout{Heiler}Missionar} wiederum möchte uns in sein Lager ködern und gibt uns den \enquote{Auftrag: Begleite mich!}
+Ein \enquote{Battlemage} aus dem Alten Lager möchte \enquote{Drogen, \uline{\sout{egal woher}} $\rightarrow$ aus [einem] Haus (\uline{leer}) (Typ nicht da)}.
+Dafür bekommen wir eine \enquote{\uline{\textsc{Karte} als Belohnung}}; aber es gibt \enquote{auch anderswo Karten}.
+Ein \enquote{Fallensteller} aus dem Freien Lager schließlich braucht Hilfe in Form eines Botengangs:
+\enquote{bring News in [die] \uline{F[reie ]M[ine]}}, trägt er uns auf.
+Eine andere Idee ist hier kreuzweise durchgestrichen: \enquote{\sout{geh zu den beiden und belausche sie!}})
+
+Am Fuß der Seite ist außerdem die Idee festgehalten, dass es \enquote{Massenevents} beziehungsweise \enquote{Soziale Events} geben könnte.
+Der Ruf \enquote{\enquote{Nieder mit den Erzbaronen}} ist darunter in Anführungszeichen notiert.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORPHEUS – GESCHICHTE – ABSCHNITTE – GILDEN KOMPLETTIEREN %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Gilden komplettieren}\label{sec:orpheus_geschichte_abschnitte_gilden}
+Unter der Überschrift \enquote{Gilden komplettieren} finden sich vier von \enquote{a} bis \enquote{d} gegliederte Notizen, die in aller Kürze den Übergang zu den vier oben erwähnten Fraktionen darstellen.
+Während neben \enquote{\uline{Magische 15 Minuten}} ein Wegweiser angedeutet ist, der in Richtung \enquote{Altes Lager} weist und sich unter \enquote{Die ersten Aufträge} eine kleine Skizze des Alten Lagers findet, führt der Weg nun (potentiell) wieder vom Alten Lager fort.
+Dementsprechend ist neben \enquote{Gilden komplettieren} ein Pfeil gezeichnet, der vom Alten Lager fortführt: \enquote{(AL) $\rightarrow$}
+
+Der \enquote{Spieler streunt}, unter \enquote{a}, \enquote{durch [die] Stadt}, wo sich \enquote{anderswo verteilt \uline{alle} Gilden} finden.
+Hier kann er in Kontakt mit den \enquote{\uline{Schatten} \& \uline{Söldner[n]}} kommen.
+Erstere \enquote{lungern in [einer] Gasse rum}, letztere finden sich im \enquote{Arenabereich}.
+Der \enquote{Spieler folgt}, unter \enquote{b}, einem \enquote{Paladin} vermutlich ins Neue Lager.
+Dort zeigt dieser ihm: \enquote{Hier kannst Du die \uline{H[eil-]M[agier], Org, Pa[ladine]} finden}. % Mike Hoge fragen, wofür »Org« steht.
+Bei allen dreien können sich von hier an Aufträge anschließen.
+Zum \enquote{\textsc{Psi}-Tempel} im Sumpflager wiederum, erfahren wir unter \enquote{c}, sollte eine \enquote{Tempel\uline{fähre}} führen, die allerdings nur verfügbar sein sollte, wenn man dem oben erwähnten \enquote{Missionar} folgt: \enquote{\sout{\textsc{Nur}} wenn \textsc{Psi} Auftr. (\uline{Folgen}) -- sonst keine Fähre}, ist hier notiert.
+Dort sollte \enquote{immer tägl. 13--14\,h} ein \enquote{\uline{Gottesdienst}} stattfinden und \enquote{beim 1. Mal} sollte der Spieler hier die oben bereits erwähnte \enquote{\uline{\textsc{Rauchvision}}} als eine \enquote{\uline{Engine} \uline{Zwischensequenz}} sehen. % Mike Hoge fragen, wofür die hier erwähnten »Rächer« stehen.
+Hat der Spieler wiederum die oben erwähnte \enquote{Fallensteller-Botschaft übermitteln}, erfahren wir unter \enquote{d}, sollte er zum \enquote{Anwerbe-Heini} des Lagers gelangen.
+
+
+%%%%%%%%%%%
+% PHOENIX %
+%%%%%%%%%%%
+\chapter{Phoenix -- Ein Gefängnis im Bau}\label{ch:phoenix}
+
+
+%%%%%%%%%%%%%%%%%%%%
+% PHOENIX – ZAUBER %
+%%%%%%%%%%%%%%%%%%%%
+\section{Zauber}\label{sec:phoenix_zauber}
+Schon in der frühen Konzeptionsphase zeigt sich die besondere Rolle des Erzes, beispielsweise in den Notizen zu den einzelnen Fraktionen (siehe \autoref{sec:orpheus_welt_fraktionen}) oder zum Spielablauf (siehe \autoref{sec:orpheus_geschichte_spielablauf}).
+Dabei ist es nicht nur als ein für die spielinterne Ökonomie wichtiges Element angelegt (siehe \autoref{sec:orpheus_welt_gueter}), sondern besitzt auch zu diesem Zeitpunkt schon magische Eigenschaften.
+Die Heilmagier beispielsweise \enquote{horten} es deswegen für ihren Ausbruchsplan, nutzen aber auch ein wenig davon \enquote{zur Gewinnung von Astralenergieboostertränken (Mana Potions)}.\autocite[S.~7]{orpheus_gildensystem}
+An anderer Stelle ist notiert:
+\enquote{\uline{Erz} speichert Energie (\textsc{Mana})}.
+Eventuell sollte ein \enquote{Erzklumpen $+$ Spell} es deswegen ermöglichen, zu \enquote{Zauber[n,] ohne \textsc{Man[a]}} dafür aufwenden zu müssen, wobei hätte gelten sollen:
+\enquote{\uline{Stufe 1 Only}} und \enquote{mehrere Ladu[n]gen}.\autocite[S.~6]{orpheus_b_scribbles}
+
+
+%%%%%%%%%%%%%%%%
+% BIBLIOGRAFIE %
+%%%%%%%%%%%%%%%%
+\clearpage
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\printbibliography
+
+
+%%%%%%%%%%%%
+% APPENDIX %
+%%%%%%%%%%%%
+\clearpage
+\addcontentsline{toc}{chapter}{Anhang}
+\appendix
+\renewcommand{\thefigure}{\arabic{figure}}
+
+\chapter{Abbildungen}\label{ch:anhang_abbildungen}
+\begin{figure}
+   \centering
+   \includegraphics[width=\textwidth]{orpheus_dokumente_1.pdf}
+   \caption{Dokumente zu Orpheus (1)}
+   \label{fig:orpheus_dokumente_1}
+\end{figure}
+
+\begin{figure}
+   \centering
+   \includegraphics[width=\textwidth]{orpheus_dokumente_2.pdf}
+   \caption{Dokumente zu Orpheus (2)}
+   \label{fig:orpheus_dokumente_2}
+\end{figure}
+
+\begin{figure}
+   \centering
+   \fbox{\includegraphics[scale=0.5]{orpheus_spielfigurenanimation.pdf}}
+   \caption{Ausschnitt aus \enquote{Zusammenfassung zum Orpheus-Konzept}}
+   \label{fig:orpheus_spielfigurenanimation}
+\end{figure}
+
+\begin{figure}
+   \centering
+   \fbox{\includegraphics[scale=0.5]{orpheus_inventar.pdf}}
+   \caption{Ausschnitt aus \enquote{\uline{\textsc{Orpheus} -- Interface}}}
+   \label{fig:orpheus_inventar}
+\end{figure}
+
+\begin{figure}
+   \centering
+   \fbox{\includegraphics[scale=0.5]{orpheus_kampf.pdf}}
+   \caption{Ausschnitt aus den Notizen zur Kampfsteuerung}
+   \label{fig:orpheus_kampf}
+\end{figure}
+
+\begin{figure}
+   \centering
+   \fbox{\includegraphics[scale=0.5]{orpheus_auftraege.pdf}}
+   \caption{Ausschnitt aus \enquote{\uline{Aufträge}}}
+   \label{fig:orpheus_auftraege}
+\end{figure}
+
+\begin{figure}
+   \centering
+   \fbox{\includegraphics[scale=0.5]{orpheus_werdegang.pdf}}
+   \caption{Ausschnitt aus \enquote{\uline{Der Werdegang eines SC's $\ldots$}}}
+   \label{fig:orpheus_werdegang}
+\end{figure}
+
+\begin{figure}
+   \centering
+   \fbox{\includegraphics[scale=0.5]{orpheus_gilden_1.pdf}}
+   \caption{Ausschnitt aus \enquote{\textsc{Orpheus} -- Spielwelt/Gildensystem}}
+   \label{fig:orpheus_gilden_1}
+\end{figure}
+
+\begin{figure}
+   \centering
+   \fbox{\includegraphics[scale=0.5]{orpheus_gilden_2.pdf}}
+   \caption{Ausschnitt aus \enquote{\textsc{Orpheus} -- Spielwelt/Gildensystem V2}}
+   \label{fig:orpheus_gilden_2}
+\end{figure}
+
+\begin{figure}
+   \centering
+   \fbox{\includegraphics[scale=0.5]{orpheus_karte_1.pdf}}
+   \caption{Ausschnitt aus \enquote{\textsc{Orpheus} -- \uline{Übersicht}} (1)}
+   \label{fig:orpheus_karte_1}
+\end{figure}
+
+\begin{figure}
+   \centering
+   \fbox{\includegraphics[scale=0.5]{orpheus_karte_2.pdf}}
+   \caption{Ausschnitt aus \enquote{\textsc{Orpheus} -- \uline{Übersicht}} (2)}
+   \label{fig:orpheus_karte_2}
+\end{figure}
+
+
+\end{document}
