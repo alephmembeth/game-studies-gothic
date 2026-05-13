@@ -794,14 +794,11 @@ Er enthält zwei Orte, \enquote{\textsc{Alte Mine}} und \enquote{Altes Lager}.
 Ein Pfeil deutet darauf hin, dass sich unter den \enquote{\textsc{Pers[onen]}} wiederum einen \enquote{Glücksritter} vermerkt sein könnte.\autocite[S.~2]{orpheus_der_rote}
 
 
-%%% LESEZEICHEN %%%
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ORPHEUS – SPIELMECHANIK %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Spielmechanik}\label{sec:orpheus_mechanik}
-Spreche ich im Folgenden von \enquote{Spielmechanik}, verstehe ich darunter -- relativ weit gefasst -- die Menge an Möglichkeiten, die Spieler:innen zur Verfügung gestellt wird, um mit Spielelementen interagieren zu können.\autocite[Vgl.][255]{jaervinen_games_2008}
+Wenn wir im Folgenden von \enquote{Spielmechanik} sprechen, dann verstehen wir darunter -- relativ weit gefasst -- die Menge an Möglichkeiten, die Spieler:innen zur Verfügung gestellt wird, um mit Spielelementen interagieren zu können.\autocite[Vgl.][255]{jaervinen_games_2008}
 Diese Möglichkeiten lassen sich in der Regel, wie wir unten sehen werden, durch Verben beschreiben.\autocite[Vgl.][263]{jaervinen_games_2008}
 Von den oben genannten Dokumenten befassen sich weite Teile von \enquote{Orpheus -- Interface} (siehe hierzu auch \autoref{sec:orpheus_darstellung_inventar}) sowie die Notizen zur Kampfsteuerung mit solchen spielmechanischen sowie steuerungsbezogenen Fragen.
 Daneben finden sich auch im Konvolut \enquote{Orpheus. B -- Scribbles} relevante Stichpunkte.
@@ -814,12 +811,12 @@ Wir werfen im Folgenden zuerst einen Blick darauf, welche Möglichkeiten Spieler
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Spielerische Möglichkeiten}\label{sec:orpheus_mechanik_möglichkeiten}
 Auf der ersten Seite von \enquote{\uline{\textsc{Orpheus} -- Interface}} begegnen uns an oberster Stelle drei nummerierte Stichpunkte mit grundlegende Designentscheidungen:
-\enquote{\uline{Outside View Only}},\footnote{Das steht in Konflikt mit den Ausführungen unter \enquote{\uline{Spielansicht}} in der \enquote{Zusammenfassung}, wonach auch eine Egoperspektive vorgesehen war; siehe \autoref{sec:orpheus_darstellung_kamera}.} \enquote{\uline{Tastatur Only} (evtl Maus Inventory \& \enquote{\uline{Fernklick}} Unterstützung)} sowie \enquote{Items = VOBs}.\footnote{\enquote{VOB} steht hier für \enquote{Virtuelles Objekt}; zur Rolle von VOBs bei Gothic \autocite[vgl.][]{wiki_vob}.}
+\enquote{\uline{Outside View Only}},\footnote{Das steht in Konflikt mit den Ausführungen unter \enquote{\uline{Spielansicht}} in der \enquote{Zusammenfassung}, wonach auch eine Egoperspektive vorgesehen war; siehe \autoref{sec:orpheus_darstellung_kamera}.} \enquote{\uline{Tastatur Only} (evtl Maus Inventory \& \enquote{\uline{Fernklick}} Unterstützung)} sowie \enquote{Items = VOBs}.\footnote{\autocite[S.~1]{orpheus_interface}. \enquote{VOB} steht hier für \enquote{Virtuelles Objekt}; zur Rolle von VOBs bei Gothic \autocite[vgl.][]{wiki_vob}.}
 Alle drei Punkte haben sich als für die Entwicklung von Gothic maßgeblich herausgestellt:
-Den Namenlosen Helden sehen wir immer aus der Verfolgerperspektive, die Steuerung unterstützt zwar Mauseingabe, bleibt in der Hauptsache aber auf die Tastatur fokussiert, und alle Gegenstände, die wir in der Spielwelt finden können, sind in der Engine als virtuelle Objekte angelegt.
+Den namenlosen Helden sehen wir immer aus der Verfolgerperspektive, die Steuerung unterstützt zwar rudimentäre Mauseingabe, bleibt in der Hauptsache aber auf die Tastatur fokussiert, und alle Gegenstände, die wir in der Spielwelt finden können, sind in der Engine als virtuelle Objekte angelegt.
 
-Unter diesen drei wegweisenden Stichpunkten folgt eine von \enquote{a} bis \enquote{p} reichende Liste mit Möglichkeiten, die Spieler:innen haben sollten:
-\enquote{div[erse] Schläge}, \enquote{Zielen \& Schießen}, \enquote{Spell Selection}, \enquote{klettern}, \enquote{Springen}, \enquote{Türen öffnen/Truhe öffnen}, \enquote{Schloß knacken}, \enquote{ansehen}, \enquote{VOB verschieben}, \enquote{in VOB verstecken}, \enquote{Party NSC lenken}, \enquote{Battle Mode}, \enquote{reden}, \enquote{aufheben}, \enquote{Inventory} und \enquote{weglegen}.
+Unter diesen drei wegweisenden Stichpunkten folgt eine von \enquote{a} bis \enquote{p} reichende Liste an Möglichkeiten, die Spieler:innen haben sollten:
+\enquote{div[erse] Schläge}, \enquote{Zielen \& Schießen}, \enquote{Spell Selection}, \enquote{klettern}, \enquote{Springen}, \enquote{Türen öffnen/Truhe öffnen}, \enquote{Schloß knacken}, \enquote{ansehen}, \enquote{VOB verschieben}, \enquote{in VOB verstecken}, \enquote{Party NSC lenken}, \enquote{Battle Mode}, \enquote{reden}, \enquote{aufheben}, \enquote{Inventory} und \enquote{weglegen}.\autocite[S.~1]{orpheus_interface}
 Das meiste davon ist am Ende auch umgesetzt worden; nur bei vier Punkten -- \enquote{VOB verschieben}, \enquote{in VOB verstecken}, \enquote{Party NSC lenken} und \enquote{Battle Mode} -- gibt es nennenswerte Abweichungen.
 Schauen wir uns das einmal der Reihe nach an.
 
@@ -829,10 +826,10 @@ Es scheint offensichtlich, das sie als improvisierte Brücke zur Überwindung ei
 Statt über den Abgrund fällt sie, wenn man sie umstößt, aber leider vom Abgrund fort.
 Ob das schon als \enquote{verschieben} zählen darf, ist freilich diskutabel.
 An die Idee, zum Beispiel einen \enquote{Schrank [$\ldots$] verschieben}\autocite[S.~3]{orpheus_interface} zu können, reicht es jedenfalls nicht mehr heran.\footnote{An anderer Stelle finden wir einen Hinweis darauf, dass -- zumindest ausgewählte -- Objekte scheinbar auch zerstörbar sein sollten.
-\enquote{Container zerstören, \uline{sonst nichts}} deutet vermutlich darauf hin, dass der Inhalt von Behältern bei ihrer Zerstörung erhalten bleiben sollte (\autocite[S.~9]{orpheus_b_scribbles}).}
+\enquote{Container zerstören, \uline{sonst nichts}} könnte darauf hindeuten, dass der Inhalt von Behältern bei ihrer Zerstörung erhalten bleiben sollte (\autocite[S.~9]{orpheus_b_scribbles}).}
 
 Ähnlich sieht es für den Stichpunkt \enquote{in VOB verstecken} aus:
-Vereinzelt finden wir in der Spielwelt noch Fässer\footnote{Ein Objekt, das uns an verschiedenen Stellen in den Notizen zu \textit{Orpheus} begegnet; vgl. \autocite[S.~19]{orpheus_b_scribbles}, \autocite[S.~6]{orpheus_interface}.} -- eines im Alten Lager und zwei in der Alten Miene --, in denen sich unser Namenloser Held verstecken kann.
+Vereinzelt finden wir in der Spielwelt noch Fässer\footnote{Ein Objekt, das uns an verschiedenen Stellen in den Notizen zu \textit{Orpheus} begegnet; vgl. \autocite[S.~19]{orpheus_b_scribbles}, \autocite[S.~6]{orpheus_interface}.} -- eines im Alten Lager und zwei in der Alten Miene --, in denen sich unser namenloser Held verstecken kann.
 Eine darüberhinausgehende spielrelevante Funktion erfüllen sie aber nicht.
 
 Bei \textit{Gothic} steht außerdem nur \textit{eine} Spielfigur im Fokus und damit keine klassische, aus verschiedenen Charakteren zusammengesetzte Gruppe.
@@ -848,11 +845,15 @@ Eine dritte Option, nämlich ihn \enquote{\sout{Fliehe}[n]} zu lassen, ist hier 
 Über einen \enquote{\uline{2. Button}} sollte er dazu aufgefordert werden können, eine \enquote{Aktion} auszuführen, beispielsweise -- bezogen auf eine Tür -- \enquote{Lockpick} oder \enquote{Einrennen}.
 Über einen \enquote{\uline{3. Button}} hätte man über \enquote{Kampf/Sparflamme} entscheiden können sollen, also wahrscheinlich darüber, ob der kontrollierte Charakter mit gezogener Waffe kampfbereit sein soll oder nicht.
 Die Partymitglieder \enquote{kämpfen bis 15\%} ihrer Lebensenergie, hätten aber \enquote{\uline{Keine} selbstständige Aggression gegen andere NSCs}.
-Über einen \enquote{General Button} schließlich hätte sich ein \enquote{Kriegsrat} der Party einberufen lassen sollen.
-Diese Befehle hätten sich wahrscheinlich jeweils auf ein einziges Mitglied der Gruppe beziehen sollen.
+Über einen \enquote{General Button} schließlich hätte sich scheinbar ein \enquote{Kriegsrat} der Party einberufen lassen sollen.
+Diese Befehle hätten sich wahrscheinlich jeweils auf ein einziges Mitglied der Gruppe bezogen.
 Darauf könnte zum einen hindeuten, dass die Notiz so aussieht, als sollten die drei Buttons unter dem Balken für Lebensenergie erscheinen, der üblicherweise erscheint, wenn man sich einem NSC (oder einem Monster) zuwendet.
 Außerdem sind zwei weitere -- danach wieder durchgestrichene -- Ideen für einen \enquote{\sout{General Button 2}} sowie einen \enquote{\sout{General Button 3}} notiert.
 Mit ersterem hätte man zwischen \enquote{\sout{Alle Warten/Alle Folgen/Alle Kampf}} und mit zweiterem zwischen \enquote{\sout{Kampf/Alle Still}} umschalten können sollen;\autocite[S.~5]{orpheus_interface} \enquote{General} scheint sich also immer auf die ganze Gruppe zu beziehen.
+
+
+%%% LESEZEICHEN %%%
+
 
 Eine solche Party bringt andere spielmechanische Herausforderungen mit sich als ein einzelner Charakter:
 Wenn unser Namenloser Held in Gothic stirbt, ist das Spiel zu Ende und wir müssen neu laden.
